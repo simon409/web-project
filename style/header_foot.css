@@ -1,0 +1,97 @@
+#header{
+    width: 100%;
+    height: 70px;
+    padding: 10px 20px;
+    position: fixed;
+    z-index: 999;
+    transition: .3s ease-in-out;
+}
+
+#header.active {
+    box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    background-color: #f1faee;
+}
+
+.nav1{
+    padding-left: 100px;
+    padding-right: 100px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.nav1 h2 strong{
+    color: #e63946;
+}
+
+.nav1 ul{
+    display: flex;
+    gap: 20px;
+}
+
+.nav1 ul li{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nav1 ul li a{
+    text-decoration: none;
+    font-weight: 700;
+    color: #1d3557;
+    transition: .3s ease-in-out;
+}
+
+.nav1 ul li a:hover{
+    color: #a8dadc;
+}
+
+header .nav1 img{
+    height: 100%;
+}
+
+.register{
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.register a{
+    text-decoration: none;
+    background-color: #1d3557;
+    padding: 10px 15px;
+    border-radius: 15px;
+    color: #f1faee;
+    transition: .3s ease-in-out;
+}
+
+.register a:hover{
+    text-decoration: none;
+    color: #1d3557;
+    background-color: #a8dadc;
+}
+
+.register a:nth-child(1){
+    text-decoration: none;
+    background-color: #f1faee;
+    padding: 6px 15px;
+    border-radius: 15px;
+    border: #1d3557 solid;
+    color: #1d3557;
+    transition: .3s ease-in-out;
+}
+
+.register a:nth-child(1):hover{
+    text-decoration: none;
+    color: #a8dadc;
+    background-color: #1d3557;
+}
+
+/*Footer*/
+#footer{
+    height: 50vh;
+    background: linear-gradient(rgba(241, 250, 238, 0.5) 50%, rgba(241, 250, 238, 0.2)), url('../assets/bg_plane.png');
+    background-size: cover;
+    background-position: bottom;
+}

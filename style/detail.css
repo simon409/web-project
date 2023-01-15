@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: #F1FAEE;
+}
+
+main{
+    height: 100vh;
+    display: flex;
+    padding: 30px;
+    gap: 30px;
+}
+
+.plan{
+    position: relative;
+    background-color: #fff;
+    height: 100%;
+    width: 70%;
+    border-radius: 25px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0;
+}
+
+.plan h2{
+    font-size: 20px;
+    text-align:start;
+    color: black;
+}
+
+.colorhead{
+    background-color: #1D3557;
+    border-radius: 15px 15px 0 0;
+    width: 100%;
+    height: 70px;
+    padding-top: 20px;
+    padding-left: 5%;
+}
+
+.colorhead h2{
+    color: #fff;
+}
+
+.padded{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.heading-time{
+    display: flex;
+    justify-content: space-between;
+}
+
+.plan h3{
+    font-size: 17px;
+    margin-top: 20px;
+}
+
+.showpcode{
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    color: #1D3557;
+}
+
+.showpcode i{
+    color: #457B9D;
+}
+
+.selectper{
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    gap: 50px;
+    font-size: 30px;
+}
+
+.adult, .child{
+    display: flex;
+    gap: 10px;
+    color: #1D3557;
+}
+
+.adult a, .child a{
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.adult a:hover, .child a:hover{
+    color: #457B9D;
+}
+
+.adult input, .child input{
+    outline: none;
+    border: none;
+    text-align: center;
+    width: 200px;
+    font-size: 20px;
+}
+
+.fplan{
+    margin-top: 20px;
+}
+
+fieldset{
+    padding: 20px;
+}
+
+legend{
+    background-color: #fff;
+    padding: 0px 10px;
+}
+
+fieldset{
+    border-radius: 15px;
+    color: #1D3557;
+}
+
+.dptarr{
+    display: flex;
+}
+
+.showeer{
+    display: flex;
+    flex-direction: column;
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+}
+
+.features{
+    margin-top: 20px;
+}
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 20px;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    background-color: #1D3557;
+    border-radius: 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0;
+    justify-content: space-around;
+}
+
+.card i{
+    color: #fff;
+    font-size: 50px;
+}
+
+.card span{
+    color: #fff;
+    margin-top: 5px;
+}
+
+
+
+.prices{
+    background-color: #A8DADC;
+    height: 100%;
+    width: 30%;
+    border-radius: 25px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0;
+    padding: 20px;
+}
+
+.prices form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+hr{
+    background-color: #1D3557;
+    height:3px;
+    margin-top: 10px;
+}
+
+.prices form input[type="text"]{
+    outline: none;
+    border: none;
+    background-color: #457B9D;
+    color: #fff;
+}
+
+.passenger{
+    height: 30%;
+}
+
+.adlt, .cld, .adlt input, .cld input, .price, .price input{
+    font-size: 25px;
+    color: #fff;
+}
+
+.adlt input, .cld input{
+    width: 50px;
+}
+
+.adlt, .cld, .price{
+    padding: 20px;
+    margin-bottom: 10px;
+    background-color: #457B9D;
+    border-radius: 15px;
+}
+
+.btn input{
+    padding: 20px;
+    width: 100%;
+    font-size: 20px;
+    border-radius: 15px;
+    background-color: #1D3557;
+    color: #fff;
+}

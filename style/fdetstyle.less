@@ -1,0 +1,98 @@
+@text-black: #222222;
+@text-gray: #999999;
+
+body {
+  color: @text-black;
+  background: #f0f0f0;
+}
+
+.sectionWrap {
+  padding: 20px 14px;
+  margin-bottom: 15px;
+  background: #ffffff;
+}
+
+.sectionSegment {
+  display: flex;
+  align-items: self-start;
+  font-size: 15px;
+  line-height: 1.5em;
+  vertical-align: middle;
+  &-head {
+    align-items: center;
+    margin-bottom: 10px;
+    .sectionRight {
+      margin-bottom: 0;
+    }
+  }
+}
+
+
+.sectionLeft {
+  width: 200px;
+  padding-left: 15px;
+  flex: 0 0 200px;
+}
+
+.sectionCrossday {
+  color: #00aa00;
+  vertical-align: super;
+  font-size: 12px;
+  margin-top: -5px;
+  display: inline-block;
+}
+
+.sectionCrossDayLabel {
+  border-radius: 3px;
+  border: 1px solid #00aa00;
+  color: #00aa00;
+  padding: 4px;
+  line-height: 1;
+  margin-left: 10px;
+  display: inline-block;
+  font-size: 13px;
+}
+
+.sectionLine {
+  position: relative;
+  width: 20px;
+  flex: 0 0 20px;
+  align-self: stretch;
+  .sectionSegment:not(.sectionSegment-head):not(:last-child) &:before {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 1px;
+    background: @text-gray;
+    position: absolute;
+    left: 4px;
+    top: 15px;
+  }
+}
+
+.sectionDot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  background: @text-gray;
+  border-radius: 50%;
+  .sectionSegment-transit & {
+    width: 6px;
+    height: 6px;
+    background: #ffffff;
+    border: 2px solid @text-gray;
+  }
+}
+
+.sectionRight {
+  margin-bottom: 15px;
+}
+
+.sectionRight-desc {
+  font-size: 13px;
+}
+
+.sectionSegment-transit,
+.sectionRight-descOpt {
+  color: @text-gray;
+}
