@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2023 at 02:02 PM
+-- Generation Time: Jan 15, 2023 at 05:00 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `city`
+-- Table structure for table `country`
 --
 
-CREATE TABLE `city` (
+CREATE TABLE `country` (
   `numcoun` int(11) NOT NULL,
   `couname` varchar(50) NOT NULL,
   `councode` varchar(4) NOT NULL,
@@ -35,10 +35,10 @@ CREATE TABLE `city` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `city`
+-- Dumping data for table `country`
 --
 
-INSERT INTO `city` (`numcoun`, `couname`, `councode`, `img_url`) VALUES
+INSERT INTO `country` (`numcoun`, `couname`, `councode`, `img_url`) VALUES
 (1, 'United State', 'USA', 'https://images.unsplash.com/photo-1485738422979-f5c462d49f74?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2099&q=80'),
 (2, 'Morocco', 'MAR', 'https://images.unsplash.com/photo-1468183654773-77e2f0bb6bf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
 
@@ -64,14 +64,35 @@ INSERT INTO `flights` (`flightnum`, `froml`, `tol`, `boardtime`) VALUES
 (7, 1, 2, '16:30:00'),
 (8, 1, 2, '22:25:00');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `phone_num` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `email`, `phone_num`) VALUES
+(7, 'testuser', '25d55ad283aa400af464c76d713c07ad', 'addarm409@gmail.com', '');
+
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `city`
+-- Indexes for table `country`
 --
-ALTER TABLE `city`
+ALTER TABLE `country`
   ADD PRIMARY KEY (`numcoun`);
 
 --
@@ -83,20 +104,32 @@ ALTER TABLE `flights`
   ADD KEY `fr_to_numcoun` (`tol`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `city`
+-- AUTO_INCREMENT for table `country`
 --
-ALTER TABLE `city`
-  MODIFY `numcoun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `country`
+  MODIFY `numcoun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `flights`
 --
 ALTER TABLE `flights`
   MODIFY `flightnum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -106,8 +139,8 @@ ALTER TABLE `flights`
 -- Constraints for table `flights`
 --
 ALTER TABLE `flights`
-  ADD CONSTRAINT `fr_from_numcoun` FOREIGN KEY (`froml`) REFERENCES `city` (`numcoun`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fr_to_numcoun` FOREIGN KEY (`tol`) REFERENCES `city` (`numcoun`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fr_from_numcoun` FOREIGN KEY (`froml`) REFERENCES `country` (`numcoun`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fr_to_numcoun` FOREIGN KEY (`tol`) REFERENCES `country` (`numcoun`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
