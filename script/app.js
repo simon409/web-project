@@ -161,3 +161,10 @@ $('#adlt').change(function() {
  function updateprice(){
     
  }
+
+ var togglebtn = document.getElementById("showl");
+ var navmenu = document.getElementById("menu");
+ 
+ togglebtn.addEventListener('click', function() {
+    navmenu.classList.toggle('shownen');
+ })

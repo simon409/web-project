@@ -95,3 +95,54 @@ header .nav1 img{
     background-size: cover;
     background-position: bottom;
 }
+
+.list{
+    display: none;
+    background-color: #a8dadc;
+    position: absolute;
+    top: 80px;
+    border-radius: 15px;
+}
+
+.list .shownen{
+    display: none;
+}
+
+.account{
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.account a{
+    text-decoration: none;
+    background-color: #1d3557;
+    padding: 10px 15px;
+    border-radius: 15px;
+    color: #f1faee;
+    transition: .3s ease-in-out;
+}
+
+.list ul{
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.list ul li{
+    list-style: none;
+    margin: 5px;
+    padding: 0;
+    align-items: center;
+}
+
+#logout{
+    text-decoration: none;
+    background-color: #f1faee;
+    padding: 6px 30px;
+    border-radius: 15px;
+    border: none;
+    color: #1d3557;
+    transition: .3s ease-in-out;
+}

@@ -13,7 +13,7 @@
     }
 
     //AUTO COMPLETE CODE
-    $sql_aut = "SELECT * FROM city";
+    $sql_aut = "SELECT * FROM country";
     $result = mysqli_query($conn, $sql_aut);
     $json_array = array();
 
