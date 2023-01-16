@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2023 at 05:00 PM
+-- Generation Time: Jan 16, 2023 at 10:28 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -28,19 +28,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `country` (
-  `numcoun` int(11) NOT NULL,
-  `couname` varchar(50) NOT NULL,
-  `councode` varchar(4) NOT NULL,
-  `img_url` varchar(2048) NOT NULL
+  `idcoun` int(11) NOT NULL,
+  `namecoun` varchar(50) NOT NULL,
+  `codecoun` varchar(4) NOT NULL,
+  `image` varchar(2048) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `country`
 --
 
-INSERT INTO `country` (`numcoun`, `couname`, `councode`, `img_url`) VALUES
-(1, 'United State', 'USA', 'https://images.unsplash.com/photo-1485738422979-f5c462d49f74?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2099&q=80'),
-(2, 'Morocco', 'MAR', 'https://images.unsplash.com/photo-1468183654773-77e2f0bb6bf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+INSERT INTO `country` (`idcoun`, `namecoun`, `codecoun`, `image`) VALUES
+(1, 'morocco', 'MAR', 'https://images.unsplash.com/photo-1468183654773-77e2f0bb6bf9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80'),
+(2, 'united states', 'USA', 'https://images.unsplash.com/photo-1485738422979-f5c462d49f74?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2099&q=80\r\n');
 
 -- --------------------------------------------------------
 
@@ -60,9 +60,8 @@ CREATE TABLE `flights` (
 --
 
 INSERT INTO `flights` (`flightnum`, `froml`, `tol`, `boardtime`) VALUES
-(6, 1, 2, '10:20:00'),
-(7, 1, 2, '16:30:00'),
-(8, 1, 2, '22:25:00');
+(9, 2, 1, '10:20:00'),
+(10, 2, 1, '14:30:00');
 
 -- --------------------------------------------------------
 
@@ -93,15 +92,15 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `phone_num`) VALUES
 -- Indexes for table `country`
 --
 ALTER TABLE `country`
-  ADD PRIMARY KEY (`numcoun`);
+  ADD PRIMARY KEY (`idcoun`);
 
 --
 -- Indexes for table `flights`
 --
 ALTER TABLE `flights`
   ADD PRIMARY KEY (`flightnum`),
-  ADD KEY `fr_from_numcoun` (`froml`),
-  ADD KEY `fr_to_numcoun` (`tol`);
+  ADD KEY `fr_to_counname` (`tol`),
+  ADD KEY `fr_from_numcoun` (`froml`);
 
 --
 -- Indexes for table `users`
@@ -117,13 +116,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `country`
 --
 ALTER TABLE `country`
-  MODIFY `numcoun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idcoun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `flights`
 --
 ALTER TABLE `flights`
-  MODIFY `flightnum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `flightnum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -139,8 +138,8 @@ ALTER TABLE `users`
 -- Constraints for table `flights`
 --
 ALTER TABLE `flights`
-  ADD CONSTRAINT `fr_from_numcoun` FOREIGN KEY (`froml`) REFERENCES `country` (`numcoun`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fr_to_numcoun` FOREIGN KEY (`tol`) REFERENCES `country` (`numcoun`) ON DELETE CASCADE;
+  ADD CONSTRAINT `fr_from_numcoun` FOREIGN KEY (`froml`) REFERENCES `country` (`idcoun`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fr_to_counname` FOREIGN KEY (`tol`) REFERENCES `country` (`idcoun`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
