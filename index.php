@@ -63,14 +63,6 @@
                         <h5>Arrival</h5>
                         <input type="text" name="arrival" placeholder="Arrival" autocomplete="off" onkeyup="javascript:load_data(this.value, 1);" required>
                     </div>
-                    <!--<div class="card1">
-                        <h5>People</h5>
-                        <input type="text" name="personnum" id="person" value="0 People" readonly required>
-                        <div class="incdec">
-                            <a onclick="incr(0);">More</a>
-                            <a onclick="incr(1);">Less</a>
-                        </div>
-                    </div>-->
                     <div class="card1">
                         <h5>Flight date</h5>
                         <input type="date" name="cin" class="today" required>

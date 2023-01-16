@@ -2,15 +2,15 @@
     require('./config/config.php');
     $from = $_POST["departure"];
     $to = $_POST["arrival"];
-    $sql = "SELECT f.flightnum, f.boardtime, c.couname as 'tocoun', c.councode as 'tocode', c1.couname as 'fromcoun', c1.councode as 'fromcode' FROM flights f, country c, country c1 where (f.tol in (select c.numcoun from country where c.couname = '$to') and f.froml in (select c1.numcoun from country where c1.couname = '$from')) and f.tol = c.numcoun;";
+    $sql = "SELECT f.flightnum, f.boardtime, c.namecoun as 'tocoun', c.codecoun as 'tocode', c1.namecoun as 'fromcoun', c1.codecoun as 'fromcode' FROM flights f, country c, country c1 where (f.tol in (select c.idcoun from country where c.namecoun = '$to') and f.froml in (select c1.idcoun from country where c1.namecoun = '$from')) and f.tol = c.idcoun;";
     $result = $conn->query($sql);
 
     //getting the image for the background
-    $query2 = "SELECT img_url from city where couname='$to'";
+    $query2 = "SELECT image from country where namecoun='$to'";
     $result1 = mysqli_query($conn, $query2);
     // Get the image URL from the result
     $row = mysqli_fetch_assoc($result1);
-    $image_url = $row['img_url'];
+    $image_url = $row['image'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,20 +1,21 @@
 <?php
-    require('./config/config.php');
     session_start();
     if (isset($_GET['logout'])) {
         session_destroy();
         header('Location: login.php');
         exit;
     }
-    $id = $_SESSION['user_id'];
-    // Prepare and execute a SELECT statement to check the entered credentials
-    $query1 = "SELECT username FROM users WHERE id = '$id'";
-    $result = mysqli_query($conn, $query1);
-    $user = mysqli_fetch_assoc($result);
+    if (isset($_SESSION['user_id'])) {
+        $id = $_SESSION['user_id'];
+        // Prepare and execute a SELECT statement to check the entered credentials
+        $query1 = "SELECT username FROM users WHERE id = '$id'";
+        $userquery = mysqli_query($conn, $query1);
+        $user = mysqli_fetch_assoc($userquery);
 
-    // If the entered credentials match, start a session and save the user's ID in a session variable
-    if ($user) {
-        $username = $user['username'];
+        // If the entered credentials match, start a session and save the user's ID in a session variable
+        if ($user) {
+            $username = $user['username'];
+        }
     }
 ?>
 <header id="header">
