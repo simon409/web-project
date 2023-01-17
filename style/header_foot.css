@@ -25,6 +25,7 @@
 
 .nav1 ul{
     display: flex;
+    margin-top: 10px;
     gap: 20px;
 }
 
@@ -96,16 +97,39 @@ header .nav1 img{
     background-position: bottom;
 }
 
+.logged{
+    display: flex;
+    gap: 20px;
+}
+
 .list{
     display: none;
-    background-color: #a8dadc;
+    background-color: #fff;
     position: absolute;
     top: 80px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     border-radius: 15px;
 }
 
-.list .shownen{
+.listcard{
     display: none;
+    background-color: #fff;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 400px;
+    border-radius: 15px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.showmen{
+    display: block;
+}
+
+.card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .account{
@@ -115,8 +139,8 @@ header .nav1 img{
     align-items: center;
 }
 
-.account a{
-    text-decoration: none;
+.account button, .logged button{
+    border: none;
     background-color: #1d3557;
     padding: 10px 15px;
     border-radius: 15px;
@@ -128,21 +152,76 @@ header .nav1 img{
     display: block;
     margin: 0;
     padding: 0;
+    gap: 0;
 }
 
 .list ul li{
     list-style: none;
-    margin: 5px;
+    margin: 10px;
     padding: 0;
+    gap: 0;
     align-items: center;
 }
 
-#logout{
+.listcard ul{
+    display: block;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+    width: 100%;
+}
+
+.listcard ul li{
+    list-style: none;
+    margin: 10px;
+    padding: 0;
+    gap: 0;
+    align-items: center;
+}
+
+#logout, #user{
     text-decoration: none;
-    background-color: #f1faee;
     padding: 6px 30px;
     border-radius: 15px;
     border: none;
+    width: 100%;
     color: #1d3557;
     transition: .3s ease-in-out;
+}
+
+#logout:hover, #user:hover{
+    background-color: rgb(247, 247, 247);
+}
+
+#proceed{
+    text-decoration: none;
+    padding: 6px 30px;
+    border-radius: 15px;
+    border: none;
+    background-color: #1d3557;
+    width: 100%;
+    color: #fff;
+    transition: .3s ease-in-out;
+    text-align: center;
+}
+
+#proceed:hover{
+    background-color: #305fa1;
+}
+
+.listcard .carditem{
+    margin: 20px;
+    text-decoration: none;
+    font-weight: 700;
+    color: #1d3557;
+    transition: .3s ease-in-out;
+}
+
+.dote{
+    position: absolute;
+    right: 0;
+    background-color: #e63946;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
 }

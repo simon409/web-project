@@ -16,6 +16,9 @@
         if ($user) {
             $username = $user['username'];
         }
+
+        $querygetcard = "SELECT c.*, ct.namecoun FROM card c, flights f, country ct WHERE iduser = '$id' and (c.flightnum=f.flightnum and f.tol=ct.idcoun);";
+        $cardquery = mysqli_query($conn, $querygetcard);
     }
 ?>
 <header id="header">
@@ -32,16 +35,49 @@
             <?php
                 if (isset($_SESSION['user_id'])) {
             ?>
-            <div class="account">
-                <button id="showl" type="button"><i class="fa-solid fa-user"></i></button>
-                <div id="menu" class="list">
-                    <ul>
-                        <li><a id="logout" href="user.php"><?php echo $username?></a></li>
-                        <li><a id="logout" href="?logout=true">Log out</a></li>
-                    </ul>
+            <div class="logged">
+                <div class="card">
+                    <?php
+                        if($cardquery){
+                            ?>
+                            <div class="dote">
+                                
+                            </div>
+                            <?php
+                        }
+                    ?>
+                    <button id="showc" type="button" onclick="togglemenucard();"><i class="fa-solid fa-cart-shopping"></i></button>
+                    <div id="menucard" class="listcard">
+                        <ul>
+                            <?php
+                                while($card = mysqli_fetch_assoc($cardquery))
+                                {
+                            ?>
+                            <li class="carditem">
+                                Flight to <?php echo $card['namecoun']?> | <?php echo $card['numt_adult']." Person"; 
+                                if ($card['numt_child']>0){
+                                    echo " and ".$card['numt_child']." Child";
+                                }
+                                ?>
+                                </li>
+                                <hr style="margin-left: 10%; margin-right: 10%;">
+                            <?php
+                                }
+                            ?>
+                            <li><a id="proceed" href="user.php">Proceed to check out</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="account">
+                    <button id="showl" type="button" onclick="togglemenu();"><i class="fa-solid fa-user"></i></button>
+                    <div id="menu" class="list">
+                        <ul>
+                            <li><a id="user" href="user.php"><?php echo $username?></a></li>
+                            <li><a id="logout" href="?logout=true">Log out</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            
             <?php
             }
             else {
@@ -55,4 +91,5 @@
                 }
             ?>
         </div>
+        <script src="../script/app.js"></script>
 </header>

@@ -158,6 +158,13 @@ $('#adlt').change(function() {
     updateprice();
  });
 
- function updateprice(){
-    
- }
+ 
+function togglemenu() {
+    document.getElementById("menu").classList.toggle("showmen");
+    document.getElementById("menucard").classList.remove("showmen");
+}
+
+function togglemenucard() {
+    document.getElementById("menucard").classList.toggle("showmen");
+    document.getElementById("menu").classList.remove("showmen");
+}

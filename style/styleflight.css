@@ -6,6 +6,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
+
 html{
     scroll-behavior: smooth;
 }
@@ -134,14 +135,14 @@ header .nav1 img{
 }
 
 .infos h1{
-    text-align: center;
-    font-size: 5em;
-    color: #1D3557;
+    text-align: center !important;
+    font-size: 5em !important;
+    color: #1D3557 !important;
 }
 .infos h2{
-    text-align: center;
-    font-size: 2.4em;
-    color: #1D3557;
+    text-align: center !important;
+    font-size: 2.4em !important;
+    color: #1D3557 !important;
 }
 
 .shwf{
@@ -315,6 +316,10 @@ header .nav1 img{
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.codes h5{
+  font-size: 15px;
 }
 
 .details{
