@@ -7,7 +7,7 @@
         $password = md5($_POST['password']);
 
         // Prepare and execute a SELECT statement to check the entered credentials
-        $query = "SELECT id FROM users WHERE username = '$username' AND password = '$password'";
+        $query = "SELECT id FROM users WHERE type='user' AND (username = '$username' AND password = '$password')";
         $result = mysqli_query($conn, $query);
         $user = mysqli_fetch_assoc($result);
 
