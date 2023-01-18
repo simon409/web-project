@@ -18,7 +18,7 @@
         }
 
         $querygetcard = "SELECT c.*, ct.namecoun FROM card c, flights f, country ct WHERE iduser = '$id' and (c.flightnum=f.flightnum and f.tol=ct.idcoun);";
-        $cardquery = mysqli_query($conn, $querygetcard);
+        $cardquery = $conn->query($querygetcard);
     }
 ?>
 <header id="header">
@@ -36,9 +36,9 @@
                 if (isset($_SESSION['user_id'])) {
             ?>
             <div class="logged">
-                <div class="card">
+                <div class="card rounded-circle">
                     <?php
-                        if($cardquery){
+                        if($cardquery->num_rows>0){
                             ?>
                             <div class="dote">
                                 
@@ -63,8 +63,15 @@
                                 <hr style="margin-left: 10%; margin-right: 10%;">
                             <?php
                                 }
+                                if($cardquery->num_rows>0){
+                                    ?>
+                                        <li><a id="proceed" href="user.php">Proceed to check out</a></li>
+                                    <?php
+                                }
+                                else {
+                                    echo '<li>'. "Your cart is empty".'</li>';
+                                }
                             ?>
-                            <li><a id="proceed" href="user.php">Proceed to check out</a></li>
                         </ul>
                     </div>
                 </div>

@@ -74,18 +74,10 @@
                         You already have an account? <a href="login.php">Sign In</a>
                     </div>
                 </div>
-                <br>
-                <hr>
-                <br>
-                <div class="connwithsocial">
-                    <i class="fa-brands fa-facebook"></i>
-                    <a href="#"><h5 id="texticon">Connect with Facebook</h5></a>
-                    <img src="./assets/google.svg">
-                    <a href="#"><h5 id="texticon">Connect with Google</h5></a>
-                    <i class="fa-brands fa-apple"></i>
-                    <a href="#"><h5 id="texticon">Connect with Appel</h5></a>
-                </div>
             </form>
+        </div>
+        <div class="backhome">
+            <a href="index.php">Back to home page</a>
         </div>
     </section>
 

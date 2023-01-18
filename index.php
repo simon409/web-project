@@ -77,18 +77,57 @@
     <section id="Popflight">
         <h2>POPULAR FLIGHTS</h2>
         <div class="d-flex justify-content-around mt-5">
-            <div class="col-2 text-center card">
-                <img src="https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80" alt="">
-                <span>France</span>
+            <div class="col-2 text-center">
+                <div class="containerc">
+                    <div class="cardc">
+                        <div class="card-img">
+                        <img style="width: 100%; height=100%; object-fit: cover;" src="https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80" alt="">
+                        </div>
+                        <div class="card-content">
+                        <h2 class="big-title">France</h2>
+                        <h3 class="medium-title">Paris</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-2 text-center card">
-                United States
+            <div class="col-2 text-center">
+                <div class="containerc">
+                    <div class="cardc">
+                        <div class="card-img">
+                        <img style="width: 100%; height=100%; object-fit: cover;" src="https://images.unsplash.com/photo-1519121785383-3229633bb75b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" alt="">
+                        </div>
+                        <div class="card-content">
+                        <h2 class="big-title">USA</h2>
+                        <h3 class="medium-title">New York</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-2 text-center card">
-                Morocco
+            <div class="col-2 text-center">
+                <div class="containerc">
+                    <div class="cardc">
+                        <div class="card-img">
+                        <img style="width: 100%; height=100%; object-fit: cover;" src="https://images.unsplash.com/photo-1538600838042-6a0c694ffab5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80" alt="">
+                        </div>
+                        <div class="card-content">
+                        <h2 class="big-title">Morocco</h2>
+                        <h3 class="medium-title">Chefchaouen</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-2 text-center card">
-                Spain
+            <div class="col-2 text-center">
+                <div class="containerc">
+                    <div class="cardc">
+                        <div class="card-img">
+                        <img style="width: 100%; height=100%; object-fit: cover;" src="https://images.unsplash.com/photo-1549643276-fdf2fab574f5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80" alt="">
+                        </div>
+                        <div class="card-content">
+                        <h2 class="big-title">Spain</h2>
+                        <h3 class="medium-title">Málaga</h3>
+                        </div>
+                    </div>
+                </div> 
             </div>
         </div>
 
