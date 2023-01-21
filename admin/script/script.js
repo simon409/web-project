@@ -1,3 +1,7 @@
+function togglemenu() {
+    document.getElementById("menu").classList.toggle("showmen");
+}
+
 function menuselect(page) {
     //make all hidden
     document.getElementById("dash").classList.add("hide");

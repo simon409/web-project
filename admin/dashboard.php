@@ -18,6 +18,9 @@
             $username = $user['username'];
         }
     }
+    else{
+        header('location:index.php');
+    }
     /*get all flight */
     $sql = "SELECT f.*, c.namecoun as 'fromcoun', c.codecoun as 'fromcode', c1.namecoun as 'tocoun', c1.codecoun as 'tocode', TIMEDIFF(f.arrivaltime,f.boardtime) as 'duration', a.nameairp as 'fromair', a.codeairport as 'fromaircode' , a1.nameairp as 'toair', a1.codeairport as 'toaircode' from flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun))";
     $result = $conn->query($sql);
@@ -28,7 +31,11 @@
     $sql3 = "SELECT * FROM airport";
     $result3 = $conn->query($sql3);
     /*get all booked flights */
-    
+    $sql4 = "SELECT cmd.*, c.namecoun as 'fromcoun', u.username, c1.namecoun as 'tocoun', a.nameairp as 'fromair',a1.nameairp as 'toair' from commandedf cmd, users u, flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and (cmd.flightnum = f.flightnum and cmd.iduser = u.id);";
+    $result4 = $conn->query($sql4);
+    /* get stopover */
+    $sql5 = "SELECT s.*, a.nameairp FROM stopover s, airport a where s.airid=a.idairp";
+    $result5 = $conn->query($sql5);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -111,8 +118,8 @@
                                 <td><?php echo $flight['tocoun']?></td>
                                 <td><?php echo $flight['boardtime']?></td>
                                 <td class="action">
-                                    <a href="operations/deletef.php?id=<?php echo $flight['flightnum']?>"><i class="fa-solid fa-trash"></i></a>
-                                    <a href="operations/editf.php?id=<?php echo $flight['flightnum']?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="operations/delete/deletef.php?id=<?php echo $flight['flightnum']?>"><i class="fa-solid fa-trash"></i></a>
+                                    <a href="operations/modify/editf.php?id=<?php echo $flight['flightnum']?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                                 </tr>
                             <?php
@@ -153,8 +160,8 @@
                                 <td><?php echo $country['namecoun']?></td>
                                 <td><?php echo $country['codecoun']?></td>
                                 <td class="action">
-                                    <a href="operations/deletef.php?id=<?php echo $country['idcoun']?>"><i class="fa-solid fa-trash"></i></a>
-                                    <a href="operations/editf.php?id=<?php echo $country['idcoun']?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="operations/delete/deletec.php?id=<?php echo $country['idcoun']?>"><i class="fa-solid fa-trash"></i></a>
+                                    <a href="operations/modify/editc.php?id=<?php echo $country['idcoun']?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                                 </tr>
                             <?php
@@ -195,8 +202,8 @@
                                 <td><?php echo $airport['nameairp']?></td>
                                 <td><?php echo $airport['codeairport']?></td>
                                 <td class="action">
-                                    <a href="operations/deletef.php?id=<?php echo $airport['idairp']?>"><i class="fa-solid fa-trash"></i></a>
-                                    <a href="operations/editf.php?id=<?php echo $airport['idairp']?>"><i class="fa-solid fa-pen-to-square"></i></a>
+                                    <a href="operations/delete/deletea.php?id=<?php echo $airport['idairp']?>"><i class="fa-solid fa-trash"></i></a>
+                                    <a href="operations/modify/edita.php?id=<?php echo $airport['idairp']?>"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </td>
                                 </tr>
                             <?php
@@ -214,10 +221,10 @@
                         </table>
                     </div>
                 </section>
-                <section id="addf">
+                <section id="addf" class="hide">
                     <h1>Add Flight</h1>
                     <div class="formdiv">
-                        <form action="/operations/addflight.php" method="POST">
+                        <form action="/operations/add/addflight.php" method="POST">
                             <div class="form">
                                 <table class="mt-4">
                                     <tr>
@@ -225,15 +232,47 @@
                                             <div class="form-outline mb-4">
                                                 <label class="form-label" for="form2Example17">Departure Airport</label>
                                                 <select name="forma" class="form-control form-control-lg">
-                                                    <option value="0">Value1</option>
+                                                <?php
+                                                if($result3->num_rows>0)
+                                                {
+                                                    foreach ($result3 as $airport) {
+                                                ?>
+                                                    <option value="<?php echo $airport['idairp']?>"><?php echo $airport['nameairp'].' - '.$airport['codeairport'] ?></option>
+                                                <?php
+                                                    }
+                                                }
+                                                else{
+                                                ?>
+                                                    <tr>
+                                                        <td colspan="5">No flights available</td>
+                                                    </tr>
+                                                <?php
+                                                }
+                                                ?>
                                                 </select>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-outline mb-4">
                                                 <label class="form-label" for="form2Example27">Destination Airport</label>
-                                                <select name="toa" class="form-control form-control-lg">
-                                                    <option value="0">Value1</option>
+                                                <select name="forma" class="form-control form-control-lg">
+                                                <?php
+                                                if($result3->num_rows>0)
+                                                {
+                                                    foreach ($result3 as $airport) {
+                                                ?>
+                                                    <option value="<?php echo $airport['idairp']?>"><?php echo $airport['nameairp'].' - '.$airport['codeairport'] ?></option>
+                                                <?php
+                                                    }
+                                                }
+                                                else{
+                                                ?>
+                                                    <tr>
+                                                        <td colspan="5">No flights available</td>
+                                                    </tr>
+                                                <?php
+                                                }
+                                                ?>
                                                 </select>
                                             </div>
                                         </td>
@@ -251,17 +290,33 @@
                                             <div class="form-outline mb-4 hide" id="stopo">
                                                 <label class="form-label" for="form2Example27">Select stopover</label>
                                                 <select name="toa" class="form-control form-control-lg mb-4">
-                                                    <option value="0">Value1</option>
+                                                    <?php
+                                                    if($result5->num_rows>0)
+                                                    {
+                                                        foreach ($result5 as $stopover) {
+                                                    ?>
+                                                        <option value="<?php echo $stopover['idstop']?>"><?php echo $stopover['nameairp'].' - '.$stopover['arrival'].' -> '.$stopover['departure'] ?></option>
+                                                    <?php
+                                                        }
+                                                    }
+                                                    else{
+                                                    ?>
+                                                        <tr>
+                                                            <td colspan="5">No stopover available</td>
+                                                        </tr>
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </select>
                                                 <div class="form-check form-check-inline p-0">
-                                                    <a href="./operations/addstopover.php" class="btn btn-primary btn-lg btn-block" name="submit" target="_blank" rel="noopener noreferrer" type="submit">Add Stop Overs</a>
+                                                    <a href="./operations/add/addstopover.php" class="btn btn-primary btn-lg btn-block" name="submit" target="_blank" rel="noopener noreferrer" type="submit">Add Stop Overs</a>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-outline mb-4">
                                                 <label class="form-label" for="form2Example17">Seats Available in flight</label>
-                                                <input type="text" id="username" name="username" class="form-control form-control-lg" />
+                                                <input type="number" id="username" name="username" class="form-control form-control-lg" />
                                             </div>
                                         </td>
                                     </tr>
@@ -304,12 +359,112 @@
                 </section>
                 <section id="addc" class="hide">
                     <h1>Add Country</h1>
+                    <form action="/operations/add/addcountry.php">
+                        <div class="half mt-5">
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="form2Example17">Country Name</label>
+                                <input type="text" id="counname" name="counname" class="form-control form-control-lg" />
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="form2Example17">Country Code</label>
+                                <input type="text" id="councode" name="councode" class="form-control form-control-lg" />
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="form2Example17">Country Image url</label>
+                                <input type="url" id="imagecoun" name="imagecoun" class="form-control form-control-lg" />
+                            </div>
+                            <div class="pt-1 mb-4">
+                                <a class="btn btn-dark btn-lg btn-block" name="submit" type="submit">Add Country</a>
+                            </div>
+                        </div>
+                    </form>
                 </section>
                 <section id="adda" class="hide">
                     <h1>Add Airport</h1>
+                    <form action="/operations/add/addairp.php">
+                        <div class="half mt-5">
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="form2Example17">Airport Name</label>
+                                <input type="text" id="counname" name="counname" class="form-control form-control-lg" />
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" for="form2Example17">Airport Code</label>
+                                <input type="text" id="councode" name="councode" class="form-control form-control-lg" />
+                            </div>
+                            <div class="form-outline mb-4">
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form2Example17">Country</label>
+                                    <select name="forma" class="form-control form-control-lg">
+                                                <?php
+                                                if($result2->num_rows>0)
+                                                {
+                                                    foreach ($result2 as $country) {
+                                                ?>
+                                                    <option value="<?php echo $country['idcoun']?>"><?php echo $country['namecoun'] ?></option>
+                                                <?php
+                                                    }
+                                                }
+                                                else{
+                                                ?>
+                                                    <tr>
+                                                        <td colspan="5">No flights available</td>
+                                                    </tr>
+                                                <?php
+                                                }
+                                                ?>
+                                                </select>
+                                </div>
+                            </div>
+                            <div class="pt-1 mb-4">
+                                <a class="btn btn-dark btn-lg btn-block" name="submit" type="submit">Add Country</a>
+                            </div>
+                        </div>
+                    </form>
                 </section>
-                <section id="showbooked" class="hide">
+                <section id="showbooked">
                     <h1>Show booked fligths</h1>
+                    <div id="tablescroll" style="height: 600px;overflow-y: scroll;">
+                        <table class="table table-bordered table-striped mt-5">
+                            <thead>
+                                <tr>
+                                <th scope="col">OrderID</th>
+                                <th scope="col">Flight Departure</th>
+                                <th scope="col">Flight Arrival</th>
+                                <th scope="col">Person</th>
+                                <th scope="col">Number Adult</th>
+                                <th scope="col">Number Children</th>
+                                <th scope="col">Total Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            if($result4->num_rows>0)
+                            {
+                                foreach ($result4 as $orderf) {
+                                    ?>
+                                <tr>
+                                <th scope="row"><?php echo $orderf['id']?></th>
+                                <td><?php echo $orderf['fromair']?></td>
+                                <td><?php echo $orderf['toair']?></td>
+                                <td><?php echo $orderf['username']?></td>
+                                <td><?php echo $orderf['numt_adult']?></td>
+                                <td><?php echo $orderf['numt_child']?></td>
+                                <td><?php echo $orderf['totalprice']?></td>
+                                </tr>
+                            <?php
+                                }
+                            }
+                            else{
+                            ?>
+                                <tr>
+                                    <td colspan="5">No Orders available</td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
             </div>
         </div>
