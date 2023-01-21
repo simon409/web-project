@@ -2,7 +2,7 @@
     require('./config/config.php');
     $from = $_POST["departure"];
     $to = $_POST["arrival"];
-    $sql = "SELECT f.flightnum, f.boardtime, c.namecoun as 'tocoun', c.codecoun as 'tocode', c1.namecoun as 'fromcoun', c1.codecoun as 'fromcode' FROM flights f, country c, country c1 where (f.tol in (select c.idcoun from country where c.namecoun = '$to') and f.froml in (select c1.idcoun from country where c1.namecoun = '$from')) and f.tol = c.idcoun;";
+    $sql = "SELECT f.*, c.namecoun as 'fromcoun', c.codecoun as 'fromcode', c1.namecoun as 'tocoun', c1.codecoun as 'tocode' from flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and (c.namecoun = '$from' and c1.namecoun='$to')";
     $result = $conn->query($sql);
 
     //getting the image for the background

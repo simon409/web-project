@@ -201,3 +201,19 @@ table{
 .hide{
     display: none;
 }
+
+#addf{
+    height: 100%;
+    width: 100%;
+}
+table{
+    width: 100%;
+    text-align: start;
+}
+td{
+    width: 50%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

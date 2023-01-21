@@ -1,5 +1,20 @@
 <?php
+    require('./config/config.php');
     $fid=$_GET['id'];
+    $sql = "SELECT f.*, c.namecoun as 'fromcoun', c.codecoun as 'fromcode', c1.namecoun as 'tocoun', c1.codecoun as 'tocode', TIMEDIFF(f.arrivaltime,f.boardtime) as 'duration', a.nameairp as 'fromair', a.codeairport as 'fromaircode' , a1.nameairp as 'toair', a1.codeairport as 'toaircode' from flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and flightnum=$fid";
+    $result = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_assoc($result);
+    $tothour = substr($row['duration'], -7, 1);
+    $totmin = substr($row['duration'], -5, 2);
+
+    /*get escale */
+    if(!is_null($row['idescale']))
+    {
+        $idstop = $row['idescale'];
+        $sql1 = "SELECT s.*, a.nameairp as 'airname', a.codeairport as 'aircode' , c.namecoun as 'namecoun' FROM stopover s, country c, airport a where (s.airid=a.idairp and a.countryid=c.idcoun) and idstop=$idstop";
+        $resultstop = mysqli_query($conn,$sql1);
+        $rowstop = mysqli_fetch_assoc($resultstop);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,13 +26,13 @@
     <link rel="stylesheet/less" type="text/css" href="./style/fdetstyle.less" />
     <script src="https://cdn.jsdelivr.net/npm/less@4.1.1" ></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Flight to ...</title>
+    <title>Flight to <?php echo $row['tocoun']?></title>
 </head>
 <body>
     <main>
         <div class="plan">
             <div class="colorhead">
-                <h2>United States → Morocco</h2>
+                <h2><?php echo $row['fromcoun']?> → <?php echo $row['tocoun']?></h2>
             </div>
             <div class="padded">
                 <div class="heading-time">
@@ -26,9 +41,9 @@
                     </h3>
                 </div>
                 <div class="showpcode">
-                    <span>USA</span>
+                    <span><?php echo $row['fromcode']?></span>
                     <span><i class="fa-solid fa-plane"></i></span>
-                    <span>MAR</span>
+                    <span><?php echo $row['tocode']?></span>
                 </div>
                 <div class="selectper">
                     <div class="adult">
@@ -54,35 +69,82 @@
                                 </div>
                                 <div class="sectionLeft">Departure</div>
                                 <div class="sectionLine"></div>
-                                <div class="sectionRight"><span>Total travel time 8 hours 30 minutes</span><span class="sectionCrossDayLabel">Overnight Arrival</span></div>
+                                <div class="sectionRight"><span>
+                                    <?php
+                                        if($tothour>0)
+                                        {
+                                            echo 'Total travel time is: '.$tothour.' Hours and '.$totmin.' Minutes';
+                                        }
+                                        else {
+                                            echo 'Total travel time is: '.$totmin.' Minutes';
+                                        }
+                                    ?>
+                                </span>
+                                <span class="sectionCrossDayLabel">
+                                    <?php
+                                        if($row['arrivaltime']>18){
+                                            echo 'Nightly Arrival';
+                                        }
+                                        else {
+                                            echo 'Overnight Arrival';
+                                        }
+                                    ?>
+                                </span>
+                            </div>
                             </div>
                             <div class="sectionSegment">
                                 <div class="sectionNum"></div>
-                                <div class="sectionLeft">10:20<span class="sectionCrossday">+1</span></div>
+                                <div class="sectionLeft">
+                                    <?php
+                                        echo substr($row['boardtime'], 0, 5);
+                                    ?>
+                                </div>
                                 <div class="sectionLine"><span class="sectionDot"></span></div>
                                 <div class="sectionRight">
-                                <div>John F.Kennedy International Airport JFK</div>
-                                <div class="sectionRight-desc">Vanilla Air JW107 Economy Class N<span class="sectionRight-descOpt">*JL121</span></div>
-                                <div class="sectionRight-desc">2 hours and 55 minutes</div>
+                                <div>
+                                    <?php
+                                        echo $row['fromair'].' '.$row['fromaircode'];
+                                    ?>
+                                </div>
+                                <div class="sectionRight-desc"><?php echo $row['fromcoun']?></div>
                                 </div>
                             </div>
+                            <?php
+                                if(!is_null($row['idescale']))
+                                {
+                            ?>
                             <div class="sectionSegment sectionSegment-transit">
                                 <div class="sectionNum"></div>
                                 <div class="sectionLeft"></div>
                                 <div class="sectionLine"><span class="sectionDot"></span></div>
                                 <div class="sectionRight">
-                                <div>Test International Airport TST</div>
-                                <div class="sectionRight-desc">Vanilla Air JW107 Economy Class N<span class="sectionRight-descOpt">*JL121</span></div>
-                                <div class="sectionRight-desc">2 hours and 55 minutes</div>
+                                <div>
+                                    <?php
+                                        echo $rowstop['airname'].' '.$rowstop['aircode'];
+                                    ?>
+                                </div>
+                                <div class="sectionRight-desc"><?php echo $rowstop['arrival'].' → '.$rowstop['departure']?></div>
+                                <div class="sectionRight-desc"><?php echo $rowstop['namecoun']?></div>
                                 </div>
                             </div>
+                            <?php
+                                }
+                            ?>
                             <div class="sectionSegment">
                                 <div class="sectionNum"></div>
-                                <div class="sectionLeft">18:50<span class="sectionCrossday">+1</span></div>
+                                <div class="sectionLeft">
+                                    <?php
+                                        echo substr($row['arrivaltime'], 0, 5);
+                                    ?>
+                                </div>
                                 <div class="sectionLine"><span class="sectionDot"></span></div>
                                 <div class="sectionRight">
-                                <div>mohammed v international airport CMN</div>
-                                <div class="sectionRight-desc">2 hours and 55 minutes</div>
+                                <div>
+                                    <?php
+                                        echo $row['toair'].' '.$row['toaircode'];
+                                    ?>
+                                </div>
+                                <div class="sectionRight-desc"><?php echo $row['tocoun']?></div>
                                 </div>
                             </div>
                             </div>
@@ -137,7 +199,7 @@
                     <input type="text" name="price" value="500$" readonly>
                 </div>
                 <div class="btn">
-                    <input type="submit" value="Proceed to check out">
+                    <input type="submit" value="Add to cart">
                 </div>
             </form>
         </div>

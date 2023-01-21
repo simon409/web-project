@@ -17,7 +17,7 @@
             $username = $user['username'];
         }
 
-        $querygetcard = "SELECT c.*, ct.namecoun FROM card c, flights f, country ct WHERE iduser = '$id' and (c.flightnum=f.flightnum and f.tol=ct.idcoun);";
+        $querygetcard = "SELECT c.*, ct.namecoun FROM card c, flights f, country ct, airport a WHERE iduser = '$id' and (c.flightnum=f.flightnum and (f.toa = a.idairp and a.countryid = ct.idcoun));";
         $cardquery = $conn->query($querygetcard);
     }
 ?>
@@ -65,7 +65,7 @@
                                 }
                                 if($cardquery->num_rows>0){
                                     ?>
-                                        <li><a id="proceed" href="user.php">Proceed to check out</a></li>
+                                        <li><a id="proceed" href="proceed.php">Proceed to check out</a></li>
                                     <?php
                                 }
                                 else {
