@@ -8,13 +8,13 @@
     if (isset($_SESSION['user_id'])) {
         $id = $_SESSION['user_id'];
         // Prepare and execute a SELECT statement to check the entered credentials
-        $query1 = "SELECT username FROM users WHERE id = '$id'";
+        $query1 = "SELECT fullname FROM users WHERE id = '$id'";
         $userquery = mysqli_query($conn, $query1);
         $user = mysqli_fetch_assoc($userquery);
 
         // If the entered credentials match, start a session and save the user's ID in a session variable
         if ($user) {
-            $username = $user['username'];
+            $username = $user['fullname'];
         }
 
         $querygetcard = "SELECT c.*, ct.namecoun FROM card c, flights f, country ct, airport a WHERE iduser = '$id' and (c.flightnum=f.flightnum and (f.toa = a.idairp and a.countryid = ct.idcoun));";
@@ -65,7 +65,7 @@
                                 }
                                 if($cardquery->num_rows>0){
                                     ?>
-                                        <li><a id="proceed" href="proceed.php">Proceed to check out</a></li>
+                                        <li><a id="proceed" href="user.php">Proceed to check out</a></li>
                                     <?php
                                 }
                                 else {

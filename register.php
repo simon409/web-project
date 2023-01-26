@@ -4,6 +4,7 @@
     if (isset($_POST['submit'])) {
         // Get the entered information
         $username = $_POST['username'];
+        $fullname = $_POST['fullname'];
         $email = $_POST['email'];
         $password = $_POST['password'];
         $password2 = $_POST['password2'];
@@ -27,8 +28,8 @@
                 $password = md5($password);
 
                 // Prepare and execute an INSERT statement to insert the user's information into the database
-                $stmt = $conn->prepare("INSERT INTO users(username, email, password) VALUES(?, ?, ?)");
-                $stmt->bind_param("sss", $username, $email, $password);
+                $stmt = $conn->prepare("INSERT INTO users(username, fullname, email, password, type) VALUES(?, ?, ?, ?, 'user')");
+                $stmt->bind_param("ssss", $username, $fullname, $email, $password);
                 $stmt->execute();
 
                 // Get the user's ID
@@ -62,7 +63,9 @@
                 <h3>Make new account</h3>
                 <div class="input-icons">
                     <i class="fa fa-user icon"></i>
-                    <input type="text" name="username" placeholder="Login">
+                    <input type="text" name="username" placeholder="username">
+                    <i class="fa fa-user icon"></i>
+                    <input type="text" name="fullname" placeholder="Full Name">
                     <i class="fa-solid fa-envelope icon"></i>
                     <input type="text" name="email" placeholder="Email Address">
                     <i class="fa fa-lock icon"></i>
