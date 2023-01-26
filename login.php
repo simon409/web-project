@@ -1,6 +1,9 @@
 <?php
     require('./config/config.php');
     session_start();
+    if (isset($_SESSION['previous_url'])) {
+        $previous_url = $_SESSION['previous_url'];
+    }
     if (isset($_POST['submit'])) {
         // Get the entered username and password
         $username = $_POST['username'];
@@ -13,9 +16,12 @@
 
         // If the entered credentials match, start a session and save the user's ID in a session variable
         if ($user) {
-            $_SESSION['user_id'] = $user['id'];
-            header('Location: index.php');
-            exit;
+            if (isset($_SESSION['previous_url'])) {
+                $_SESSION['user_id'] = $user['id'];
+                header("Location: ".$previous_url);
+                exit;
+            }
+            
         } else {
             $error = 'Invalid username or password';
         }
@@ -36,6 +42,15 @@
         } ?>
     <section class="bg_login">
         <div class="login">
+            <?php
+                if (isset($previous_url)) {
+            ?>
+            <div class="notice">
+                    <h2>You must Login in order to complete your purchase</h2>
+            </div>
+            <?php
+                }
+            ?>
             <form action="" method="post">
                 <h2>Welcome back!</h2>
                 <h3>Sign in to your account</h3>

@@ -1,5 +1,5 @@
 <?php 
-    require('./config/config.php')
+    require('./config/config.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +19,7 @@
 
 <body onscroll="test(0)">
     <?php include('./components/header.php') ?>
+    <?php $_SESSION['previous_url']=$_SERVER['PHP_SELF'];?>
     <section id="hero">
         <div class="half2">
             <div class="container">

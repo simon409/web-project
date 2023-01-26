@@ -264,6 +264,15 @@ section{
     width: 100%;
 }
 
+.login .notice{
+    position: relative;
+    top: 20%;
+}
+
+.login .notice h2{
+    text-align: center;
+}
+
 .login form{
     position: relative;
     width: fit-content;

@@ -89,8 +89,98 @@
                 </div>
             </div>
             <div class="pages">
-                <section id="dash" class="hide">
+                <section id="dash">
                     <h1>Dashboard</h1>
+                    <div class="total">
+                        <!--Total income-->
+                        <div class="income">
+                            <div class="item">
+                                <h3>Total Income</h3>
+                                <h1>5000 $</h1>
+                            </div>
+                        </div>
+                        <!--Total Flight Available-->
+                        <div class="f-available">
+                            <div class="item">
+                                <h3>Total Flight Available</h3>
+                                <h1>240 Flight</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="best">
+                        <!--Best Flight-->
+                        <div class="flight">
+                            <h3>Best Flights</h3>
+                            <div id="tablescroll" style="overflow-y: scroll;">
+                                <table class="table table-bordered table-striped mt-5">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">Flight Departure</th>
+                                        <th scope="col">Flight Arrival</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    if($result->num_rows>0)
+                                    {
+                                        foreach ($result as $flight) {
+                                            ?>
+                                        <tr>
+                                        <td><?php echo $flight['fromcoun']?></td>
+                                        <td><?php echo $flight['tocoun']?></td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    else{
+                                    ?>
+                                        <tr>
+                                            <td colspan="5">No flights available</td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!--Best Client-->
+                        <div class="client">
+                            <h3>Best Clients</h3>
+                            <div id="tablescroll" style="overflow-y: scroll;">
+                                <table class="table table-bordered table-striped mt-5">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col">Client Name</th>
+                                        <th scope="col">Client Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    if($result->num_rows>0)
+                                    {
+                                        foreach ($result as $flight) {
+                                            ?>
+                                        <tr>
+                                        <td><?php echo $flight['fromcoun']?></td>
+                                        <td><?php echo $flight['tocoun']?></td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    else{
+                                    ?>
+                                        <tr>
+                                            <td colspan="5">No flights available</td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 <!--we will add class="hide" so we can show every page at once-->
                 <section id="showf" class="hide">
@@ -421,7 +511,7 @@
                         </div>
                     </form>
                 </section>
-                <section id="showbooked">
+                <section id="showbooked" class="hide">
                     <h1>Show booked fligths</h1>
                     <div id="tablescroll" style="height: 600px;overflow-y: scroll;">
                         <table class="table table-bordered table-striped mt-5">

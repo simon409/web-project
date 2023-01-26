@@ -1,16 +1,21 @@
 <?php 
     require('./config/config.php');
-    $from = $_POST["departure"];
-    $to = $_POST["arrival"];
-    $sql = "SELECT f.*, c.namecoun as 'fromcoun', c.codecoun as 'fromcode', c1.namecoun as 'tocoun', c1.codecoun as 'tocode' from flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and (c.namecoun = '$from' and c1.namecoun='$to')";
-    $result = $conn->query($sql);
+    if (isset($_POST["departure"]) && isset($_POST["arrival"])) {
+        $from = $_POST["departure"];
+        $to = $_POST["arrival"];
+        $sql = "SELECT f.*, c.namecoun as 'fromcoun', c.codecoun as 'fromcode', c1.namecoun as 'tocoun', c1.codecoun as 'tocode' from flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and (c.namecoun = '$from' and c1.namecoun='$to')";
+        $result = $conn->query($sql);
 
-    //getting the image for the background
-    $query2 = "SELECT image from country where namecoun='$to'";
-    $result1 = mysqli_query($conn, $query2);
-    // Get the image URL from the result
-    $row = mysqli_fetch_assoc($result1);
-    $image_url = $row['image'];
+        //getting the image for the background
+        $query2 = "SELECT image from country where namecoun='$to'";
+        $result1 = mysqli_query($conn, $query2);
+        // Get the image URL from the result
+        $row = mysqli_fetch_assoc($result1);
+        $image_url = $row['image'];
+    }
+    else {
+        header('location: index.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,7 +85,7 @@
                         <input type="date" name="cin" value="<?php echo $_POST['cin']?>" required>
                     </div>
                     <div class="card1">
-                        <input type="submit" class="bookn" value="Update flights" />
+                        <input type="submit" name="submit" class="bookn" value="Update flights" />
                     </div>
                 </div>
             </form>

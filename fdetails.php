@@ -1,12 +1,31 @@
 <?php
     require('./config/config.php');
-    $fid=$_GET['id'];
+    session_start();
+    $_SESSION['previous_url']=$_SERVER['PHP_SELF'];
+    if (isset($_SESSION['user_id'])) {
+        $uid = $_SESSION['user_id'];
+    }
+    else {
+        if (isset($_POST['addtocardbtn'])) {
+            header('location: login.php');
+        }
+    }
+
+    if (isset($_SESSION['fid'])) {
+         $fid = $_SESSION['fid'];
+    }
+    else {
+        $fid=$_GET['id'];
+        $_SESSION['fid'] = $fid;
+    }
     $sql = "SELECT f.*, c.namecoun as 'fromcoun', c.codecoun as 'fromcode', c1.namecoun as 'tocoun', c1.codecoun as 'tocode', TIMEDIFF(f.arrivaltime,f.boardtime) as 'duration', a.nameairp as 'fromair', a.codeairport as 'fromaircode' , a1.nameairp as 'toair', a1.codeairport as 'toaircode' from flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and flightnum=$fid";
     $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_assoc($result);
     $tothour = substr($row['duration'], -7, 1);
     $totmin = substr($row['duration'], -5, 2);
 
+    $num_adt = 1;
+    $num_cld = 0;
     /*get escale */
     if(!is_null($row['idescale']))
     {
@@ -28,7 +47,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Flight to <?php echo $row['tocoun']?></title>
 </head>
-<body>
+<body onload="updatetotalprice();" >
     <main>
         <div class="plan">
             <div class="colorhead">
@@ -179,7 +198,7 @@
             </div>
         </div>
         <div class="prices">
-            <form action="">
+            <form <?php if (isset($uid)) {?> action="addtocart.php"<?php }?> method="post">
                 <div class="header">
                     <h2>Details</h2>
                     <div class="line">
@@ -187,26 +206,26 @@
                     </div>
                 </div>
                 <div class="passenger">
+                    <input type="hidden" name="numf" value="<?php echo $fid ?>">
                     <div class="adlt">
-                        <input type="text" id="adlt" value="1" readonly> <span> Adult x 500$</span>
+                        <input type="text" name="num_adt" id="adlt" value="1" readonly> <span> Adult x <span id="pradt"><?php echo $row['price_adult']?></span> DH</span>
                     </div>
                     <div class="cld">
-                        <input type="text" id="chld" value="0" readonly> <span> Children x 350$</span>
+                        <input type="text" name="num_cld" id="chld" value="0" readonly> <span> Children x <span id="pracld"><?php echo $row['price_child']?></span> DH</span>
                     </div>
                 </div>
                 <div class="price">
                     Total: 
-                    <input type="text" name="price" value="500$" readonly>
+                    <input type="text" name="price" id="totalp" readonly>DH
                 </div>
                 <div class="btn">
-                    <input type="submit" value="Add to cart">
+                    <input type="submit" name="addtocardbtn" value="Add to cart">
                 </div>
             </form>
         </div>
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./script/app.js"></script>
-    <script src="./script/animation.js"></script>
     <script src="https://kit.fontawesome.com/34ab47bcfb.js" crossorigin="anonymous"></script>
 </body>
 </html>

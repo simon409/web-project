@@ -41,7 +41,8 @@ function incrpers(incdec) {
     {
         counter ++;
         person.value = counter+" Adults"
-        adlt.value = counter
+        adlt.value = counter;
+        updatetotalprice();
     }
     else if(incdec == 1)
     {
@@ -52,7 +53,8 @@ function incrpers(incdec) {
         else{
             counter--;
             person.value = counter+" Adults"
-            adlt.value = counter
+            adlt.value = counter;
+            updatetotalprice();
         }
     }
 }
@@ -65,7 +67,8 @@ function incrchild(incdec) {
     {
         counter ++;
         person.value = counter+" Children"
-        chld.value = counter
+        chld.value = counter;
+        updatetotalprice();
     }
     else if(incdec == 1)
     {
@@ -76,9 +79,33 @@ function incrchild(incdec) {
         else{
             counter--;
             person.value = counter+" Children"
-            chld.value = counter
+            chld.value = counter;
+            updatetotalprice();
         }
     }
+}
+
+function updatetotalprice(){
+    //the numbers of adult and children
+    var adlt = parseInt(document.getElementById("adlt").value);
+    var chld = parseInt(document.getElementById("chld").value);
+    //getting the prices
+    var priadlt = parseInt(document.getElementById("pradt").innerHTML);
+    var pricld = parseInt(document.getElementById("pracld").innerHTML);
+
+    console.log(adlt);
+    console.log(chld);
+    console.log(priadlt);
+    console.log(pricld);
+
+    var result = (adlt*priadlt)+(chld*pricld);
+    console.log(result);
+    document.getElementById("totalp").value = "Calculating ...";
+    //calcule part
+    var limitedInterval = setInterval(function(){
+        document.getElementById("totalp").value = result;
+        clearInterval(limitedInterval);
+    }, 1500);
 }
 
 /*Auto complete */
