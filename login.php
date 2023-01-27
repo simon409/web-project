@@ -71,7 +71,7 @@
             <a href="index.php">Back to home page</a>
         </div>
     </section>
-
+    
     <script src="https://kit.fontawesome.com/34ab47bcfb.js" crossorigin="anonymous"></script>
 </body>
 </html>
