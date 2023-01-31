@@ -14,26 +14,45 @@
     if (isset($_SESSION['user_id'])) {
         $id = $_SESSION['user_id'];
         // Prepare and execute a SELECT statement to check the cart items
-        $querygetcard1 = "SELECT c.*, ct.namecoun FROM card c, flights f, country ct, airport a WHERE iduser = '$id' and (c.flightnum=f.flightnum and (f.toa = a.idairp and a.countryid = ct.idcoun));";
+        $querygetcard1 = "SELECT c.*, (c.numt_adult+c.numt_child) as totalt, ct.namecoun FROM card c, flights f, country ct, airport a WHERE iduser = '$id' and (c.flightnum=f.flightnum and (f.toa = a.idairp and a.countryid = ct.idcoun));";
         $cardquery1 = $conn->query($querygetcard1);
         // get all commanded items
         $querygetordered = "SELECT cmd.*, c.namecoun as 'fromcoun', u.username, c1.namecoun as 'tocoun', a.nameairp as 'fromair',a1.nameairp as 'toair' from commandedf cmd, users u, flights f, airport a, airport a1, country c, country c1 where (((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and (cmd.flightnum = f.flightnum and cmd.iduser = u.id)) and cmd.iduser = $id;";
         $orderquery = $conn->query($querygetordered);
         if (isset($_GET['proceed'])) {
-            proceed($id);
+            //add some function to check available seats
+            while($card1 = mysqli_fetch_assoc($cardquery1))
+            {
+                $flightid = $card1['flightnum'];
+                $cartid = $card1['id'];
+                $seats_requested = $card1['totalt'];
+                $getflight = "SELECT * FROM flights WHERE flightnum = '$flightid'";
+                $fgetquery = mysqli_query($conn, $getflight);
+                $flight = mysqli_fetch_assoc($fgetquery);
+                $seats_available = $flight['seats_available'];
+                var_dump($seats_requested);
+                var_dump($seats_available);
+                if ($seats_available >= $seats_requested) {
+                    $querycopytocomm = "INSERT INTO commandedf SELECT * FROM card WHERE iduser=$id";
+                    $cardquery2 = mysqli_query($conn, $querycopytocomm);
+                    //add some function to reduce available places
+                    $new_seats_available = $seats_available - $seats_requested;
+                    $update_query = "UPDATE flights SET seats_available = $new_seats_available WHERE flightnum = $flightid";
+                    mysqli_query($conn, $update_query);
+
+                    //delete from cart
+                    $deletefromcard = "DELETE FROM card WHERE iduser = '$id' and id=$cartid";
+                    $cardquery3 = $conn->query($deletefromcard);
+                }
+                else {
+                    $error = "You can't book this flight, seats are full!!";
+                }
+            }
+            //end check available
         }
     }
     else{
         header("location:login.php");
-    }
-
-    function proceed($id){
-        //add some function to check available site
-        $querycopytocomm = "INSERT INTO commandedflights SELECT * FROM card WHERE iduser=$id";
-        $cardquery2 = $conn->query($querycopytocomm);
-        //add some function to reduce available places
-        $deletefromcard = "DELETE FROM card WHERE iduser = '$id'";
-        $cardquery3 = $conn->query($deletefromcard);
     }
 ?>
 <!DOCTYPE html>
@@ -68,7 +87,7 @@
         <div class="content">
             <!--User Cart-->
             <div id="cart" class="custom hide">
-                <h2>Proeed to check out</h2>
+                <h2>Proceed to check out</h2>
                 <div class="m-4">
                     <ul class="list-unstyled list-group">
                     <?php
@@ -84,11 +103,13 @@
                                 ?>
                             </div>
                             <div class="action">
-                                <a class="delete_data" id="<?php echo $card['id']?>"><i class="fa-solid fa-trash"></i></a>
-                            </div>
+                                        <a class="delete_data" id="<?php echo $card['id']?>"><i class="fa-solid fa-trash"></i></a>
+                                    </div>
+                            <?php
+                            }
+                            ?>
                         </li>
                         <?php
-                            }
                             if($cardquery1->num_rows>0){
                                 ?>
                                     
@@ -99,9 +120,15 @@
                             }
                         ?>
                     </ul>
-                    <div class="confirm">
-                        <a href="?proceed=true">Confirm Purchase</a>
-                    </div>
+                    <?php
+                    if($cardquery1->num_rows>0){
+                        ?>
+                            <div class="confirm">
+                                <a href="?proceed=true">Confirm Purchase</a>
+                            </div>
+                        <?php
+                    }
+                    ?>
                 </div>
             </div>
             
@@ -132,12 +159,12 @@
                                 <td><?php echo $order['numt_child']?></td>
                                 <td><?php echo $order['totalprice']?></td>
                                 <td>
-                                    <a href="#"><i class="fa-solid fa-print"></i></a>
+                                    <a href="printticket.php?idt=<?php echo $order['id']?>"><i class="fa-solid fa-print"></i></a>
                                 </td>
                             </tr>
                         <?php
                             }
-                            if($cardquery1->num_rows>0){
+                            if($orderquery->num_rows>0){
                                 ?>
                                     
                                 <?php

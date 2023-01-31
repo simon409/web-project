@@ -18,9 +18,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style/addtocart.css">
+    <title>Congratulations 🥳</title>
 </head>
 <body>
-    
+    <?php
+    if ($result) {
+        ?>
+        <div class="celebrate">
+            <h1>Congrats</h1>
+            <h3>You have added this flight to your card, you can proceed following this link</h3>
+            <lord-icon
+                src="https://cdn.lordicon.com/xxdqfhbi.json"
+                trigger="loop"
+                delay="2000"
+                style="width:250px;height:250px;">
+            </lord-icon> <br>
+            <div class="btn">
+                <a href="user.php">Proceed to check out</a>
+            </div>
+        </div>
+        <?php
+    }
+    ?>
 </body>
+<script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
 </html>

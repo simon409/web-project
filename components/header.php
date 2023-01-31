@@ -24,7 +24,8 @@
 <header id="header">
         <div class="nav1">
             <div class="logo">
-                <h2><strong>Fly.</strong>Me</h2>
+                <!--<h2><strong>Fly.</strong>Me</h2>-->
+                <img src="./assets/flylogo.png" alt="">
             </div>
             <ul>
                 <li class="nav-item"><a href="index.php">Home</a></li>
