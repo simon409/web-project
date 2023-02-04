@@ -1,5 +1,6 @@
 <?php
     require('./config/config.php');
+    require_once('./config/phpqrcode/qrlib.php');
     session_start();
     //save last page url
     if (isset($_POST['num_adt']) && isset($_POST['num_cld']) && isset($_POST['price']) && isset($_POST['numf'])) {
@@ -8,8 +9,32 @@
         $num_adt = $_POST['num_adt'];
         $num_cld = $_POST['num_cld'];
         $price = $_POST['price'];
-        $inscartquery = "INSERT INTO card (flightnum, iduser, numt_adult, numt_child, totalprice) values ($num_f, $id_user, $num_adt, $num_cld, $price)";
+
+        $query1 = "SELECT fullname FROM users WHERE id = '$id_user'";
+        $userquery = mysqli_query($conn, $query1);
+        $user = mysqli_fetch_assoc($userquery);
+
+        $fullname = $user['fullname'];
+
+        //to add qrcode too
+        $path = './assets/qrimages/';
+        $qrcode = $path.time().".png";
+        $qrimage = time().".png";
+
+        //qrcode
+        $inscartquery = "INSERT INTO card (flightnum, iduser, numt_adult, numt_child, totalprice, qrcode) values ($num_f, $id_user, $num_adt, $num_cld, $price, '$qrimage')";
         $result = mysqli_query($conn, $inscartquery);
+        
+        if($num_cld==0)
+        {
+            QRcode :: png("Flight Num:".$num_f." - Ordered by : M. ".$fullname." - Ordered for Adults ".$num_adt.".",$qrcode, 'H', 4,4);
+        }
+        else{
+            QRcode :: png("Flight Num:".$num_f." - Ordered by : M. ".$fullname." - Ordered for Adults ".$num_adt." and for children ".$num_cld.".",$qrcode, 'H', 4,4);
+        }
+
+        
+
     }
 ?>
 <!DOCTYPE html>
@@ -40,7 +65,22 @@
         </div>
         <?php
     }
+    else{
     ?>
+        <div class="celebrate">
+            <h1>Oops</h1>
+            <<h3>We had diffuculties adding the flight to your cart, our teams is working on it</h3>
+            <lord-icon
+                src="https://cdn.lordicon.com/kjkiqtxg.json"
+                trigger="loop"
+                delay="2000"
+                style="width:250px;height:250px">
+            </lord-icon> <br>
+        </div>
+    <?php
+    }
+    ?>
+
 </body>
 <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
 </html>

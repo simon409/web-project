@@ -1,6 +1,16 @@
 <?php
     require('./config/config.php');
     session_start();
+
+    if (isset($_SESSION['message'])) {
+        $message = $_SESSION['message'];
+        unset($_SESSION['message']);
+    }
+    else {
+        $message = "";
+    }
+
+    $_SESSION['previous_url']=$_SERVER['PHP_SELF'];
     if (isset($_GET['logout'])) {
         session_destroy();
         header('Location: login.php');
@@ -180,19 +190,34 @@
             <!--User Infos-->
             <div id="info" class="custom">
                 <h2>Your Infos</h2>
-                <form action="">
+                <form action="modifyinfo.php" method="post">
                     <table class="mt-5 table">
+                        <?php
+                        if ($message!="") {
+                        ?>
+                        <tr>
+                            <td colspan="2">
+                                <div class="form-outline p-2" style="background-color: #A8DADC; border: #1D3557 solid 1px; color: #1D3557; border-radius: 15px;">
+                                    <?php
+                                        echo $message;
+                                     ?>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php
+                        }
+                        ?>
                         <tr>
                             <td>
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form2Example17">Your username (not changeable)</label>
-                                    <input type="text" id="username" name="username" value="username" class="form-control form-control-lg" readonly/>
+                                    <input type="text" id="username" name="username" value="<?php echo $row['username']?>" value="username" class="form-control form-control-lg" readonly/>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form2Example17">Full Name</label>
-                                    <input type="text" id="fullname" name="fullname" class="form-control form-control-lg"/>
+                                    <input type="text" id="fullname" name="fullname" value="<?php echo $row['fullname']?>" class="form-control form-control-lg"/>
                                 </div>
                             </td>
                         </tr>
@@ -200,13 +225,13 @@
                             <td>
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form2Example17">Address Email</label>
-                                    <input type="text" id="mail" name="mail" class="form-control form-control-lg"/>
+                                    <input type="text" id="mail" name="mail" value="<?php echo $row['email']?>" class="form-control form-control-lg"/>
                                 </div>
                             </td>
                             <td>
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form2Example17">Phone Number</label>
-                                    <input type="tel" id="phonenum" name="phonenum" class="form-control form-control-lg"/>
+                                    <input type="tel" id="phonenum" value="<?php echo $row['phone_num']?>" name="phonenum" class="form-control form-control-lg"/>
                                 </div>
                             </td>
                         </tr>
@@ -220,7 +245,7 @@
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form2Example17">Actual Password</label>
                                     <input type="hidden" name="pass" id="passact" value="<?php echo $row['password'];?>">
-                                    <input type="password" id="actpass" onkeyup="enablepass();" name="actpass" class="form-control form-control-lg"/>
+                                    <input type="password" autocomplete="off" id="actpass" onkeyup="enablepass();" name="actpass" class="form-control form-control-lg"/>
                                 </div>
                             </td>
                         </tr>
@@ -241,10 +266,9 @@
                         
                     </table>
                     <div class="pt-1 mb-4">
-                        <a class="btn btn-dark btn-lg btn-block" name="submit" type="submit">Confirm</a>
+                        <input value="Confirm" class="btn btn-dark btn-lg btn-block" name="modify" type="submit">
                     </div>
                 </form>
-                
             </div>
         </div>
     </section>

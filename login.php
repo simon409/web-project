@@ -21,6 +21,11 @@
                 header("Location: ".$previous_url);
                 exit;
             }
+            else {
+                $_SESSION['user_id'] = $user['id'];
+                header("Location: index.php");
+                exit;
+            }
             
         } else {
             $error = 'Invalid username or password';

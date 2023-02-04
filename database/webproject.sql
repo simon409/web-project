@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 20, 2023 at 05:38 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Feb 04, 2023 at 01:28 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `airport` (
   `nameairp` varchar(200) NOT NULL,
   `codeairport` varchar(200) NOT NULL,
   `countryid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `airport`
@@ -54,21 +54,37 @@ CREATE TABLE `card` (
   `flightnum` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
   `numt_adult` int(11) NOT NULL,
-  `numt_child` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `numt_child` int(11) NOT NULL,
+  `totalprice` float NOT NULL,
+  `date` date DEFAULT current_timestamp(),
+  `qrcode` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `commandedflights`
+-- Table structure for table `commandedf`
 --
 
-CREATE TABLE `commandedflights` (
-  `id` int(11) NOT NULL DEFAULT 0,
+CREATE TABLE `commandedf` (
+  `id` int(11) NOT NULL,
   `flightnum` int(11) NOT NULL,
+  `iduser` int(11) NOT NULL,
   `numt_adult` int(11) NOT NULL,
-  `numt_child` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `numt_child` int(11) NOT NULL,
+  `totalprice` float NOT NULL,
+  `date` date DEFAULT current_timestamp(),
+  `qrcode` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `commandedf`
+--
+
+INSERT INTO `commandedf` (`id`, `flightnum`, `iduser`, `numt_adult`, `numt_child`, `totalprice`, `date`, `qrcode`) VALUES
+(14, 1, 1, 1, 0, 5134, '2023-02-03', '1675462061.png'),
+(15, 3, 1, 1, 0, 2125, '2023-02-04', '1675512625.png'),
+(16, 1, 1, 2, 1, 10268, '2023-02-04', '1675513051.png');
 
 -- --------------------------------------------------------
 
@@ -81,7 +97,7 @@ CREATE TABLE `country` (
   `namecoun` varchar(50) NOT NULL,
   `codecoun` varchar(3) NOT NULL,
   `image` varchar(2048) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `country`
@@ -109,15 +125,15 @@ CREATE TABLE `flights` (
   `price_child` float NOT NULL,
   `seats_available` int(11) NOT NULL,
   `seats_taken` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `flights`
 --
 
 INSERT INTO `flights` (`flightnum`, `froma`, `toa`, `idescale`, `boardtime`, `arrivaltime`, `price_adult`, `price_child`, `seats_available`, `seats_taken`) VALUES
-(1, 3, 4, 1, '10:20:00', '18:30:00', 5134, 5134, 200, 0),
-(3, 4, 5, NULL, '06:10:00', '12:20:00', 2125, 2125, 130, 0);
+(1, 3, 4, 1, '10:20:00', '18:30:00', 5134, 5134, 183, 0),
+(3, 4, 5, NULL, '06:10:00', '12:20:00', 2125, 2125, 127, 0);
 
 -- --------------------------------------------------------
 
@@ -130,14 +146,16 @@ CREATE TABLE `stopover` (
   `airid` int(11) NOT NULL,
   `arrival` time NOT NULL,
   `departure` time NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `stopover`
 --
 
 INSERT INTO `stopover` (`idstop`, `airid`, `arrival`, `departure`) VALUES
-(1, 5, '17:10:00', '17:30:00');
+(1, 5, '17:10:00', '17:30:00'),
+(2, 3, '07:47:00', '20:10:00'),
+(3, 4, '05:00:00', '05:15:00');
 
 -- --------------------------------------------------------
 
@@ -148,19 +166,21 @@ INSERT INTO `stopover` (`idstop`, `airid`, `arrival`, `departure`) VALUES
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
+  `fullname` varchar(50) DEFAULT NULL,
   `password` varchar(50) NOT NULL,
   `email` varchar(200) NOT NULL,
   `phone_num` varchar(20) NOT NULL,
   `type` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `email`, `phone_num`, `type`) VALUES
-(1, 'testuser', '25d55ad283aa400af464c76d713c07ad', 'addarm409@gmail.com', '', 'user'),
-(2, 'flyme-admin', '21232f297a57a5a743894a0e4a801fc3', 'addarm409@gmail.com', '', 'admin');
+INSERT INTO `users` (`id`, `username`, `fullname`, `password`, `email`, `phone_num`, `type`) VALUES
+(1, 'testuser', 'simon add 2', '25d55ad283aa400af464c76d713c07ad', 'addarm409@gmail.com', '0611051318', 'user'),
+(2, 'flyme-admin', NULL, '21232f297a57a5a743894a0e4a801fc3', 'addarm409@gmail.com', '', 'admin'),
+(4, 'testuser2', 'Mohamed Addar', '0df4c0c2a86ba43a099f8b2c1ca0685e', 'ghounimhamza27@gmail.com', '', 'user');
 
 --
 -- Indexes for dumped tables
@@ -180,6 +200,14 @@ ALTER TABLE `card`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fr_flightnum_card` (`flightnum`),
   ADD KEY `fr_userid` (`iduser`);
+
+--
+-- Indexes for table `commandedf`
+--
+ALTER TABLE `commandedf`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fr_flightnum_cmd` (`flightnum`),
+  ADD KEY `fr_userid_cmd` (`iduser`);
 
 --
 -- Indexes for table `country`
@@ -223,7 +251,13 @@ ALTER TABLE `airport`
 -- AUTO_INCREMENT for table `card`
 --
 ALTER TABLE `card`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `commandedf`
+--
+ALTER TABLE `commandedf`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `country`
@@ -241,13 +275,13 @@ ALTER TABLE `flights`
 -- AUTO_INCREMENT for table `stopover`
 --
 ALTER TABLE `stopover`
-  MODIFY `idstop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idstop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -265,6 +299,13 @@ ALTER TABLE `airport`
 ALTER TABLE `card`
   ADD CONSTRAINT `fr_flightnum_card` FOREIGN KEY (`flightnum`) REFERENCES `flights` (`flightnum`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fr_userid` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `commandedf`
+--
+ALTER TABLE `commandedf`
+  ADD CONSTRAINT `fr_flightnum_cmd` FOREIGN KEY (`flightnum`) REFERENCES `flights` (`flightnum`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fr_userid_cmd` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `flights`
