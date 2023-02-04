@@ -88,6 +88,7 @@
                 <li><a href="javascript:menuselect(0);">Check Cart</a></li>
                 <li><a href="javascript:menuselect(1);">Check Ordered Flights</a></li>
                 <li><a href="javascript:menuselect(2);">Your infos</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="?logout=true">Sign out</a></li>
             </ul>
             <div class="logo">

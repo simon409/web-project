@@ -433,3 +433,53 @@ section{
   font-size: .85rem;
   margin-top: .3rem;
 }
+
+.error{
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #e09097;
+    border: #e63946 solid 3px;
+    border-radius: 10px;
+    padding: 10px;
+    color: #1d3557;
+    animation: error 4s linear;
+
+}
+
+.error p{
+    font-size: 20px;
+}
+
+@keyframes error {
+    0% {
+        top: -10%;
+    }
+    14% {
+        top: 12%;
+    }
+    16%{
+        top: 9%;
+    }
+    18%{
+        top: 11.5%;
+    }
+    20%{
+        top: 9.5%;
+    }
+    22%{
+        top: 11%;
+    }
+    24%{
+        top: 10%;
+    }
+
+    80%{
+        top: 10%;
+    }
+
+    100%{
+        top: -10%;
+    }
+}
