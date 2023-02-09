@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 04, 2023 at 01:28 PM
+-- Generation Time: Feb 09, 2023 at 07:04 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -41,7 +41,8 @@ CREATE TABLE `airport` (
 INSERT INTO `airport` (`idairp`, `nameairp`, `codeairport`, `countryid`) VALUES
 (3, 'John F. Kennedy International Airport', 'JFK', 1),
 (4, 'Mohammed V International Airport', 'CMN', 2),
-(5, 'Heathrow Airport', 'LHR', 3);
+(5, 'Heathrow Airport', 'LHR', 3),
+(6, 'Abu Dhabi International Airport', 'AUH', 4);
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,10 @@ CREATE TABLE `commandedf` (
 INSERT INTO `commandedf` (`id`, `flightnum`, `iduser`, `numt_adult`, `numt_child`, `totalprice`, `date`, `qrcode`) VALUES
 (14, 1, 1, 1, 0, 5134, '2023-02-03', '1675462061.png'),
 (15, 3, 1, 1, 0, 2125, '2023-02-04', '1675512625.png'),
-(16, 1, 1, 2, 1, 10268, '2023-02-04', '1675513051.png');
+(16, 1, 1, 2, 1, 10268, '2023-02-04', '1675513051.png'),
+(18, 5, 1, 2, 1, 14500, '2023-02-09', '1675957574.png'),
+(19, 3, 1, 2, 1, 6375, '2023-02-09', '1675960994.png'),
+(20, 1, 1, 1, 0, 5134, '2023-02-09', '1675962159.png');
 
 -- --------------------------------------------------------
 
@@ -106,7 +110,8 @@ CREATE TABLE `country` (
 INSERT INTO `country` (`idcoun`, `namecoun`, `codecoun`, `image`) VALUES
 (1, 'United States', 'USA', 'https://images.unsplash.com/photo-1610312278520-bcc893a3ff1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1147&q=80'),
 (2, 'Morocco', 'MAR', 'https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'),
-(3, 'United Kingdom', 'GBR', 'https://images.unsplash.com/photo-1529180184525-78f99adb8e98?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
+(3, 'United Kingdom', 'GBR', 'https://images.unsplash.com/photo-1529180184525-78f99adb8e98?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'),
+(4, 'Émirats arabes unis', 'EAU', 'https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80');
 
 -- --------------------------------------------------------
 
@@ -132,8 +137,10 @@ CREATE TABLE `flights` (
 --
 
 INSERT INTO `flights` (`flightnum`, `froma`, `toa`, `idescale`, `boardtime`, `arrivaltime`, `price_adult`, `price_child`, `seats_available`, `seats_taken`) VALUES
-(1, 3, 4, 1, '10:20:00', '18:30:00', 5134, 5134, 183, 0),
-(3, 4, 5, NULL, '06:10:00', '12:20:00', 2125, 2125, 127, 0);
+(1, 3, 4, 1, '10:20:00', '18:30:00', 5134, 5134, 182, 1),
+(3, 4, 5, NULL, '06:10:00', '12:20:00', 2125, 2125, 121, 3),
+(4, 3, 5, 2, '07:39:00', '12:40:00', 4250, 4050, 200, 0),
+(5, 4, 6, 2, '07:45:00', '12:50:00', 5000, 4500, 297, 3);
 
 -- --------------------------------------------------------
 
@@ -178,7 +185,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `fullname`, `password`, `email`, `phone_num`, `type`) VALUES
-(1, 'testuser', 'simon add 2', '25d55ad283aa400af464c76d713c07ad', 'addarm409@gmail.com', '0611051318', 'user'),
+(1, 'testuser', 'simon add', '25d55ad283aa400af464c76d713c07ad', 'addarm409@gmail.com', '0611051318', 'user'),
 (2, 'flyme-admin', NULL, '21232f297a57a5a743894a0e4a801fc3', 'addarm409@gmail.com', '', 'admin'),
 (4, 'testuser2', 'Mohamed Addar', '0df4c0c2a86ba43a099f8b2c1ca0685e', 'ghounimhamza27@gmail.com', '', 'user');
 
@@ -245,31 +252,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `airport`
 --
 ALTER TABLE `airport`
-  MODIFY `idairp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idairp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `card`
 --
 ALTER TABLE `card`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `commandedf`
 --
 ALTER TABLE `commandedf`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `country`
 --
 ALTER TABLE `country`
-  MODIFY `idcoun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idcoun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `flights`
 --
 ALTER TABLE `flights`
-  MODIFY `flightnum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `flightnum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `stopover`
