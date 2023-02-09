@@ -29,7 +29,7 @@
             </div>
             <ul>
                 <li class="nav-item"><a href="index.php">Home</a></li>
-                <li class="nav-item"><a href="#">Flights</a></li>
+                <li class="nav-item"><a href="allflight.php">Flights</a></li>
                 <li class="nav-item"><a href="#">About</a></li>
                 <li class="nav-item"><a href="#">Contact us</a></li>
             </ul>

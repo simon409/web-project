@@ -93,13 +93,13 @@ function updatetotalprice(){
     var priadlt = parseInt(document.getElementById("pradt").innerHTML);
     var pricld = parseInt(document.getElementById("pracld").innerHTML);
 
-    console.log(adlt);
+    /*console.log(adlt);
     console.log(chld);
     console.log(priadlt);
-    console.log(pricld);
+    console.log(pricld);*/
 
     var result = (adlt*priadlt)+(chld*pricld);
-    console.log(result);
+    //console.log(result);
     document.getElementById("totalp").value = "Calculating ...";
     //calcule part
     var limitedInterval = setInterval(function(){
@@ -279,3 +279,20 @@ function md5(inputString) {
     }
     return rh(a)+rh(b)+rh(c)+rh(d);
 }
+
+//glob design
+const images = document.querySelectorAll('.image');
+
+images.forEach(image => {
+    image.addEventListener('click', () => {
+        remove();
+        image.classList.add('img-active');
+    })
+})
+
+const remove = () => {
+    images.forEach(image => {
+        image.classList.remove('img-active');
+    })
+}
+

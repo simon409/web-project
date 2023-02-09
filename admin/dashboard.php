@@ -314,7 +314,7 @@
                 <section id="addf" class="hide">
                     <h1>Add Flight</h1>
                     <div class="formdiv">
-                        <form action="/operations/add/addflight.php" method="POST">
+                        <form action="./operations/add/addflight.php" method="post">
                             <div class="form">
                                 <table class="mt-4">
                                     <tr>
@@ -345,7 +345,7 @@
                                         <td>
                                             <div class="form-outline mb-4">
                                                 <label class="form-label" for="form2Example27">Destination Airport</label>
-                                                <select name="forma" class="form-control form-control-lg">
+                                                <select name="toa" class="form-control form-control-lg">
                                                 <?php
                                                 if($result3->num_rows>0)
                                                 {
@@ -370,16 +370,16 @@
                                     <tr>
                                         <td>
                                             <div class="form-check form-check-inline mb-4">
-                                                <input class="form-check-input" type="radio" checked name="stopover" onclick="hidestopmenu();" id="inlineRadio1" value="option1">
+                                                <input class="form-check-input" type="radio" checked name="stopover" onclick="hidestopmenu();" id="inlineRadio1" value="No Stopover">
                                                 <label class="form-check-label" for="inlineRadio1">No Stopover</label>
                                             </div>
                                             <div class="form-check form-check-inline mb-4">
-                                                <input class="form-check-input" type="radio" onclick="showstopmenu();" name="stopover" id="inlineRadio2" value="option2">
+                                                <input class="form-check-input" type="radio" onclick="showstopmenu();" name="stopover" id="inlineRadio2" value="Contains Stopover">
                                                 <label class="form-check-label" for="inlineRadio2">Contains Stopover</label>
                                             </div>
                                             <div class="form-outline mb-4 hide" id="stopo">
                                                 <label class="form-label" for="form2Example27">Select stopover</label>
-                                                <select name="toa" class="form-control form-control-lg mb-4">
+                                                <select name="stopa" class="form-control form-control-lg mb-4">
                                                     <?php
                                                     if($result5->num_rows>0)
                                                     {
@@ -406,7 +406,7 @@
                                         <td>
                                             <div class="form-outline mb-4">
                                                 <label class="form-label" for="form2Example17">Seats Available in flight</label>
-                                                <input type="number" id="username" name="username" class="form-control form-control-lg" />
+                                                <input type="number" name="seata" class="form-control form-control-lg" />
                                             </div>
                                         </td>
                                     </tr>
@@ -414,13 +414,13 @@
                                         <td>
                                             <div class="form-outline mb-4">
                                                 <label class="form-label" for="form2Example17">Price for adults</label>
-                                                <input type="number" id="username" name="username" class="form-control form-control-lg" />
+                                                <input type="number" name="priceadt" class="form-control form-control-lg" />
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-outline mb-4">
                                                 <label class="form-label" for="form2Example17">Price for children</label>
-                                                <input type="number" id="username" name="username" class="form-control form-control-lg" />
+                                                <input type="number" name="pricecld" class="form-control form-control-lg" />
                                             </div>
                                         </td>
                                     </tr>
@@ -428,20 +428,20 @@
                                         <td>
                                             <div class="form-outline mb-4">
                                                 <label class="form-label" for="form2Example17">Departure time</label>
-                                                <input type="time" id="username" name="username" class="form-control form-control-lg" />
+                                                <input type="time" name="depttime" class="form-control form-control-lg" />
                                             </div>
                                         </td>
                                         <td>
                                             <div class="form-outline mb-4">
                                                 <label class="form-label" for="form2Example17">Arrival time</label>
-                                                <input type="time" id="username" name="username" class="form-control form-control-lg" />
+                                                <input type="time" name="arrtime" class="form-control form-control-lg" />
                                             </div>
                                         </td>
                                     </tr>
                                 </table>
                                 
                                 <div class="pt-1 mb-4">
-                                    <a class="btn btn-dark btn-lg btn-block" name="submit" type="submit">Add flight</a>
+                                    <input class="btn btn-dark btn-lg btn-block" name="submit" type="submit" value="Add flight"/>
                                 </div>
                             </div>
                         </form>
@@ -449,7 +449,7 @@
                 </section>
                 <section id="addc" class="hide">
                     <h1>Add Country</h1>
-                    <form action="/operations/add/addcountry.php">
+                    <form action="./operations/add/addcountry.php" method="post">
                         <div class="half mt-5">
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form2Example17">Country Name</label>
@@ -464,27 +464,27 @@
                                 <input type="url" id="imagecoun" name="imagecoun" class="form-control form-control-lg" />
                             </div>
                             <div class="pt-1 mb-4">
-                                <a class="btn btn-dark btn-lg btn-block" name="submit" type="submit">Add Country</a>
+                                <input class="btn btn-dark btn-lg btn-block" name="submit" type="submit" value="Add Country"/>
                             </div>
                         </div>
                     </form>
                 </section>
                 <section id="adda" class="hide">
                     <h1>Add Airport</h1>
-                    <form action="/operations/add/addairp.php">
+                    <form action="./operations/add/addairp.php" method="post">
                         <div class="half mt-5">
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form2Example17">Airport Name</label>
-                                <input type="text" id="counname" name="counname" class="form-control form-control-lg" />
+                                <input type="text" id="airname" name="airname" class="form-control form-control-lg" />
                             </div>
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form2Example17">Airport Code</label>
-                                <input type="text" id="councode" name="councode" class="form-control form-control-lg" />
+                                <input type="text" id="aircode" name="aircode" class="form-control form-control-lg" />
                             </div>
                             <div class="form-outline mb-4">
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="form2Example17">Country</label>
-                                    <select name="forma" class="form-control form-control-lg">
+                                    <select name="coun" class="form-control form-control-lg">
                                                 <?php
                                                 if($result2->num_rows>0)
                                                 {
@@ -502,11 +502,11 @@
                                                 <?php
                                                 }
                                                 ?>
-                                                </select>
+                                        </select>
                                 </div>
                             </div>
                             <div class="pt-1 mb-4">
-                                <a class="btn btn-dark btn-lg btn-block" name="submit" type="submit">Add Country</a>
+                                <input class="btn btn-dark btn-lg btn-block" name="submit" type="submit" value="Add Airport"/>
                             </div>
                         </div>
                     </form>

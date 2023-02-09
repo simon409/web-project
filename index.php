@@ -1,5 +1,9 @@
 <?php 
     require('./config/config.php');
+
+    //get all popular flights
+    $popf = "SELECT cmd.flightnum, COUNT(cmd.id) as num, f.*, c.namecoun as 'fromcoun', u.username,c1.* , c1.namecoun as 'tocoun', a.nameairp as 'fromair',a1.nameairp as 'toair' from commandedf cmd, users u, flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and (cmd.flightnum = f.flightnum and cmd.iduser = u.id) GROUP BY cmd.flightnum ORDER BY num desc LIMIT 4;";
+    $res = mysqli_query($conn, $popf);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +38,7 @@
         </div>
         <div class="half1">
             <div class="container">
-                <img src="./assets/plane3d.png" width="600" alt="">
+                <img src="./assets/travel.png" width="750" alt="">
             </div>
         </div>
     </section>
@@ -78,60 +82,87 @@
     <section id="Popflight">
         <h2>POPULAR FLIGHTS</h2>
         <div class="d-flex justify-content-around mt-5">
+        <?php
+            if(isset($res))
+            {
+                if($res->num_rows>0)
+                {
+                    while($row = mysqli_fetch_assoc($res)){
+        ?>
             <div class="col-2 text-center">
                 <div class="containerc">
                     <div class="cardc">
                         <div class="card-img">
-                        <img style="width: 100%; height=100%; object-fit: cover;" src="https://images.unsplash.com/photo-1522093007474-d86e9bf7ba6f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=200&q=80" alt="">
+                        <img style="width: 220px; height: 220px; object-fit: cover;" src="<?php echo $row['image']?>" alt="">
                         </div>
                         <div class="card-content">
-                        <h2 class="big-title">France</h2>
-                        <h3 class="medium-title">Paris</h3>
+                        <h3 class="big-title"><?php echo $row['tocoun']?></h3>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-2 text-center">
-                <div class="containerc">
-                    <div class="cardc">
-                        <div class="card-img">
-                        <img style="width: 100%; height=100%; object-fit: cover;" src="https://images.unsplash.com/photo-1519121785383-3229633bb75b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" alt="">
-                        </div>
-                        <div class="card-content">
-                        <h2 class="big-title">USA</h2>
-                        <h3 class="medium-title">New York</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2 text-center">
-                <div class="containerc">
-                    <div class="cardc">
-                        <div class="card-img">
-                        <img style="width: 100%; height=100%; object-fit: cover;" src="https://images.unsplash.com/photo-1538600838042-6a0c694ffab5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80" alt="">
-                        </div>
-                        <div class="card-content">
-                        <h2 class="big-title">Morocco</h2>
-                        <h3 class="medium-title">Chefchaouen</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2 text-center">
-                <div class="containerc">
-                    <div class="cardc">
-                        <div class="card-img">
-                        <img style="width: 100%; height=100%; object-fit: cover;" src="https://images.unsplash.com/photo-1549643276-fdf2fab574f5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80" alt="">
-                        </div>
-                        <div class="card-content">
-                        <h2 class="big-title">Spain</h2>
-                        <h3 class="medium-title">Málaga</h3>
-                        </div>
-                    </div>
-                </div> 
-            </div>
+        <?php
+                    }
+                }
+            }
+        ?>
         </div>
 
+    </section>
+    <section id="gallery" class="main">
+        <div class="title">
+            <h3>Gallery</h3>
+        </div>
+        <div class="containerg">
+            <div class="image">
+                <div class="image-text">
+                    <h1>Barcelona</h1>
+                    <h3>City in Spain</h3>
+                    <p>Barcelona, the cosmopolitan capital of Spain’s Catalonia region, is known for its art and architecture. The fantastical Sagrada Família church and other modernist landmarks designed by Antoni Gaudí dot the city. Museu Picasso and Fundació Joan Miró feature modern art by their namesakes. City history museum MUHBA, includes several Roman archaeological sites.</p>
+                </div>
+            </div>
+
+            <div class="image">
+                <div class="image-text">
+                    <h1>London</h1>
+                    <h3>Capital of England</h3>
+                    <p>London, the capital of England and the United Kingdom, is a 21st-century city with history stretching back to Roman times. At its centre stand the imposing Houses of Parliament, the iconic ‘Big Ben’ clock tower and Westminster Abbey, site of British monarch coronations. Across the Thames River, the London Eye observation wheel provides panoramic views of the South Bank cultural complex, and the entire city.</p>
+                </div>
+            </div>
+
+            <div class="image">
+                <div class="image-text">
+                    <h1>New York</h1>
+                    <h3>City in New York State</h3>
+                    <p>New York City comprises 5 boroughs sitting where the Hudson River meets the Atlantic Ocean. At its core is Manhattan, a densely populated borough that’s among the world’s major commercial, financial and cultural centers. Its iconic sites include skyscrapers such as the Empire State Building and sprawling Central Park. Broadway theater is staged in neon-lit Times Square. </p>
+                </div>
+            </div>
+
+            <div class="image">
+                <div class="image-text">
+                    <h1>Paris</h1>
+                    <h3>Capital of France</h3>
+                    <p>Paris, France's capital, is a major European city and a global center for art, fashion, gastronomy and culture. Its 19th-century cityscape is crisscrossed by wide boulevards and the River Seine. Beyond such landmarks as the Eiffel Tower and the 12th-century, Gothic Notre-Dame cathedral, the city is known for its cafe culture and designer boutiques along the Rue du Faubourg Saint-Honoré.</p>
+                </div>
+            </div>
+
+            <div class="image">
+                <div class="image-text">
+                    <h1>Rome</h1>
+                    <h3>Capital of Italy</h3>
+                    <p>Rome is the capital city and a special comune of Italy, as well as the capital of the Lazio region. The city has been a major human settlement for almost three millennia. With 2,860,009 residents in 1,285 km², it is also the country's most populated comune.</p>
+                </div>
+            </div>
+
+            <div class="image">
+                <div class="image-text">
+                    <h1>Shinjuku</h1>
+                    <h3>Special ward of Tokyo</h3>
+                    <p>Shinjuku City encompasses the buzzing clubs and karaoke rooms of neon-lit East Shinjuku and upscale hotel bars and restaurants in the Skyscraper District. Tokyo Metropolitan Building has a popular observation deck, and Mount Hakone rises over tranquil urban parkland. Galleries, theaters, and bookstores attract students from busy campuses. New National Stadium is a high-tech sports venue built for the 2020 Olympics. </p>
+                </div>
+            </div>
+
+        </div>
     </section>
 
     <!--Footer-->

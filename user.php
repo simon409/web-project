@@ -40,16 +40,15 @@
                 $fgetquery = mysqli_query($conn, $getflight);
                 $flight = mysqli_fetch_assoc($fgetquery);
                 $seats_available = $flight['seats_available'];
-                var_dump($seats_requested);
-                var_dump($seats_available);
+                $seat_taken = $flight['seats_taken'];
                 if ($seats_available >= $seats_requested) {
                     $querycopytocomm = "INSERT INTO commandedf SELECT * FROM card WHERE iduser=$id";
                     $cardquery2 = mysqli_query($conn, $querycopytocomm);
                     //add some function to reduce available places
                     $new_seats_available = $seats_available - $seats_requested;
-                    $update_query = "UPDATE flights SET seats_available = $new_seats_available WHERE flightnum = $flightid";
+                    $new_seats_taken = $seat_taken + $seats_requested;
+                    $update_query = "UPDATE flights SET seats_available = $new_seats_available, seats_taken = $new_seats_taken WHERE flightnum = $flightid";
                     mysqli_query($conn, $update_query);
-
                     //delete from cart
                     $deletefromcard = "DELETE FROM card WHERE iduser = '$id' and id=$cartid";
                     $cardquery3 = $conn->query($deletefromcard);
