@@ -139,13 +139,13 @@ function load_data(query, index) {
                 if(index == 0){
                     if (response.length > 0) {
                         for(var count = 0; count < response.length; count++){
-                            html += '<a href="#form" onclick="getText(this, 0);" class="list-group-item list-group-item-action p-3 text-start"> <i class="fa-solid fa-location-dot"></i> &nbsp'+
+                            html += '<a href="#" onclick="getText(this, 0);" class="list-group-item list-group-item-action p-3 text-start"> <i class="fa-solid fa-location-dot"></i> &nbsp'+
                             response[count].couname
                             +'</a>'
                         }
                     }
                     else{
-                        html += '<a href="#form" class="list-group-item list-group-item-action disabled">No Data Found</a>';
+                        html += '<a href="#" class="list-group-item list-group-item-action disabled">No Data Found</a>';
                     }
                     html += '</div>';
                     document.getElementById('search_result').innerHTML = html;
@@ -153,7 +153,7 @@ function load_data(query, index) {
                 else{
                     if (response.length > 0) {
                         for(var count = 0; count < response.length; count++){
-                            html += '<a href="#form" onclick="getText(this, 1);" class="list-group-item list-group-item-action p-3 text-start"> <i class="fa-solid fa-location-dot"></i> &nbsp'+
+                            html += '<a href="#" onclick="getText(this, 1);" class="list-group-item list-group-item-action p-3 text-start"> <i class="fa-solid fa-location-dot"></i> &nbsp'+
                             response[count].couname
                             +'</a>'
                         }

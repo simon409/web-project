@@ -10,13 +10,21 @@
             header('location: login.php');
         }
     }
-
-    if (isset($_SESSION['fid'])) {
-         $fid = $_SESSION['fid'];
+    if(isset($_SESSION['previous_url_login'])){
+        if($_SESSION['previous_url_login'] == '/webproject/login.php')
+        {
+            if (isset($_SESSION['fid'])) {
+                $fid = $_SESSION['fid'];
+                unset($_SESSION['fid']);
+            }
+            else {
+                $fid=$_GET['id'];
+                $_SESSION['fid'] = $fid;
+            }
+        }
     }
     else {
         $fid=$_GET['id'];
-        $_SESSION['fid'] = $fid;
     }
     $sql = "SELECT f.*, c.namecoun as 'fromcoun', c.codecoun as 'fromcode', c1.namecoun as 'tocoun', c1.codecoun as 'tocode', TIMEDIFF(f.arrivaltime,f.boardtime) as 'duration', a.nameairp as 'fromair', a.codeairport as 'fromaircode' , a1.nameairp as 'toair', a1.codeairport as 'toaircode' from flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and flightnum=$fid";
     $result = mysqli_query($conn,$sql);
@@ -218,8 +226,13 @@
                     Total: 
                     <input type="text" name="price" id="totalp" readonly>DH
                 </div>
-                <div class="btn">
-                    <input type="submit" name="addtocardbtn" value="Add to cart">
+                <div class="btn_conf_ann">
+                    <div class="btn">
+                        <input type="submit" name="addtocardbtn" value="Add to cart">
+                    </div>
+                    <div class="btn">
+                        <a href="index.php">Cancel</a>
+                    </div>
                 </div>
             </form>
         </div>

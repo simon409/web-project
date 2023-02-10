@@ -15,7 +15,6 @@
     <!--linking the css file-->
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/header_foot.css">
-    
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -188,7 +187,7 @@
                 <div class="contact-form">
                     <h2 class="mb-5">Contact us</h2>
                     <!-- Form -->
-                    <form id="contact-us" method="post" action="#">
+                    <form action="contact.php" method="post">
                         <div id="form" class="mt-5 d-flex gap-5">
                             <!-- Left Inputs -->
                         <div class="col-6 wow animated slideInLeft" data-wow-delay=".5s">
@@ -208,7 +207,7 @@
                         <!-- Bottom Submit -->
                         <div class="relative fullwidth col-xs-12">
                             <!-- Send Button -->
-                            <button type="submit" id="submit" name="submit" class="form-btn semibold">Send Message</button> 
+                            <input type="submit" id="submit" name="submit" class="form-btn semibold" value="Send Message"/> 
                         </div><!-- End Bottom Submit -->
                         <!-- Clear -->
                         <div class="clear"></div>
@@ -239,7 +238,7 @@
                         <li class="nav-item"><a href="index.php">Home</a></li>
                         <li class="nav-item"><a href="allflight.php">Flights</a></li>
                         <li class="nav-item"><a href="index.php#about">About</a></li>
-                        <li class="nav-item"><a href="#">Contact us</a></li>
+                        <li class="nav-item"><a href="index.php#contactf">Contact us</a></li>
                     </ul>
                 </div>
             </div>

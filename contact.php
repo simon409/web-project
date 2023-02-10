@@ -1,42 +1,44 @@
 <?php
-    require('../../../config/config.php');
-    
-    if(isset($_POST['airname']) && isset($_POST['aircode']) && isset($_POST['coun'])){
-        $airname = $_POST['airname'];
-        $aircode = $_POST['aircode'];
-        $coun = $_POST['coun'];
+    require_once('./config/config.php');
 
-        $query = "INSERT INTO airport (nameairp, codeairport, countryid) values ('$airname', '$aircode', '$coun')";
+    if (isset($_POST['name']) && isset($_POST['mail']) && isset($_POST['subject']) && isset($_POST['message'])) {
+        $name = $_POST['name'];
+        $mail = $_POST['mail'];
+        $subject = $_POST['subject'];
+        $message = $_POST['message'];
+
+        $query = "INSERT into message (fullname, email, subject, message) values ('$name', '$mail', '$subject', '$message')";
         $res = mysqli_query($conn, $query);
-    }
-    else{
-        header('location: admin/index.php');
+    } else {
+        header('location: index.php');
     }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../style/addtocart.css">
+    <link rel="stylesheet" href="./style/addtocart.css">
     <title>Congratulations 🥳</title>
 </head>
 <body>
 <?php
-    if ($result) {
+    if (true) {
         ?>
         <div class="celebrate">
             <h1>Congrats</h1>
             <h3>You have added this Airport to your Website</h3>
             <lord-icon
-                src="https://cdn.lordicon.com/xzksbhzh.json"
+                src="https://cdn.lordicon.com/pdpnqfoe.json"
                 trigger="loop"
                 delay="1000"
+                colors="primary:#1375ad,secondary:#ebe6ef"
                 style="width:250px;height:250px">
-            </lord-icon> <br>
+            </lord-icon><br>
             <div class="btn">
-                <a href="../../dashboard.php">Back to dashboard</a>
+                <a href="index.php">Back to dashboard</a>
             </div>
         </div>
         <?php

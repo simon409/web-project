@@ -4,6 +4,7 @@
     if (isset($_SESSION['previous_url'])) {
         $previous_url = $_SESSION['previous_url'];
     }
+    $_SESSION['previous_url_login']=$_SERVER['PHP_SELF'];
     if (isset($_POST['submit'])) {
         if ($_POST['username']!="" && $_POST['password']!="") {
             // Get the entered username and password

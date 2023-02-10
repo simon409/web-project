@@ -2,6 +2,11 @@ function togglemenu() {
     document.getElementById("menu").classList.toggle("showmen");
 }
 
+function togglemenumessage() {
+    document.getElementById("menumessage").classList.toggle("showmen");
+}
+
+
 function menuselect(page) {
     //make all hidden
     document.getElementById("dash").classList.add("hide");
@@ -11,6 +16,7 @@ function menuselect(page) {
     document.getElementById("addf").classList.add("hide");
     document.getElementById("addc").classList.add("hide");
     document.getElementById("adda").classList.add("hide");
+    document.getElementById("message").classList.add("hide");
     document.getElementById("showbooked").classList.add("hide");
     //get all pages
     var page0 = document.getElementById("dash");
@@ -20,7 +26,8 @@ function menuselect(page) {
     var page4 = document.getElementById("addf");
     var page5 = document.getElementById("addc");
     var page6 = document.getElementById("adda");
-    var page7 = document.getElementById("showbooked");
+    var page7 = document.getElementById("message");
+    var page8 = document.getElementById("showbooked");
 
     switch (page) {
         case 0:
@@ -46,6 +53,9 @@ function menuselect(page) {
             break;
         case 7:
             page7.classList.remove("hide");
+            break
+        case 8:
+            page8.classList.remove("hide");
             break;
         default:
             break;

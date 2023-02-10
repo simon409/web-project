@@ -12,7 +12,7 @@
         $arrtime = $_POST['arrtime'];
 
         //checking if it have stopover
-        if(isset($_POST['stopover'])){
+        if($_POST['stopover'] == "Contains Stopover"){
             $stopover = $_POST['stopa'];
             $query = "INSERT INTO flights (froma, toa, idescale, boardtime, arrivaltime, price_adult, price_child, seats_available, seats_taken) values ($froma, $toa, $stopover, '$deptime', '$arrtime', $pricea, $pricec, $seata, 0)";
         }
@@ -48,7 +48,7 @@
                 style="width:250px;height:250px">
             </lord-icon> <br>
             <div class="btn">
-                <a href="user.php">Back to dashboard</a>
+                <a href="../../dashboard.php">Back to dashboard</a>
             </div>
         </div>
         <?php

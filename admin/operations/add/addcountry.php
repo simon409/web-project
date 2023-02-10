@@ -36,7 +36,7 @@
                 style="width:250px;height:250px">
             </lord-icon> <br>
             <div class="btn">
-                <a href="user.php">Back to dashboard</a>
+                <a href="../../dashboard.php">Back to dashboard</a>
             </div>
         </div>
         <?php

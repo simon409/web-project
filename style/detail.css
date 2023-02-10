@@ -222,10 +222,29 @@ hr{
     border-radius: 15px;
 }
 
+.btn_conf_ann{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .btn input{
     padding: 20px;
     width: 100%;
     font-size: 20px;
+    border-radius: 15px;
+    background-color: #1D3557;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn a{
+    padding: 20px;
+    width: 100%;
+    text-decoration: none;
+    font-size: 20px;
+    margin-top: 10px;
     border-radius: 15px;
     background-color: #1D3557;
     color: #fff;

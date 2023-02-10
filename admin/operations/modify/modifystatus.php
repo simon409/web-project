@@ -1,8 +1,7 @@
 <?php
     require('../../../config/config.php');
-    $id = $_GET['id'];
-    echo $id;
-    $query1 = "DELETE  from country where idcoun = '$id'";
+    $id = $_GET['idm'];
+    $query1 = "UPDATE message set status='Read' where idmessage = '$id'";
     $result = mysqli_query($conn, $query1);
 ?>
 
@@ -13,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../style/addtocart.css">
-    <title>Item deleted successfully</title>
+    <title>Item Updated successfully</title>
 </head>
 <body>
 <?php
@@ -21,9 +20,9 @@
         ?>
         <div class="celebrate">
             <h1>Congrats</h1>
-            <h3>You have deleted this Country from your Website</h3>
+            <h3>You have updated the message</h3>
             <lord-icon
-                src="https://cdn.lordicon.com/qjwkduhc.json"
+                src="https://cdn.lordicon.com/bxxnzvfm.json"
                 trigger="loop"
                 delay="1000"
                 style="width:250px;height:250px">
@@ -38,7 +37,7 @@
     ?>
         <div class="celebrate">
             <h1>Oops</h1>
-            <<h3>We had difficulties deleting the Country from your website, the teams is working on it</h3>
+            <<h3>We had difficulties updating the message, the teams is working on it</h3>
             <lord-icon
                 src="https://cdn.lordicon.com/kjkiqtxg.json"
                 trigger="loop"

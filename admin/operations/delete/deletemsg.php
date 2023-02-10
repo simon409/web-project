@@ -1,8 +1,7 @@
 <?php
     require('../../../config/config.php');
-    $id = $_GET['id'];
-    echo $id;
-    $query1 = "DELETE  from country where idcoun = '$id'";
+    $id = $_GET['idm'];
+    $query1 = "DELETE from message where idmessage = '$id'";
     $result = mysqli_query($conn, $query1);
 ?>
 
@@ -21,7 +20,7 @@
         ?>
         <div class="celebrate">
             <h1>Congrats</h1>
-            <h3>You have deleted this Country from your Website</h3>
+            <h3>You have deleted the message</h3>
             <lord-icon
                 src="https://cdn.lordicon.com/qjwkduhc.json"
                 trigger="loop"
@@ -38,7 +37,7 @@
     ?>
         <div class="celebrate">
             <h1>Oops</h1>
-            <<h3>We had difficulties deleting the Country from your website, the teams is working on it</h3>
+            <<h3>We had difficulties deleting the message, the teams is working on it</h3>
             <lord-icon
                 src="https://cdn.lordicon.com/kjkiqtxg.json"
                 trigger="loop"

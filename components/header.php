@@ -31,7 +31,7 @@
                 <li class="nav-item"><a href="index.php">Home</a></li>
                 <li class="nav-item"><a href="allflight.php">Flights</a></li>
                 <li class="nav-item"><a href="index.php#about">About</a></li>
-                <li class="nav-item"><a href="#">Contact us</a></li>
+                <li class="nav-item"><a href="index.php#contactf">Contact us</a></li>
             </ul>
             <?php
                 if (isset($_SESSION['user_id'])) {

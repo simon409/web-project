@@ -36,6 +36,21 @@
     /* get stopover */
     $sql5 = "SELECT s.*, a.nameairp FROM stopover s, airport a where s.airid=a.idairp";
     $result5 = $conn->query($sql5);
+
+    /*get messages*/
+    $sql7 = "SELECT count(*) FROM message where status='unread'";
+    $result7 = $conn->query($sql7);
+
+    /*get all messages*/
+    $sql8 = "SELECT * FROM message order by sentat desc";
+    $result8 = $conn->query($sql8);
+
+    // Check if the query was successful
+    if (mysqli_num_rows($result7) > 0) {
+        // Fetch the count of rows from the result
+        $row = mysqli_fetch_row($result7);
+        $count = $row[0];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,7 +80,14 @@
                         <li><a href="javascript:menuselect(4);" class="fw-bold"><i class="fa-solid fa-plane"></i> Add Flight</a></li>
                         <li><a href="javascript:menuselect(5);" class="fw-bold"><i class="fa-solid fa-globe"></i> Add Country</a></li>
                         <li><a href="javascript:menuselect(6);" class="fw-bold"><i class="fa-solid fa-plane-departure"></i> Add Airports</a></li>
-                        <li><a href="javascript:menuselect(7);" class="fw-bold"><i class="fa-solid fa-plane-circle-check"></i> Flights booked</a></li>
+                        <li><a href="javascript:menuselect(7);" class="fw-bold"><i class="fa-solid fa-message"></i> Messages
+                        <?php 
+                        if($count>0)
+                        { 
+                            echo '&nbsp;<span class="px-2 py-1 bg-danger text-white rounded">'.$count.'</span>&nbsp;';
+                        
+                        }?></a></li>
+                        <li><a href="javascript:menuselect(8);" class="fw-bold"><i class="fa-solid fa-plane-circle-check"></i> Flights booked</a></li>
                     </ul>
                 </div>
             </div>
@@ -75,8 +97,8 @@
                 <div class="time">
                     <?php echo '<h5 class="fw-bold">'.date("F j, Y, g:i a").'</h5>';?>
                 </div>
+                
                 <div class="user">
-                    <a href="#"><i class="fa-solid fa-message"></i></a>
                     <div class="account">
                         <button id="showl" type="button" onclick="togglemenu();"><i class="fa-solid fa-user"></i></button>
                         <div id="menu" class="list">
@@ -89,7 +111,7 @@
                 </div>
             </div>
             <div class="pages">
-                <section id="dash">
+                <section id="dash" class="hide">
                     <h1>Dashboard</h1>
                     <div class="total">
                         <!--Total income-->
@@ -510,6 +532,64 @@
                             </div>
                         </div>
                     </form>
+                </section>
+                <section id="message">
+                    <h2>Messages</h2>
+                    <div class="message">
+                        <div class="messages">
+                        <div id="tablescroll" style="overflow-y: scroll;">
+                                <table class="table table-bordered table-striped mt-5">
+                                    <thead>
+                                        <tr>
+                                        <th scope="col" class="text-center">Sender</th>
+                                        <th scope="col" class="text-center">Subject</th>
+                                        <th scope="col" class="text-center">Messsage</th>
+                                        <th scope="col" class="text-center">Status</th>
+                                        <th scope="col" class="text-center">Sent at</th>
+                                        <th scope="col" class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    if($result8->num_rows>0)
+                                    {
+                                        foreach ($result8 as $message) {
+                                            ?>
+                                        <tr>
+                                        <td class="px-5"><?php echo $message['fullname']?></td>
+                                        <td class="px-5"><?php echo $message['subject']?></td>
+                                        <td class="px-5"><?php echo $message['message']?></td>
+                                        <td class="px-5">
+                                            <?php 
+                                                if ($message['status']=='Read') {
+                                                    echo '<span class="px-1 bg-success text-white rounded">'.$message['status'].'</span>';
+                                                } else {
+                                                    echo '<span class="px-1 bg-primary text-white rounded">'.$message['status'].'</span>';
+                                                }
+                                            ?>
+                                        </td>
+                                        <td class="px-5"><?php echo $message['sentat']?></td>
+                                        <td class="d-flex justify-content-between px-5">
+                                            <a href="./operations/modify/modifystatus.php?idm=<?php echo $message['idmessage']?>" class="text-decoration-none p-1 bg-primary text-white rounded">Read</a>
+                                            <a href="./operations/delete/deletemsg.php?idm=<?php echo $message['idmessage']?>" class="text-decoration-none p-1 bg-danger text-white rounded">Delete</a>
+                                        </td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    }
+                                    else{
+                                    ?>
+                                        <tr>
+                                            <td colspan="5">No flights available</td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 <section id="showbooked" class="hide">
                     <h1>Show booked fligths</h1>
