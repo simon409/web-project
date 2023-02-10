@@ -111,7 +111,7 @@
                 </div>
             </div>
             <div class="pages">
-                <section id="dash" class="hide">
+                <section id="dash">
                     <h1>Dashboard</h1>
                     <div class="total">
                         <!--Total income-->
@@ -533,7 +533,7 @@
                         </div>
                     </form>
                 </section>
-                <section id="message">
+                <section id="message" class="hide">
                     <h2>Messages</h2>
                     <div class="message">
                         <div class="messages">
