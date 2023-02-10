@@ -9,6 +9,9 @@ require('./config/config.php');
         //get all popular flight
         $popf = "SELECT cmd.flightnum, COUNT(cmd.id) as num, f.*, c.namecoun as 'fromcoun', u.username,c1.* , c1.namecoun as 'tocoun', a.nameairp as 'fromair',a1.nameairp as 'toair' from commandedf cmd, users u, flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and ((cmd.flightnum = f.flightnum and cmd.iduser = u.id) and c.namecoun = '$from') GROUP BY cmd.flightnum ORDER BY num desc LIMIT 4;";
         $res2 = mysqli_query($conn, $popf);
+
+        //get date
+        $date = date("Y-m-d"); 
     }
 ?>
 <!DOCTYPE html>
@@ -84,13 +87,17 @@ require('./config/config.php');
                             while($row = mysqli_fetch_assoc($res)){
                     ?>
                     <li>
-                        <a href="">
-                            <div class="card1">
-                                <img src="<?php echo $row['image']?>" alt="">
-                                <h4><?php echo $row['tocoun']?></h4>
-
-                            </div>
-                        </a>
+                        <form action="flights.php" method="post">
+                            <button type="submit">
+                                <div class="card1">
+                                    <img src="<?php echo $row['image']?>" alt="">
+                                    <h4><?php echo $row['tocoun']?></h4>
+                                    <input type="hidden" name="cin" value="<?php echo $date?>">
+                                    <input type="hidden" name="arrival" value="<?php echo $row['tocoun']?>">
+                                    <input type="hidden" name="departure" value="<?php echo $from?>">
+                                </div>
+                            </button>
+                        </form>
                     </li>
                     <?php
                             }
@@ -120,12 +127,17 @@ require('./config/config.php');
                         {
                     ?>
                     <li>
-                        <a href="">
-                            <div class="card1">
-                                <img src="<?php echo $row1['image']?>" alt="">
-                                <h4><?php echo $row1['tocoun']?></h4>
-                            </div>
-                        </a>
+                        <form action="flights.php" method="post">
+                            <button type="submit">
+                                <div class="card1">
+                                    <img src="<?php echo $row1['image']?>" alt="">
+                                    <h4><?php echo $row1['tocoun']?></h4>
+                                    <input type="hidden" name="cin" value="<?php echo $date?>">
+                                    <input type="hidden" name="arrival" value="<?php echo $row1['tocoun']?>">
+                                    <input type="hidden" name="departure" value="<?php echo $from?>">
+                                </div>
+                            </button>
+                        </form>
                     </li>
                     <?php
                         }

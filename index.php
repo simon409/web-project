@@ -15,6 +15,7 @@
     <!--linking the css file-->
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="./style/header_foot.css">
+    
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -165,8 +166,88 @@
         </div>
     </section>
 
+    <section id="about">
+        <div class="half1">
+            <h3>About Us</h3>
+            <div class="content" style="transform: translateY(-50%); position: relative; top: 45%; display: flex; flex-direction: column; gap: 30px;">
+                <h2 style="text-align: start;">Welcome To <span id="W_Name1">Fly.Me</span></h2>
+                <p><span id="W_Name2">Fly.Me</span> is a Professional <span id="W_Type1">Travel</span> Platform. We're dedicated to provide you the best of <span id="W_Type2">Travels</span>, with a focus on dependability and <span id="W_Spec">Flight quality</span>. We hope you enjoy our <span id="W_Type4">Travel</span> as much as we enjoy offering them to you.</p>
+                <p style="font-weight: bold; text-align: center;">Thanks For Visiting Our Site<br><br>
+            </div>
+        </div>
+        <div class="half2">
+            <div class="container1">
+                <img src="./assets/travel_about.png" alt="" srcset="">
+            </div>
+        </div>
+    </section>
+
+    <section id="contactf">
+            <div class="inner contact">
+                <!-- Form Area -->
+                <div class="contact-form">
+                    <h2 class="mb-5">Contact us</h2>
+                    <!-- Form -->
+                    <form id="contact-us" method="post" action="#">
+                        <div id="form" class="mt-5 d-flex gap-5">
+                            <!-- Left Inputs -->
+                        <div class="col-6 wow animated slideInLeft" data-wow-delay=".5s">
+                            <!-- Name -->
+                            <input type="text" name="name" id="name" required="required" class="form" placeholder="Name" />
+                            <!-- Email -->
+                            <input type="email" name="mail" id="mail" required="required" class="form" placeholder="Email" />
+                            <!-- Subject -->
+                            <input type="text" name="subject" id="subject" required="required" class="form" placeholder="Subject" />
+                        </div><!-- End Left Inputs -->
+                        <!-- Right Inputs -->
+                        <div class="col-6 wow animated slideInRight" data-wow-delay=".5s">
+                            <!-- Message -->
+                            <textarea name="message" id="message" class="form textarea"  placeholder="Message"></textarea>
+                        </div><!-- End Right Inputs -->
+                        </div>
+                        <!-- Bottom Submit -->
+                        <div class="relative fullwidth col-xs-12">
+                            <!-- Send Button -->
+                            <button type="submit" id="submit" name="submit" class="form-btn semibold">Send Message</button> 
+                        </div><!-- End Bottom Submit -->
+                        <!-- Clear -->
+                        <div class="clear"></div>
+                    </form>
+
+                    <!-- Your Mail Message -->
+                    <div class="mail-message-area">
+                        <!-- Message -->
+                        <div class="alert gray-bg mail-message not-visible-message">
+                            <strong>Thank You !</strong> Your email has been delivered.
+                        </div>
+                    </div>
+
+                </div><!-- End Contact Form Area -->
+            </div><!-- End Inner -->
+    </section>
+
     <!--Footer-->
-    <?php include('./components/footer.php') ?>
+    <footer id="footer">
+        <div class="content">
+            <div class="logo">
+                <img src="./assets/logofly.png" alt="logo image">
+            </div>
+            <div class="menu">
+                <div class="links">
+                    <h2>Useful Links</h2>
+                    <ul>
+                        <li class="nav-item"><a href="index.php">Home</a></li>
+                        <li class="nav-item"><a href="allflight.php">Flights</a></li>
+                        <li class="nav-item"><a href="index.php#about">About</a></li>
+                        <li class="nav-item"><a href="#">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <h4 class="text-center mt-2">Fly.Me Copyright © <?php echo date('Y')?></h4>
+        </div>
+    </footer>
     <!--adding the script file-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./script/app.js"></script>

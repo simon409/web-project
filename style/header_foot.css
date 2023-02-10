@@ -89,13 +89,6 @@ header .nav1 img{
     background-color: #1d3557;
 }
 
-/*Footer*/
-#footer{
-    height: 50vh;
-    background: linear-gradient(rgba(241, 250, 238, 0.5) 50%, rgba(241, 250, 238, 0.2)), url('../assets/bg_plane.png');
-    background-size: cover;
-    background-position: bottom;
-}
 
 .logged{
     display: flex;
@@ -226,4 +219,67 @@ header .nav1 img{
     width: 10px;
     height: 10px;
     border-radius: 50%;
+}
+
+
+/*Footer*/
+#footer{
+    height: 50vh;
+    background: linear-gradient(rgba(241, 250, 238, 0.9) 50%, rgba(241, 250, 238, 0.9)), url('../assets/bg_plane.png');
+    background-size: cover;
+    background-position: bottom;
+}
+
+#footer .content{
+    height: 90%;
+    display: flex;
+}
+
+.content .logo{
+    width: 60%;
+    padding: 20px;
+}
+
+.content .logo img{
+    width: 40%;
+    position: relative;
+    top: 50%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+}
+
+.content .menu{
+    width: 40%;
+    padding: 20px;
+    text-align: center;
+}
+
+.menu .links{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.menu .links h2{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.links ul{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.links ul li{
+    list-style: none;
+    
+}
+
+.links ul li a{
+    text-decoration: none;
+    color: #1d3557;
 }

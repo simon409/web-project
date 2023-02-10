@@ -1,10 +1,10 @@
 # Details
 
-Date : 2023-02-04 13:35:57
+Date : 2023-02-10 10:00:49
 
 Directory c:\\xampp\\htdocs\\webproject
 
-Total : 74 files,  12222 codes, 2418 comments, 2084 blanks, all 16724 lines
+Total : 76 files,  12791 codes, 2430 comments, 2143 blanks, all 17364 lines
 
 [Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)
 
@@ -14,9 +14,9 @@ Total : 74 files,  12222 codes, 2418 comments, 2084 blanks, all 16724 lines
 | [addtocart.php](/addtocart.php) | PHP | 74 | 3 | 9 | 86 |
 | [admin/dashboard.php](/admin/dashboard.php) | PHP | 555 | 7 | 2 | 564 |
 | [admin/index.php](/admin/index.php) | PHP | 82 | 3 | 7 | 92 |
-| [admin/operations/add/addairp.php](/admin/operations/add/addairp.php) | PHP | 0 | 0 | 1 | 1 |
-| [admin/operations/add/addcountry.php](/admin/operations/add/addcountry.php) | PHP | 0 | 0 | 1 | 1 |
-| [admin/operations/add/addflight.php](/admin/operations/add/addflight.php) | PHP | 0 | 0 | 1 | 1 |
+| [admin/operations/add/addairp.php](/admin/operations/add/addairp.php) | PHP | 13 | 0 | 2 | 15 |
+| [admin/operations/add/addcountry.php](/admin/operations/add/addcountry.php) | PHP | 13 | 0 | 2 | 15 |
+| [admin/operations/add/addflight.php](/admin/operations/add/addflight.php) | PHP | 23 | 2 | 2 | 27 |
 | [admin/operations/add/addstopover.php](/admin/operations/add/addstopover.php) | PHP | 69 | 1 | 4 | 74 |
 | [admin/operations/delete/deletea.php](/admin/operations/delete/deletea.php) | PHP | 8 | 0 | 0 | 8 |
 | [admin/operations/delete/deletec.php](/admin/operations/delete/deletec.php) | PHP | 8 | 0 | 0 | 8 |
@@ -26,6 +26,7 @@ Total : 74 files,  12222 codes, 2418 comments, 2084 blanks, all 16724 lines
 | [admin/operations/modify/editf.php](/admin/operations/modify/editf.php) | PHP | 4 | 0 | 0 | 4 |
 | [admin/script/script.js](/admin/script/script.js) | JavaScript | 55 | 2 | 4 | 61 |
 | [admin/style/style.css](/admin/style/style.css) | CSS | 275 | 2 | 45 | 322 |
+| [allflight.php](/allflight.php) | PHP | 158 | 2 | 5 | 165 |
 | [assets/google.svg](/assets/google.svg) | XML | 1 | 0 | 0 | 1 |
 | [components/footer.php](/components/footer.php) | PHP | 2 | 0 | 1 | 3 |
 | [components/header.php](/components/header.php) | PHP | 97 | 2 | 4 | 103 |
@@ -66,24 +67,25 @@ Total : 74 files,  12222 codes, 2418 comments, 2084 blanks, all 16724 lines
 | [config/phpqrcode/tools/merge.sh](/config/phpqrcode/tools/merge.sh) | Shell Script | 1 | 1 | 0 | 2 |
 | [config/phpqrcode/tools/merged_config.php](/config/phpqrcode/tools/merged_config.php) | PHP | 8 | 5 | 4 | 17 |
 | [config/phpqrcode/tools/merged_header.php](/config/phpqrcode/tools/merged_header.php) | PHP | 1 | 32 | 3 | 36 |
-| [database/webproject.sql](/database/webproject.sql) | SQL | 144 | 123 | 61 | 328 |
+| [database/webproject.sql](/database/webproject.sql) | SQL | 151 | 123 | 61 | 335 |
 | [deletec.php](/deletec.php) | PHP | 13 | 0 | 0 | 13 |
 | [fdetails.php](/fdetails.php) | PHP | 228 | 1 | 2 | 231 |
-| [flights.php](/flights.php) | PHP | 159 | 2 | 7 | 168 |
-| [index.php](/index.php) | PHP | 138 | 0 | 7 | 145 |
-| [login.php](/login.php) | PHP | 75 | 3 | 4 | 82 |
+| [flights.php](/flights.php) | PHP | 148 | 2 | 7 | 157 |
+| [index.php](/index.php) | PHP | 161 | 1 | 14 | 176 |
+| [login.php](/login.php) | PHP | 83 | 3 | 5 | 91 |
 | [modifyinfo.php](/modifyinfo.php) | PHP | 22 | 0 | 6 | 28 |
 | [printticket.php](/printticket.php) | PHP | 158 | 22 | 37 | 217 |
 | [process_data.php](/process_data.php) | PHP | 18 | 0 | 4 | 22 |
 | [register.php](/register.php) | PHP | 72 | 10 | 7 | 89 |
-| [script/app.js](/script/app.js) | JavaScript | 249 | 10 | 22 | 281 |
+| [script/app.js](/script/app.js) | JavaScript | 256 | 16 | 27 | 299 |
 | [style/addtocart.css](/style/addtocart.css) | CSS | 44 | 0 | 6 | 50 |
+| [style/allflights.css](/style/allflights.css) | CSS | 179 | 0 | 32 | 211 |
 | [style/detail.css](/style/detail.css) | CSS | 193 | 0 | 39 | 232 |
 | [style/fdetstyle.less](/style/fdetstyle.less) | Less | 86 | 0 | 13 | 99 |
 | [style/header_foot.css](/style/header_foot.css) | CSS | 198 | 1 | 30 | 229 |
-| [style/style.css](/style/style.css) | CSS | 368 | 3 | 64 | 435 |
+| [style/style.css](/style/style.css) | CSS | 516 | 4 | 71 | 591 |
 | [style/styleflight.css](/style/styleflight.css) | CSS | 342 | 5 | 61 | 408 |
 | [style/user.css](/style/user.css) | CSS | 136 | 0 | 17 | 153 |
-| [user.php](/user.php) | PHP | 263 | 6 | 8 | 277 |
+| [user.php](/user.php) | PHP | 264 | 6 | 7 | 277 |
 
 [Summary](results.md) / Details / [Diff Summary](diff.md) / [Diff Details](diff-details.md)

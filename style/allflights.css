@@ -168,14 +168,19 @@ section{
     text-align: center;
 }
 
-.list li a{
+.list li button{
     width: fit-content;
     text-decoration: none;
-    background-color: #c1c1c1;
+    background-color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 15px;
+    transition: .3s ease-in-out;
+    color: #242D42;
 }
 
-.list li a:hover{
-     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0;
+.list li button:hover{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0;
 }
 
 .grid{
