@@ -54,8 +54,12 @@
 </head>
 <body>
     <?php if (isset($error)) {
-            echo '<p>' . $error . '</p>';
-        } ?>
+        ?>
+    <div class="error">
+        <?php echo '<p>' . $error . '</p>';?>
+    </div>
+        <?php
+    } ?>
     <section class="bg_login">
         <div class="login">
             <form action="" method="post">

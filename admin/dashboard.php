@@ -51,6 +51,33 @@
         $row = mysqli_fetch_row($result7);
         $count = $row[0];
     }
+
+    //get total price for all
+    $sql9 = "SELECT SUM(totalprice) FROM commandedf";
+    $result9 = $conn->query($sql9);
+    if (mysqli_num_rows($result9) > 0) {
+        // Fetch the count of rows from the result
+        $row = mysqli_fetch_row($result9);
+        $totalprice = $row[0];
+    }
+
+    /*get count all flights*/
+    $sql10 = "SELECT count(*) FROM flights";
+    $result10 = $conn->query($sql10);
+
+    // Check if the query was successful
+    if (mysqli_num_rows($result10) > 0) {
+        // Fetch the count of rows from the result
+        $row = mysqli_fetch_row($result10);
+        $countf = $row[0];
+    }
+    //get best flights
+    $popf = "SELECT cmd.flightnum, COUNT(cmd.id) as num, f.*, c.namecoun as 'fromcoun', u.username,c1.* , c1.namecoun as 'tocoun', a.nameairp as 'fromair',a1.nameairp as 'toair' from commandedf cmd, users u, flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and ((cmd.flightnum = f.flightnum and cmd.iduser = u.id)) GROUP BY cmd.flightnum ORDER BY num desc LIMIT 6;";
+    $res2 = $conn->query($popf);
+
+    //get best client
+    $bestc = "SELECT u.*, count(f.flightnum) as num from users u, commandedf f where u.id = f.iduser group by f.iduser order by num desc LIMIT 6;";
+    $res3 = $conn->query($bestc);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -118,14 +145,14 @@
                         <div class="income">
                             <div class="item">
                                 <h3>Total Income</h3>
-                                <h1>5000 $</h1>
+                                <h1><?php echo $totalprice;?> DH</h1>
                             </div>
                         </div>
                         <!--Total Flight Available-->
                         <div class="f-available">
                             <div class="item">
                                 <h3>Total Flight Available</h3>
-                                <h1>240 Flight</h1>
+                                <h1><?php echo $countf;?> Flight</h1>
                             </div>
                         </div>
                     </div>
@@ -143,9 +170,9 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                    if($result->num_rows>0)
+                                    if($res2->num_rows>0)
                                     {
-                                        foreach ($result as $flight) {
+                                        foreach ($res2 as $flight) {
                                             ?>
                                         <tr>
                                         <td><?php echo $flight['fromcoun']?></td>
@@ -179,13 +206,13 @@
                                     </thead>
                                     <tbody>
                                     <?php
-                                    if($result->num_rows>0)
+                                    if($res3->num_rows>0)
                                     {
-                                        foreach ($result as $flight) {
+                                        foreach ($res3 as $client) {
                                             ?>
                                         <tr>
-                                        <td><?php echo $flight['fromcoun']?></td>
-                                        <td><?php echo $flight['tocoun']?></td>
+                                        <td><?php echo $client['fullname']?></td>
+                                        <td><?php echo $client['email']?></td>
                                         </tr>
                                     <?php
                                         }

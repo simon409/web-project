@@ -96,7 +96,7 @@
         </div>
         <div class="content">
             <!--User Cart-->
-            <div id="cart" class="custom hide">
+            <div id="cart" class="custom">
                 <h2>Proceed to check out</h2>
                 <div class="m-4">
                     <ul class="list-unstyled list-group">
@@ -188,7 +188,7 @@
                 </div>
             </div>
             <!--User Infos-->
-            <div id="info" class="custom">
+            <div id="info" class="custom hide">
                 <h2>Your Infos</h2>
                 <form action="modifyinfo.php" method="post">
                     <table class="mt-5 table">

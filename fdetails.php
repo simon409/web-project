@@ -16,11 +16,16 @@
             if (isset($_SESSION['fid'])) {
                 $fid = $_SESSION['fid'];
                 unset($_SESSION['fid']);
+                unset($_SESSION['previous_url_login']);
             }
             else {
                 $fid=$_GET['id'];
                 $_SESSION['fid'] = $fid;
+                unset($_SESSION['previous_url_login']);
             }
+        }
+        else {
+            $fid=$_GET['id'];
         }
     }
     else {
@@ -29,7 +34,7 @@
     $sql = "SELECT f.*, c.namecoun as 'fromcoun', c.codecoun as 'fromcode', c1.namecoun as 'tocoun', c1.codecoun as 'tocode', TIMEDIFF(f.arrivaltime,f.boardtime) as 'duration', a.nameairp as 'fromair', a.codeairport as 'fromaircode' , a1.nameairp as 'toair', a1.codeairport as 'toaircode' from flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and flightnum=$fid";
     $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_assoc($result);
-    $tothour = substr($row['duration'], -7, 1);
+    $tothour = substr($row['duration'], -8, 2);
     $totmin = substr($row['duration'], -5, 2);
 
     $num_adt = 1;
