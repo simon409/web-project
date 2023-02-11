@@ -85,3 +85,5 @@
 </body>
 <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
 </html>
+
+<!--This project was made by Mohamed Addar - for a school project in web development-->

@@ -669,3 +669,5 @@
     <script src="./script/script.js"></script>
 </body>
 </html>
+
+<!--This project was made by Mohamed Addar - for a school project in web development-->

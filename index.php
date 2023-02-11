@@ -1,6 +1,8 @@
 <?php 
     require('./config/config.php');
 
+    
+
     //get all popular flights
     $popf = "SELECT cmd.flightnum, COUNT(cmd.id) as num, f.*, c.namecoun as 'fromcoun', u.username,c1.* , c1.namecoun as 'tocoun', a.nameairp as 'fromair',a1.nameairp as 'toair' from commandedf cmd, users u, flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and (cmd.flightnum = f.flightnum and cmd.iduser = u.id) GROUP BY cmd.flightnum ORDER BY num desc LIMIT 4;";
     $res = mysqli_query($conn, $popf);
@@ -23,7 +25,8 @@
 
 <body onscroll="test(0)">
     <?php include('./components/header.php') ?>
-    <?php $_SESSION['previous_url']=$_SERVER['PHP_SELF'];?>
+    <?php $_SESSION['previous_url']=$_SERVER['PHP_SELF'];unset($_SESSION['previous_url_login']);?>
+    
     <section id="hero">
         <div class="half2">
             <div class="container">
@@ -116,6 +119,14 @@
         <div class="containerg">
             <div class="image">
                 <div class="image-text">
+                    <h1>Tanger</h1>
+                    <h3>The bride of the north</h3>
+                    <p>Rome is the capital city and a special comune of Italy, as well as the capital of the Lazio region. The city has been a major human settlement for almost three millennia. With 2,860,009 residents in 1,285 km², it is also the country's most populated comune.</p>
+                </div>
+            </div>
+
+            <div class="image">
+                <div class="image-text">
                     <h1>Barcelona</h1>
                     <h3>City in Spain</h3>
                     <p>Barcelona, the cosmopolitan capital of Spain’s Catalonia region, is known for its art and architecture. The fantastical Sagrada Família church and other modernist landmarks designed by Antoni Gaudí dot the city. Museu Picasso and Fundació Joan Miró feature modern art by their namesakes. City history museum MUHBA, includes several Roman archaeological sites.</p>
@@ -143,14 +154,6 @@
                     <h1>Paris</h1>
                     <h3>Capital of France</h3>
                     <p>Paris, France's capital, is a major European city and a global center for art, fashion, gastronomy and culture. Its 19th-century cityscape is crisscrossed by wide boulevards and the River Seine. Beyond such landmarks as the Eiffel Tower and the 12th-century, Gothic Notre-Dame cathedral, the city is known for its cafe culture and designer boutiques along the Rue du Faubourg Saint-Honoré.</p>
-                </div>
-            </div>
-
-            <div class="image">
-                <div class="image-text">
-                    <h1>Rome</h1>
-                    <h3>Capital of Italy</h3>
-                    <p>Rome is the capital city and a special comune of Italy, as well as the capital of the Lazio region. The city has been a major human settlement for almost three millennia. With 2,860,009 residents in 1,285 km², it is also the country's most populated comune.</p>
                 </div>
             </div>
 
@@ -254,3 +257,5 @@
 </body>
 
 </html>
+
+<!--This project was made by Mohamed Addar - for a school project in web development-->

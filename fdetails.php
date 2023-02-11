@@ -13,7 +13,7 @@
     if(isset($_SESSION['previous_url_login'])){
         if($_SESSION['previous_url_login'] == '/webproject/login.php')
         {
-            if (isset($_SESSION['fid'])) {
+            if (isset($_SESSION['fid']) && isset($_SESSION['date'])) {
                 $fid = $_SESSION['fid'];
                 $date = $_SESSION['date'];
                 unset($_SESSION['fid']);
@@ -21,11 +21,10 @@
                 unset($_SESSION['previous_url_login']);
             }
             else {
-                $fid=$_GET['id'];
-                $date=$_GET['date'];
-                $_SESSION['fid'] = $fid;
-                $_SESSION['date'] = $date;
-                unset($_SESSION['previous_url_login']);
+                var_dump($_SESSION['previous_url_login']);
+                var_dump($_SESSION['fid']);
+                var_dump($_SESSION['date']);
+                //header('location: index.php');
             }
         }
         else {
@@ -36,7 +35,10 @@
     else {
         $fid=$_GET['id'];
         $date=$_GET['date'];
+        $_SESSION['fid'] = $fid;
+        $_SESSION['date'] = $date;
     }
+
     $sql = "SELECT f.*, c.namecoun as 'fromcoun', c.codecoun as 'fromcode', c1.namecoun as 'tocoun', c1.codecoun as 'tocode', TIMEDIFF(f.arrivaltime,f.boardtime) as 'duration', a.nameairp as 'fromair', a.codeairport as 'fromaircode' , a1.nameairp as 'toair', a1.codeairport as 'toaircode' from flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and flightnum=$fid";
     $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_assoc($result);
@@ -254,3 +256,5 @@
     <script src="https://kit.fontawesome.com/34ab47bcfb.js" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<!--This project was made by Mohamed Addar - for a school project in web development-->

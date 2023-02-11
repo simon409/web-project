@@ -218,3 +218,5 @@ $pdf->QrCodegenerated($qrcode, $departure, $arrival, $departurecode, $arrivalcod
 $pdf->Output();
 
 ?>
+
+<!--This project was made by Mohamed Addar - for a school project in web development-->

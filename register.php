@@ -91,3 +91,5 @@
     <script src="https://kit.fontawesome.com/34ab47bcfb.js" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<!--This project was made by Mohamed Addar - for a school project in web development-->

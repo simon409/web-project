@@ -504,20 +504,21 @@ section{
 .containerg .image * {
     z-index: 1;
 }
+/*morocco*/
 .containerg .image:nth-of-type(1) {
-    background-image: url('https://i.ibb.co/HgC5Cnk/barcelona.jpg');
+    background-image: url('https://images.unsplash.com/photo-1589199910925-de74dd9dac23?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80');
 }
 .containerg .image:nth-of-type(2) {
-    background-image: url('https://i.ibb.co/r5BN642/london.jpg');
+    background-image: url('https://i.ibb.co/HgC5Cnk/barcelona.jpg');
 }
 .containerg .image:nth-of-type(3) {
-    background-image: url('https://i.ibb.co/89cWPNx/new-york.jpg');
+    background-image: url('https://i.ibb.co/r5BN642/london.jpg');
 }
 .containerg .image:nth-of-type(4) {
-    background-image: url('https://i.ibb.co/HF4d84f/paris.jpg');
+    background-image: url('https://i.ibb.co/89cWPNx/new-york.jpg');
 }
 .containerg .image:nth-of-type(5) {
-    background-image: url('https://i.ibb.co/RP7Z3p8/rome.jpg');
+    background-image: url('https://i.ibb.co/HF4d84f/paris.jpg');
 }
 .containerg .image:nth-of-type(6) {
     background-image: url('https://i.ibb.co/5LsKqQP/shinjuku.jpg');
@@ -626,6 +627,13 @@ section{
 
 #contactf{
     height: 50vh;
+}
+
+#contactf h2{
+    text-align: start;
+    color: #e63946;
+    text-transform: uppercase;
+    letter-spacing: 5px;
 }
 
  #contact{
