@@ -589,7 +589,6 @@ section{
    }
 }
 
-
 /*About*/
 #about{
     height: 60vh;
@@ -680,10 +679,6 @@ section{
     border-radius: 15px;
   }
 
-  #form{
-    
-  }
-
   .form:hover{
     border:1px solid #0A5175;
   }
@@ -754,10 +749,12 @@ section{
 .form-btn:active{
     opacity: 0.9;
 }
+
 center{
   margin-top:330px;
 }
-input {
+
+.form {
     position: relative;
     z-index: 9999;
 }

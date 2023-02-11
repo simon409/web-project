@@ -29,7 +29,7 @@
         ?>
         <div class="celebrate">
             <h1>Congrats</h1>
-            <h3>You have added this Airport to your Website</h3>
+            <h3>You have sent the message, we will get to you shortly!</h3>
             <lord-icon
                 src="https://cdn.lordicon.com/pdpnqfoe.json"
                 trigger="loop"
@@ -38,7 +38,7 @@
                 style="width:250px;height:250px">
             </lord-icon><br>
             <div class="btn">
-                <a href="index.php">Back to dashboard</a>
+                <a href="index.php">Back to home page</a>
             </div>
         </div>
         <?php

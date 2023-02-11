@@ -49,6 +49,9 @@
     <section class="vh-100" style="background-color: #457B9D;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
+        <div style="position: absolute; width: fit-content; top:90%; left: 50%; transform: translateX(-50%); font-weight: 500;">
+            <a href="../index.php" class="bg-white p-2 d-inline text-decoration-none rounded">Back to Site web</a>
+        </div>
         <div class="col col-xl-10">
             <div class="card" style="border-radius: 1rem;">
             <div class="row g-0">

@@ -165,7 +165,7 @@ class PDF extends FPDF
          $this->SetFont('helvetica','B',12);
          $this->Cell(85);
          // Flight Number
-         $this->Cell(120,70,$departure.'->'.$arrival,0,0);
+         $this->Cell(110,70,$departure.'->'.$arrival,0,0);
          $this->ln(40);
          $this->Cell(85);
          $this->Cell(120,10, $departurecode.'->'.$arrivalcode,0,1);
@@ -192,8 +192,11 @@ class PDF extends FPDF
         $this->SetFont('helvetica','B',14);
 
         $this->SetFillColor(238,238,238);
+        //RoundedRect(Position x, position y, width, height, border-radius, borders '1234' 1:top-left 2:top-right 3:bottom-left 4:bottom-right, F or D or both f:filled, d: drawn-borders)
+        $this->RoundedRect(0, 267, 210, 30, 0, '12', 'F');
 
-        $this->RoundedRect(0, 277, 210, 20, 5, '12', 'DF');
+        $this->SetFillColor(255,255,255);
+        $this->RoundedRect(0, 257, 210, 20, 5, '34', 'F');
 
         $this->SetTextColor(112,112,112);
         // Page number

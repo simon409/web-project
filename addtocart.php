@@ -6,6 +6,7 @@
     if (isset($_POST['num_adt']) && isset($_POST['num_cld']) && isset($_POST['price']) && isset($_POST['numf'])) {
         $id_user = $_SESSION['user_id'];
         $num_f = $_POST['numf'];
+        $date = $_POST['date'];
         $num_adt = $_POST['num_adt'];
         $num_cld = $_POST['num_cld'];
         $price = $_POST['price'];
@@ -22,15 +23,15 @@
         $qrimage = time().".png";
 
         //qrcode
-        $inscartquery = "INSERT INTO card (flightnum, iduser, numt_adult, numt_child, totalprice, qrcode) values ($num_f, $id_user, $num_adt, $num_cld, $price, '$qrimage')";
+        $inscartquery = "INSERT INTO card (flightnum, iduser, numt_adult, numt_child, totalprice, date, qrcode) values ($num_f, $id_user, $num_adt, $num_cld, $price, '$date', '$qrimage')";
         $result = mysqli_query($conn, $inscartquery);
         
         if($num_cld==0)
         {
-            QRcode :: png("Flight Num:".$num_f." - Ordered by : M. ".$fullname." - Ordered for Adults ".$num_adt.".",$qrcode, 'H', 4,4);
+            QRcode :: png("Flight Num:".$num_f." - Ordered by : M. ".$fullname." - Ordered for Adults ".$num_adt."Date: .".$date,$qrcode, 'H', 4,4);
         }
         else{
-            QRcode :: png("Flight Num:".$num_f." - Ordered by : M. ".$fullname." - Ordered for Adults ".$num_adt." and for children ".$num_cld.".",$qrcode, 'H', 4,4);
+            QRcode :: png("Flight Num:".$num_f." - Ordered by : M. ".$fullname." - Ordered for Adults ".$num_adt." and for children ".$num_cld."Date: .".$date,$qrcode, 'H', 4,4);
         }
 
         

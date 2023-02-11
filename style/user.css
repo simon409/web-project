@@ -151,3 +151,21 @@ section{
     background-color: #1375AD;
     color: #fff;
 }
+
+#tablescroll::-webkit-scrollbar {
+    width: 12px;
+}
+
+#tablescroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1); 
+    border-radius: 10px;
+}
+
+#tablescroll::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.2); 
+}
+
+table{
+    text-align: center;
+}

@@ -15,21 +15,27 @@
         {
             if (isset($_SESSION['fid'])) {
                 $fid = $_SESSION['fid'];
+                $date = $_SESSION['date'];
                 unset($_SESSION['fid']);
+                unset($_SESSION['date']);
                 unset($_SESSION['previous_url_login']);
             }
             else {
                 $fid=$_GET['id'];
+                $date=$_GET['date'];
                 $_SESSION['fid'] = $fid;
+                $_SESSION['date'] = $date;
                 unset($_SESSION['previous_url_login']);
             }
         }
         else {
             $fid=$_GET['id'];
+            $date=$_GET['date'];
         }
     }
     else {
         $fid=$_GET['id'];
+        $date=$_GET['date'];
     }
     $sql = "SELECT f.*, c.namecoun as 'fromcoun', c.codecoun as 'fromcode', c1.namecoun as 'tocoun', c1.codecoun as 'tocode', TIMEDIFF(f.arrivaltime,f.boardtime) as 'duration', a.nameairp as 'fromair', a.codeairport as 'fromaircode' , a1.nameairp as 'toair', a1.codeairport as 'toaircode' from flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and flightnum=$fid";
     $result = mysqli_query($conn,$sql);
@@ -220,6 +226,7 @@
                 </div>
                 <div class="passenger">
                     <input type="hidden" name="numf" value="<?php echo $fid ?>">
+                    <input type="hidden" name="date" value="<?php echo $date ?>">
                     <div class="adlt">
                         <input type="text" name="num_adt" id="adlt" value="1" readonly> <span> Adult x <span id="pradt"><?php echo $row['price_adult']?></span> DH</span>
                     </div>

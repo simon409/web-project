@@ -131,7 +131,7 @@
                             </div>
                             <div class="book">
                                 <div class="det">
-                                    <a href="fdetails.php?id=<?php echo $flight['flightnum'] ?>">View details</a>
+                                    <a href="fdetails.php?id=<?php echo $flight['flightnum']?>&date=<?php echo $_POST['cin']?>">View details</a>
                                 </div>
                             </div>
                         </div>

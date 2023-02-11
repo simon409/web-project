@@ -16,13 +16,13 @@
         header('Location: login.php');
         exit;
     }
-    $uid = $_SESSION['user_id'];
-    $query = "SELECT * FROM users where id = $uid";
-    $res = mysqli_query($conn, $query);
-    $row = mysqli_fetch_assoc($res);
 
     if (isset($_SESSION['user_id'])) {
         $id = $_SESSION['user_id'];
+        //get user infos
+        $query = "SELECT * FROM users where id = $id";
+        $res = mysqli_query($conn, $query);
+        $row = mysqli_fetch_assoc($res);
         // Prepare and execute a SELECT statement to check the cart items
         $querygetcard1 = "SELECT c.*, (c.numt_adult+c.numt_child) as totalt, ct.namecoun FROM card c, flights f, country ct, airport a WHERE iduser = '$id' and (c.flightnum=f.flightnum and (f.toa = a.idairp and a.countryid = ct.idcoun));";
         $cardquery1 = $conn->query($querygetcard1);
@@ -74,7 +74,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Welcome ...</title>
+    <title>Welcome Mr.<?php echo $row['fullname']?></title>
 </head>
 <body>
     <section>
@@ -146,45 +146,48 @@
             <div id="booked" class="custom hide">
                 <h2>Your Orders</h2>
                 <div class="m-4">
-                    <table class="table table-bordered table-striped mt-5 text-center">
-                    <thead>
-                        <tr>
-                            <th scope="col">Flight Departure</th>
-                            <th scope="col">Flight Arrival</th>
-                            <th scope="col">Number Adult</th>
-                            <th scope="col">Number Children</th>
-                            <th scope="col">Total Price</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                        while($order = mysqli_fetch_assoc($orderquery))
-                        {
-                        ?>
+                    <div id="tablescroll" style="overflow-y: scroll;">
+                        <table class="table table-bordered table-striped mt-5 text-center">
+                        <thead>
                             <tr>
-                                <td><?php echo $order['fromcoun']?></td>
-                                <td><?php echo $order['tocoun']?></td>
-                                <td><?php echo $order['numt_adult']?></td>
-                                <td><?php echo $order['numt_child']?></td>
-                                <td><?php echo $order['totalprice']?></td>
-                                <td>
-                                    <a href="printticket.php?idt=<?php echo $order['id']?>"><i class="fa-solid fa-print"></i></a>
-                                </td>
+                                <th scope="col">Flight Departure</th>
+                                <th scope="col">Flight Arrival</th>
+                                <th scope="col">Number Adult</th>
+                                <th scope="col">Number Children</th>
+                                <th scope="col">Total Price</th>
+                                <th scope="col">Action</th>
                             </tr>
+                        </thead>
+                        <tbody>
                         <?php
-                            }
-                            if($orderquery->num_rows>0){
-                                ?>
-                                    
-                                <?php
-                            }
-                            else {
-                                echo '<li class="carditem flex flex-row card p-4 justify-content-between mb-2">'. "You haven't made any order yet!".'</li>';
-                            }
-                        ?>
-                    </tbody>
-                    </table>
+                            while($order = mysqli_fetch_assoc($orderquery))
+                            {
+                            ?>
+                                <tr>
+                                    <td><?php echo $order['fromcoun']?></td>
+                                    <td><?php echo $order['tocoun']?></td>
+                                    <td><?php echo $order['numt_adult']?></td>
+                                    <td><?php echo $order['numt_child']?></td>
+                                    <td><?php echo $order['totalprice']?></td>
+                                    <td>
+                                        <a href="printticket.php?idt=<?php echo $order['id']?>"><i class="fa-solid fa-print"></i></a>
+                                    </td>
+                                </tr>
+                            <?php
+                                }
+                                if($orderquery->num_rows>0){
+                                    ?>
+                                        
+                                    <?php
+                                }
+                                else {
+                                    echo '<li class="carditem flex flex-row card p-4 justify-content-between mb-2">'. "You haven't made any order yet!".'</li>';
+                                }
+                            ?>
+                            
+                        </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <!--User Infos-->
