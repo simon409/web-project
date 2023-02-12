@@ -3,6 +3,7 @@
     $id = $_GET['id'];
     $query1 = "DELETE from airport where idairp = '$id'";
     $result = mysqli_query($conn, $query1);
+    
 ?>
 
 <!DOCTYPE html>

@@ -119,7 +119,7 @@
         <div class="containerg">
             <div class="image">
                 <div class="image-text">
-                    <h1>Tanger</h1>
+                    <h1>Tangier</h1>
                     <h3>The bride of the north - City in Morocco</h3>
                     <p>Tangier is a historic city located in northern Morocco, known for its unique blend of African, European, and Arabian influences. It offers beautiful beaches, lively markets, and vibrant nightlife, as well as historic landmarks and a variety of activities for tourists.</p>
                 </div>
@@ -159,8 +159,8 @@
 
             <div class="image">
                 <div class="image-text">
-                    <h1>Shinjuku</h1>
-                    <h3>Special ward of Tokyo</h3>
+                    <h1>Berlin</h1>
+                    <h3>Capital of Germany</h3>
                     <p>Shinjuku City encompasses the buzzing clubs and karaoke rooms of neon-lit East Shinjuku and upscale hotel bars and restaurants in the Skyscraper District. Tokyo Metropolitan Building has a popular observation deck, and Mount Hakone rises over tranquil urban parkland. Galleries, theaters, and bookstores attract students from busy campuses. New National Stadium is a high-tech sports venue built for the 2020 Olympics. </p>
                 </div>
             </div>

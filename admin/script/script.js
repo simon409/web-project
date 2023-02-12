@@ -2,11 +2,6 @@ function togglemenu() {
     document.getElementById("menu").classList.toggle("showmen");
 }
 
-function togglemenumessage() {
-    document.getElementById("menumessage").classList.toggle("showmen");
-}
-
-
 function menuselect(page) {
     //make all hidden
     document.getElementById("dash").classList.add("hide");

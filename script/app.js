@@ -1,9 +1,11 @@
+/*cette fonction change le style de header pour avoir avoir un background color et un shadow, ca depend a la page (home ou flights) */
 function test(withimg) {
     var scroll =document.documentElement.scrollTop;
     var header = document.getElementById("header");
-    console.log(scroll)
+    //home page
     if(withimg == 0)
     {
+        //si on scroll
         if (scroll > 0) {
             header.classList.add("active");
         }
@@ -11,8 +13,10 @@ function test(withimg) {
             header.classList.remove("active")
         }
     }
+    //flight page
     else
     {
+        //si on a depasser 900 dans le scroll
         if (scroll > 900) {
             header.classList.add("active");
         }
@@ -25,9 +29,9 @@ function test(withimg) {
 /*get today's date */
 $(document).ready( function() {
     $('.today').val(getToday());
-  });
+});
   
-  function getToday(){
+function getToday(){
 	const local = new Date();
     local.setMinutes(local.getMinutes() - local.getTimezoneOffset());
 	return local.toJSON().slice(0,10);
@@ -40,7 +44,7 @@ function incrpers(incdec) {
     if(incdec == 0)
     {
         counter ++;
-        person.value = counter+" Adults"
+        person.value = counter+" Adults";
         adlt.value = counter;
         updatetotalprice();
     }
@@ -52,7 +56,7 @@ function incrpers(incdec) {
         }
         else{
             counter--;
-            person.value = counter+" Adults"
+            person.value = counter+" Adults";
             adlt.value = counter;
             updatetotalprice();
         }
@@ -113,7 +117,7 @@ function updatetotalprice(){
 function getText(event, index) {
     if (index == 0) {
         var text = event.innerText;
-        console.log(text)
+        //console.log(text)
         document.getElementsByName('departure')[0].value = text.trim();
         document.getElementById('search_result').innerHTML = '';
     }
@@ -123,7 +127,7 @@ function getText(event, index) {
         document.getElementById('search_result2').innerHTML = '';
     }
 }
-
+//getting data from database using JSON
 function load_data(query, index) {
     if(query.length > 1){
         var form_data = new FormData();
@@ -136,6 +140,7 @@ function load_data(query, index) {
             if(ajax_request.readyState == 4 && ajax_request.status == 200){
                 var response = JSON.parse(ajax_request.responseText);
                 var html = '<div class="list-group">';
+                console.log(response)
                 if(index == 0){
                     if (response.length > 0) {
                         for(var count = 0; count < response.length; count++){
@@ -177,6 +182,7 @@ function load_data(query, index) {
     }
 }
 
+//TODO:remove
 $('#adlt').change(function() {
     updateprice();
  });
@@ -187,6 +193,7 @@ $('#adlt').change(function() {
 
  
 function togglemenu() {
+    //toggle: show and hide menu
     document.getElementById("menu").classList.toggle("showmen");
     document.getElementById("menucard").classList.remove("showmen");
 }
@@ -236,7 +243,7 @@ function enablepass() {
 
 
 
-//the md5 decryption function url: https://gist.github.com/blackout314/8c948179359a3be09cb1f40a85e8e404
+//the md5 encryption function url: https://gist.github.com/blackout314/8c948179359a3be09cb1f40a85e8e404
 function md5(inputString) {
     var hc="0123456789abcdef";
     function rh(n) {var j,s="";for(j=0;j<=3;j++) s+=hc.charAt((n>>(j*8+4))&0x0F)+hc.charAt((n>>(j*8))&0x0F);return s;}
@@ -280,7 +287,7 @@ function md5(inputString) {
     return rh(a)+rh(b)+rh(c)+rh(d);
 }
 
-//glob design
+//gallery
 const images = document.querySelectorAll('.image');
 
 images.forEach(image => {

@@ -351,3 +351,61 @@ table{
 table{
     transition: .3s ease-in-out;
 }
+
+#inbox{
+    background-color: #A8DADC;
+    height: 100vh;
+    width: 100%;
+}
+
+.inbox{
+    background-color: #fff;
+    border-radius: 15px;
+    height: 600px;
+    width: 50%;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0;
+}
+
+.inbox .header{
+    border-bottom: 1px #0255c9 solid;
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.inbox .header a{
+    color: #1D3557;
+    transition: .3s ease-in-out;
+}
+
+.inbox .content{
+    height: 83%;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.inbox .content p{
+    padding-left: 5%;
+    padding-right: 5%;
+    font-size: 20px;
+}
+
+.header .line1{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header .line2{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}

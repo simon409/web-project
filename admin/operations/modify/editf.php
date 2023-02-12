@@ -1,5 +1,6 @@
 <?php
     require('../../../config/config.php');
+    
     $id = $_GET['id'];
     /*get all airports */
     $sql3 = "SELECT * FROM airport";

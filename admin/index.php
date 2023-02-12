@@ -38,14 +38,67 @@
         .firsthalf{
             color: #E63946;
         }
+        .error{
+        position: absolute;
+        top: -10%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #e09097;
+        border: #e63946 solid 3px;
+        border-radius: 10px;
+        padding: 10px;
+        color: #1d3557;
+        animation: error 4s linear;
+
+    }
+
+
+    .error p{
+        font-size: 20px;
+    }
+
+    @keyframes error {
+        0% {
+            top: -10%;
+        }
+        14% {
+            top: 12%;
+        }
+        16%{
+            top: 9%;
+        }
+        18%{
+            top: 11.5%;
+        }
+        20%{
+            top: 9.5%;
+        }
+        22%{
+            top: 11%;
+        }
+        24%{
+            top: 10%;
+        }
+
+        80%{
+            top: 10%;
+        }
+
+        100%{
+            top: -10%;
+        }
+    }
+
     </style>
 </head>
 <body>
-    <?php 
-        if (isset($error)) {
-            echo '<p>' . $error . '</p>';
-        } 
-    ?>
+        <?php if (isset($error)) {
+            ?>
+        <div class="error">
+            <?php echo '<p>' . $error . '</p>';?>
+        </div>
+            <?php
+        } ?>
     <section class="vh-100" style="background-color: #457B9D;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">

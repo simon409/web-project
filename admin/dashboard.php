@@ -570,7 +570,6 @@
                                         <tr>
                                         <th scope="col" class="text-center">Sender</th>
                                         <th scope="col" class="text-center">Subject</th>
-                                        <th scope="col" class="text-center">Messsage</th>
                                         <th scope="col" class="text-center">Status</th>
                                         <th scope="col" class="text-center">Sent at</th>
                                         <th scope="col" class="text-center">Action</th>
@@ -585,7 +584,6 @@
                                         <tr>
                                         <td class="px-5"><?php echo $message['fullname']?></td>
                                         <td class="px-5"><?php echo $message['subject']?></td>
-                                        <td class="px-5"><?php echo $message['message']?></td>
                                         <td class="px-5">
                                             <?php 
                                                 if ($message['status']=='Read') {

@@ -1,5 +1,6 @@
 <?php
     require('../../../config/config.php');
+    
     $id = $_GET['idm'];
     $query1 = "DELETE from message where idmessage = '$id'";
     $result = mysqli_query($conn, $query1);
