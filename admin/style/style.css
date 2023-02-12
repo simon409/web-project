@@ -409,3 +409,16 @@ table{
     display: flex;
     justify-content: space-between;
 }
+
+.backbtn{
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    font-size: 20px;
+}
+
+.backbtn a{
+    color: #242D42;
+    text-decoration: none;
+
+}

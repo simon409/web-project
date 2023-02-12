@@ -16,54 +16,54 @@ require('./config/config.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/allflights.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <?php 
         if(isset($_POST['departure']))
         {
             ?>
-            <title><?php echo 'Flights from '.$_POST['departure']?></title>
-            <?php
+    <title><?php echo 'Flights from '.$_POST['departure']?></title>
+    <?php
         }
         else {
             ?>
-            <title>Loading</title>
-            <?php
+    <title>Loading</title>
+    <?php
         }
     ?>
 </head>
+
 <body>
-    <div class="from" 
-    <?php 
+    <div class="from" <?php 
         if(isset($_POST['senddepa']))
         {
-            ?>
-            style="display: none;"
-            <?php
+            ?> style="display: none;" <?php
         }
     ?>>
         <div class="content">
             <div class="items">
                 <h2>Hey there, where are you from?</h2>
-                <lord-icon
-                    src="https://cdn.lordicon.com/fihkmkwt.json"
-                    trigger="loop"
-                    delay="1000"
+                <lord-icon src="https://cdn.lordicon.com/fihkmkwt.json" trigger="loop" delay="1000"
                     style="width:250px;height:250px">
                 </lord-icon>
                 <div class="container2">
                     <div id="search_result">
-                        
+
                     </div>
                 </div>
                 <form method="post" id="form">
-                    <input type="text" class="text" name="departure" onkeyup="javascript:load_data(this.value, 0);" required name="from">
+                    <input type="text" class="text" name="departure" onkeyup="javascript:load_data(this.value, 0);"
+                        required name="from">
                     <input type="submit" id="btn" name="senddepa" value="Search">
                 </form>
             </div>
@@ -161,7 +161,7 @@ require('./config/config.php');
                     }
                     ?>
                 </ul>
-               
+
             </div>
         </div>
     </section>
@@ -174,6 +174,7 @@ require('./config/config.php');
     <script src="./script/app.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 </body>
+
 </html>
 
 <!--this is a school project in web development - https://github.com/simon409/web-project -->

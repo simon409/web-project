@@ -58,17 +58,21 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/detail.css">
     <link rel="stylesheet/less" type="text/css" href="./style/fdetstyle.less" />
-    <script src="https://cdn.jsdelivr.net/npm/less@4.1.1" ></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/less@4.1.1"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Flight to <?php echo $row['tocoun']?></title>
 </head>
-<body onload="updatetotalprice();" >
+
+<body onload="updatetotalprice();">
     <main>
         <div class="plan">
             <div class="colorhead">
@@ -103,14 +107,14 @@
                             <h2>Flight plan:</h2>
                         </legend>
                         <div class="dptarr">
-                        <div class="sectionWrap">
-                            <div class="sectionSegment sectionSegment-head">
-                                <div class="sectionNum">
-                                </div>
-                                <div class="sectionLeft">Departure</div>
-                                <div class="sectionLine"></div>
-                                <div class="sectionRight"><span>
-                                    <?php
+                            <div class="sectionWrap">
+                                <div class="sectionSegment sectionSegment-head">
+                                    <div class="sectionNum">
+                                    </div>
+                                    <div class="sectionLeft">Departure</div>
+                                    <div class="sectionLine"></div>
+                                    <div class="sectionRight"><span>
+                                            <?php
                                         if($tothour>0)
                                         {
                                             echo 'Total travel time is: '.$tothour.' Hours and '.$totmin.' Minutes';
@@ -119,9 +123,9 @@
                                             echo 'Total travel time is: '.$totmin.' Minutes';
                                         }
                                     ?>
-                                </span>
-                                <span class="sectionCrossDayLabel">
-                                    <?php
+                                        </span>
+                                        <span class="sectionCrossDayLabel">
+                                            <?php
                                         if($row['arrivaltime']>18){
                                             echo 'Nightly Arrival';
                                         }
@@ -129,64 +133,65 @@
                                             echo 'Overnight Arrival';
                                         }
                                     ?>
-                                </span>
-                            </div>
-                            </div>
-                            <div class="sectionSegment">
-                                <div class="sectionNum"></div>
-                                <div class="sectionLeft">
-                                    <?php
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="sectionSegment">
+                                    <div class="sectionNum"></div>
+                                    <div class="sectionLeft">
+                                        <?php
                                         echo substr($row['boardtime'], 0, 5);
                                     ?>
-                                </div>
-                                <div class="sectionLine"><span class="sectionDot"></span></div>
-                                <div class="sectionRight">
-                                <div>
-                                    <?php
+                                    </div>
+                                    <div class="sectionLine"><span class="sectionDot"></span></div>
+                                    <div class="sectionRight">
+                                        <div>
+                                            <?php
                                         echo $row['fromair'].' '.$row['fromaircode'];
                                     ?>
+                                        </div>
+                                        <div class="sectionRight-desc"><?php echo $row['fromcoun']?></div>
+                                    </div>
                                 </div>
-                                <div class="sectionRight-desc"><?php echo $row['fromcoun']?></div>
-                                </div>
-                            </div>
-                            <?php
+                                <?php
                                 if(!is_null($row['idescale']))
                                 {
                             ?>
-                            <div class="sectionSegment sectionSegment-transit">
-                                <div class="sectionNum"></div>
-                                <div class="sectionLeft"></div>
-                                <div class="sectionLine"><span class="sectionDot"></span></div>
-                                <div class="sectionRight">
-                                <div>
-                                    <?php
+                                <div class="sectionSegment sectionSegment-transit">
+                                    <div class="sectionNum"></div>
+                                    <div class="sectionLeft"></div>
+                                    <div class="sectionLine"><span class="sectionDot"></span></div>
+                                    <div class="sectionRight">
+                                        <div>
+                                            <?php
                                         echo $rowstop['airname'].' '.$rowstop['aircode'];
                                     ?>
+                                        </div>
+                                        <div class="sectionRight-desc">
+                                            <?php echo $rowstop['arrival'].' → '.$rowstop['departure']?></div>
+                                        <div class="sectionRight-desc"><?php echo $rowstop['namecoun']?></div>
+                                    </div>
                                 </div>
-                                <div class="sectionRight-desc"><?php echo $rowstop['arrival'].' → '.$rowstop['departure']?></div>
-                                <div class="sectionRight-desc"><?php echo $rowstop['namecoun']?></div>
-                                </div>
-                            </div>
-                            <?php
+                                <?php
                                 }
                             ?>
-                            <div class="sectionSegment">
-                                <div class="sectionNum"></div>
-                                <div class="sectionLeft">
-                                    <?php
+                                <div class="sectionSegment">
+                                    <div class="sectionNum"></div>
+                                    <div class="sectionLeft">
+                                        <?php
                                         echo substr($row['arrivaltime'], 0, 5);
                                     ?>
-                                </div>
-                                <div class="sectionLine"><span class="sectionDot"></span></div>
-                                <div class="sectionRight">
-                                <div>
-                                    <?php
+                                    </div>
+                                    <div class="sectionLine"><span class="sectionDot"></span></div>
+                                    <div class="sectionRight">
+                                        <div>
+                                            <?php
                                         echo $row['toair'].' '.$row['toaircode'];
                                     ?>
+                                        </div>
+                                        <div class="sectionRight-desc"><?php echo $row['tocoun']?></div>
+                                    </div>
                                 </div>
-                                <div class="sectionRight-desc"><?php echo $row['tocoun']?></div>
-                                </div>
-                            </div>
                             </div>
                         </div>
                     </fieldset>
@@ -219,7 +224,7 @@
             </div>
         </div>
         <div class="prices">
-            <form <?php if (isset($uid)) {?> action="addtocart.php"<?php }?> method="post">
+            <form <?php if (isset($uid)) {?> action="addtocart.php" <?php }?> method="post">
                 <div class="header">
                     <h2>Details</h2>
                     <div class="line">
@@ -230,14 +235,16 @@
                     <input type="hidden" name="numf" value="<?php echo $fid ?>">
                     <input type="hidden" name="date" value="<?php echo $date ?>">
                     <div class="adlt">
-                        <input type="text" name="num_adt" id="adlt" value="1" readonly> <span> Adult x <span id="pradt"><?php echo $row['price_adult']?></span> DH</span>
+                        <input type="text" name="num_adt" id="adlt" value="1" readonly> <span> Adult x <span
+                                id="pradt"><?php echo $row['price_adult']?></span> DH</span>
                     </div>
                     <div class="cld">
-                        <input type="text" name="num_cld" id="chld" value="0" readonly> <span> Children x <span id="pracld"><?php echo $row['price_child']?></span> DH</span>
+                        <input type="text" name="num_cld" id="chld" value="0" readonly> <span> Children x <span
+                                id="pracld"><?php echo $row['price_child']?></span> DH</span>
                     </div>
                 </div>
                 <div class="price">
-                    Total: 
+                    Total:
                     <input type="text" name="price" id="totalp" readonly>DH
                 </div>
                 <div class="btn_conf_ann">
@@ -255,6 +262,7 @@
     <script src="./script/app.js"></script>
     <script src="https://kit.fontawesome.com/34ab47bcfb.js" crossorigin="anonymous"></script>
 </body>
+
 </html>
 
 <!--this is a school project in web development - https://github.com/simon409/web-project -->

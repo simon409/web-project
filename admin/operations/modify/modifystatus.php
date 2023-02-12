@@ -24,6 +24,12 @@
 </head>
 <body>
     <section id="inbox">
+        <div class="backbtn">
+            <a href="../../dashboard.php">
+                <i class="fa-solid fa-arrow-left"></i>
+                BACK
+            </a>
+        </div>
         <div class="inbox">
             <div class="header">
                 <div class="line1">

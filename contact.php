@@ -16,6 +16,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,43 +24,38 @@
     <link rel="stylesheet" href="./style/addtocart.css">
     <title>Congratulations 🥳</title>
 </head>
+
 <body>
-<?php
+    <?php
     if (true) {
         ?>
-        <div class="celebrate">
-            <h1>Congrats</h1>
-            <h3>You have sent the message, we will get to you shortly!</h3>
-            <lord-icon
-                src="https://cdn.lordicon.com/pdpnqfoe.json"
-                trigger="loop"
-                delay="1000"
-                colors="primary:#1375ad,secondary:#ebe6ef"
-                style="width:250px;height:250px">
-            </lord-icon><br>
-            <div class="btn">
-                <a href="index.php">Back to home page</a>
-            </div>
+    <div class="celebrate">
+        <h1>Congrats</h1>
+        <h3>You have sent the message, we will get to you shortly!</h3>
+        <lord-icon src="https://cdn.lordicon.com/pdpnqfoe.json" trigger="loop" delay="1000"
+            colors="primary:#1375ad,secondary:#ebe6ef" style="width:250px;height:250px">
+        </lord-icon><br>
+        <div class="btn">
+            <a href="index.php">Back to home page</a>
         </div>
-        <?php
+    </div>
+    <?php
     }
     else{
     ?>
-        <div class="celebrate">
-            <h1>Oops</h1>
-            <<h3>We had difficulties adding the Airport to your website, our teams is working on it</h3>
-            <lord-icon
-                src="https://cdn.lordicon.com/kjkiqtxg.json"
-                trigger="loop"
-                delay="2000"
+    <div class="celebrate">
+        <h1>Oops</h1>
+        <<h3>We had difficulties adding the Airport to your website, our teams is working on it</h3>
+            <lord-icon src="https://cdn.lordicon.com/kjkiqtxg.json" trigger="loop" delay="2000"
                 style="width:250px;height:250px">
             </lord-icon> <br>
-        </div>
+    </div>
     <?php
     }
     ?>
     <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
 </body>
+
 </html>
 
 <!--this is a school project in web development - https://github.com/simon409/web-project -->

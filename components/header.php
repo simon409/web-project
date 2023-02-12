@@ -22,82 +22,84 @@
     }
 ?>
 <header id="header">
-        <div class="nav1">
-            <div class="logo">
-                <!--<h2><strong>Fly.</strong>Me</h2>-->
-                <img src="./assets/flylogo.png" alt="">
-            </div>
-            <ul>
-                <li class="nav-item"><a href="index.php">Home</a></li>
-                <li class="nav-item"><a href="allflight.php">Flights</a></li>
-                <li class="nav-item"><a href="index.php#about">About</a></li>
-                <li class="nav-item"><a href="index.php#contactf">Contact us</a></li>
-            </ul>
-            <?php
+    <div class="nav1">
+        <div class="logo">
+            <!--<h2><strong>Fly.</strong>Me</h2>-->
+            <img src="./assets/flylogo.png" alt="">
+        </div>
+        <ul>
+            <li class="nav-item"><a href="index.php">Home</a></li>
+            <li class="nav-item"><a href="allflight.php">Flights</a></li>
+            <li class="nav-item"><a href="index.php#about">About</a></li>
+            <li class="nav-item"><a href="index.php#contactf">Contact us</a></li>
+        </ul>
+        <?php
                 if (isset($_SESSION['user_id'])) {
             ?>
-            <div class="logged">
-                <div class="card rounded-circle">
-                    <?php
+        <div class="logged">
+            <div class="card rounded-circle">
+                <?php
                         if($cardquery->num_rows>0){
                             ?>
-                            <div class="dote">
-                                
-                            </div>
-                            <?php
+                <div class="dote">
+
+                </div>
+                <?php
                         }
                     ?>
-                    <button id="showc" type="button" onclick="togglemenucard();"><i class="fa-solid fa-cart-shopping"></i></button>
-                    <div id="menucard" class="listcard">
-                        <ul>
-                            <?php
+                <button id="showc" type="button" onclick="togglemenucard();">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+                <div id="menucard" class="listcard">
+                    <ul>
+                        <?php
                                 while($card = mysqli_fetch_assoc($cardquery))
                                 {
                             ?>
-                            <li class="carditem">
-                                Flight to <?php echo $card['namecoun']?> | <?php echo $card['numt_adult']." Person"; 
+                        <li class="carditem">
+                            Flight to <?php echo $card['namecoun']?> | <?php echo $card['numt_adult']." Person"; 
                                 if ($card['numt_child']>0){
                                     echo " and ".$card['numt_child']." Child";
                                 }
                                 ?>
-                                </li>
-                                <hr style="margin-left: 10%; margin-right: 10%;">
-                            <?php
+                        </li>
+                        <hr style="margin-left: 10%; margin-right: 10%;">
+                        <?php
                                 }
                                 if($cardquery->num_rows>0){
                                     ?>
-                                        <li><a id="proceed" href="user.php">Proceed to check out</a></li>
-                                    <?php
+                        <li><a id="proceed" href="user.php">Proceed to check out</a></li>
+                        <?php
                                 }
                                 else {
                                     echo '<li>'. "Your cart is empty".'</li>';
                                 }
                             ?>
-                        </ul>
-                    </div>
-                </div>
-                <div class="account">
-                    <button id="showl" type="button" onclick="togglemenu();"><i class="fa-solid fa-user"></i></button>
-                    <div id="menu" class="list">
-                        <ul>
-                            <li><a id="user" href="user.php"><?php echo $username?></a></li>
-                            <li><a id="logout" href="?logout=true">Log out</a></li>
-                        </ul>
-                    </div>
+                    </ul>
                 </div>
             </div>
-            <?php
+            <div class="account">
+                <button id="showl" type="button" onclick="togglemenu();"><i class="fa-solid fa-user"></i></button>
+                <div id="menu" class="list">
+                    <ul>
+                        <li><a id="user" href="user.php"><?php echo $username?></a></li>
+                        <li><a id="logout" href="?logout=true">Log out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <?php
             }
             else {
 
             ?>
-            <div class="register">
-                <a href="login.php">Login</a>
-                <a href="register.php">Register</a>
-            </div>
-            <?php
+        <div class="register">
+            <a href="login.php">Login</a>
+            <a href="register.php">Register</a>
+        </div>
+        <?php
                 }
             ?>
-        </div>
-        <script src="../script/app.js"></script>
+    </div>
+    <script src="../script/app.js"></script>
 </header>

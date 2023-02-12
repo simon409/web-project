@@ -15,6 +15,7 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,40 +23,36 @@
     <link rel="stylesheet" href="../../../style/addtocart.css">
     <title>Congratulations 🥳</title>
 </head>
+
 <body>
-<?php
+    <?php
     if ($result) {
         ?>
-        <div class="celebrate">
-            <h1>Congrats</h1>
-            <h3>You have added this Country to your Website</h3>
-            <lord-icon
-                src="https://cdn.lordicon.com/xzksbhzh.json"
-                trigger="loop"
-                delay="1000"
-                style="width:250px;height:250px">
-            </lord-icon> <br>
-            <div class="btn">
-                <a href="../../dashboard.php">Back to dashboard</a>
-            </div>
+    <div class="celebrate">
+        <h1>Congrats</h1>
+        <h3>You have added this Country to your Website</h3>
+        <lord-icon src="https://cdn.lordicon.com/xzksbhzh.json" trigger="loop" delay="1000"
+            style="width:250px;height:250px">
+        </lord-icon> <br>
+        <div class="btn">
+            <a href="../../dashboard.php">Back to dashboard</a>
         </div>
-        <?php
+    </div>
+    <?php
     }
     else{
     ?>
-        <div class="celebrate">
-            <h1>Oops</h1>
-            <<h3>We had difficulties adding the Country to your website, our teams is working on it</h3>
-            <lord-icon
-                src="https://cdn.lordicon.com/kjkiqtxg.json"
-                trigger="loop"
-                delay="2000"
+    <div class="celebrate">
+        <h1>Oops</h1>
+        <<h3>We had difficulties adding the Country to your website, our teams is working on it</h3>
+            <lord-icon src="https://cdn.lordicon.com/kjkiqtxg.json" trigger="loop" delay="2000"
                 style="width:250px;height:250px">
             </lord-icon> <br>
-        </div>
+    </div>
     <?php
     }
     ?>
     <script src="https://cdn.lordicon.com/ritcuqlt.js"></script>
 </body>
+
 </html>

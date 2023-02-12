@@ -39,31 +39,35 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Login Fly.Me</title>
 </head>
+
 <body>
-    
+
     <section class="bg_login">
         <?php if (isset($error)) {
             ?>
         <div class="error">
             <?php echo '<p>' . $error . '</p>';?>
         </div>
-            <?php
+        <?php
         } ?>
         <div class="login">
             <?php
                 if (isset($previous_url) && $previous_url == '/webproject/fdetails.php') {
             ?>
             <div class="notice">
-                    <h2>You must Login in order to complete your purchase</h2>
+                <h2>You must Login in order to complete your purchase</h2>
             </div>
             <?php
                 }
@@ -88,9 +92,10 @@
             <a href="index.php">Back to home page</a>
         </div>
     </section>
-    
+
     <script src="https://kit.fontawesome.com/34ab47bcfb.js" crossorigin="anonymous"></script>
 </body>
+
 </html>
 
 <!--this is a school project in web development - https://github.com/simon409/web-project -->
