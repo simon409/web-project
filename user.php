@@ -280,4 +280,4 @@
 </html>
 
 
-<!--This project was made by Mohamed Addar - for a school project in web development-->
+<!--this is a school project in web development - https://github.com/simon409/web-project -->

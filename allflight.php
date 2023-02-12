@@ -7,7 +7,7 @@ require('./config/config.php');
         $res = mysqli_query($conn, $getf);
 
         //get all popular flight
-        $popf = "SELECT cmd.flightnum, COUNT(cmd.id) as num, f.*, c.namecoun as 'fromcoun', u.username,c1.* , c1.namecoun as 'tocoun', a.nameairp as 'fromair',a1.nameairp as 'toair' from commandedf cmd, users u, flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and ((cmd.flightnum = f.flightnum and cmd.iduser = u.id) and c.namecoun = '$from') GROUP BY cmd.flightnum ORDER BY num desc LIMIT 4;";
+        $popf = "SELECT cmd.flightnum, COUNT(cmd.id) as num, f.*, c.namecoun as 'fromcoun', u.username,c1.* , c1.namecoun as 'tocoun', a.nameairp as 'fromair',a1.nameairp as 'toair' from commandedf cmd, users u, flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and ((cmd.flightnum = f.flightnum and cmd.iduser = u.id) and c.namecoun = '$from') GROUP BY cmd.flightnum ORDER BY num desc LIMIT 6;";
         $res2 = mysqli_query($conn, $popf);
 
         //get date
@@ -24,7 +24,19 @@ require('./config/config.php');
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Document</title>
+    <?php 
+        if(isset($_POST['departure']))
+        {
+            ?>
+            <title><?php echo 'Flights from '.$_POST['departure']?></title>
+            <?php
+        }
+        else {
+            ?>
+            <title>Loading</title>
+            <?php
+        }
+    ?>
 </head>
 <body>
     <div class="from" 
@@ -164,4 +176,4 @@ require('./config/config.php');
 </body>
 </html>
 
-<!--This project was made by Mohamed Addar - for a school project in web development-->
+<!--this is a school project in web development - https://github.com/simon409/web-project -->

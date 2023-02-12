@@ -15,7 +15,7 @@ if (isset($_POST["query"])) {
             'couname'=> str_ireplace($condition, $replace_string, $row["namecoun"])
         );
     }
-
+    //this shows the data
     echo json_encode($data);
 }
 

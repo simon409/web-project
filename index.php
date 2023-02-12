@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Fly.Me Feel the sky</title>
+    <title>Fly.Me - Feel the sky</title>
 </head>
 
 <body onscroll="test(0)">
@@ -120,8 +120,8 @@
             <div class="image">
                 <div class="image-text">
                     <h1>Tanger</h1>
-                    <h3>The bride of the north</h3>
-                    <p>Rome is the capital city and a special comune of Italy, as well as the capital of the Lazio region. The city has been a major human settlement for almost three millennia. With 2,860,009 residents in 1,285 km², it is also the country's most populated comune.</p>
+                    <h3>The bride of the north - City in Morocco</h3>
+                    <p>Tangier is a historic city located in northern Morocco, known for its unique blend of African, European, and Arabian influences. It offers beautiful beaches, lively markets, and vibrant nightlife, as well as historic landmarks and a variety of activities for tourists.</p>
                 </div>
             </div>
 
@@ -144,7 +144,7 @@
             <div class="image">
                 <div class="image-text">
                     <h1>New York</h1>
-                    <h3>City in New York State</h3>
+                    <h3>City in United States of America</h3>
                     <p>New York City comprises 5 boroughs sitting where the Hudson River meets the Atlantic Ocean. At its core is Manhattan, a densely populated borough that’s among the world’s major commercial, financial and cultural centers. Its iconic sites include skyscrapers such as the Empire State Building and sprawling Central Park. Broadway theater is staged in neon-lit Times Square. </p>
                 </div>
             </div>
@@ -258,4 +258,4 @@
 
 </html>
 
-<!--This project was made by Mohamed Addar - for a school project in web development-->
+<!--this is a school project in web development - https://github.com/simon409/web-project -->
