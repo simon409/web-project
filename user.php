@@ -59,6 +59,13 @@
             }
             //end check available
         }
+        if (isset($_GET['delete']) && $_GET['idc']) {
+            $idc = $_GET['idc'];
+            $deletefromcard = "DELETE FROM card WHERE id = $idc";
+            $resdelete = mysqli_query($conn, $deletefromcard);
+            //it reloads no limit
+            header("Location: user.php");
+        }
     }
     else{
         header("location:login.php");
@@ -113,8 +120,8 @@
                                 ?>
                             </div>
                             <div class="action">
-                                        <a class="delete_data" id="<?php echo $card['id']?>"><i class="fa-solid fa-trash"></i></a>
-                                    </div>
+                                <a href="?delete=true&idc=<?php echo $card['id']?>" class="delete_data" id="<?php echo $card['id']?>"><i class="fa-solid fa-trash"></i></a>
+                            </div>
                             <?php
                             }
                             ?>

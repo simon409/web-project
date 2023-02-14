@@ -69,7 +69,7 @@
     ?>
     <div class="celebrate">
         <h1>Oops</h1>
-        <<h3>We had diffuculties adding the flight to your cart, our teams is working on it</h3>
+        <h3>We had diffuculties adding the flight to your cart, our teams is working on it</h3>
             <lord-icon src="https://cdn.lordicon.com/kjkiqtxg.json" trigger="loop" delay="2000"
                 style="width:250px;height:250px">
             </lord-icon> <br>

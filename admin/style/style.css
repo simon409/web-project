@@ -422,3 +422,25 @@ table{
     text-decoration: none;
 
 }
+
+.head{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.head a{
+    text-decoration: none;
+    background-color: #0255c9;
+    color: #fff;
+    padding: 10px 5px;
+    height: fit-content;
+    border-radius: 10px;
+    transition: .3s ease-in-out;
+}
+
+.head a:hover{
+    background-color: #A8DADC;
+    color: #1D3557;
+    border-radius: 15px;
+}

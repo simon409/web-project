@@ -183,11 +183,12 @@
                 <div class="image-text">
                     <h1>Berlin</h1>
                     <h3>Capital of Germany</h3>
-                    <p>Shinjuku City encompasses the buzzing clubs and karaoke rooms of neon-lit East Shinjuku and
-                        upscale hotel bars and restaurants in the Skyscraper District. Tokyo Metropolitan Building has a
-                        popular observation deck, and Mount Hakone rises over tranquil urban parkland. Galleries,
-                        theaters, and bookstores attract students from busy campuses. New National Stadium is a
-                        high-tech sports venue built for the 2020 Olympics. </p>
+                    <p>Berlin is the capital and largest city of Germany by both area and population. Its 3.7 million
+                        inhabitants make it the European Union's most populous city, according to population within city
+                        limits. One of Germany's sixteen constituent states, Berlin is surrounded by the State of
+                        Brandenburg and contiguous with Potsdam, Brandenburg's capital. Berlin's urban area, which has a
+                        population of around 4.5 million, is the second most populous urban area in Germany after the
+                        Ruhr. </p>
                 </div>
             </div>
 

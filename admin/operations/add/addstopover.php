@@ -9,8 +9,6 @@
         $arrtime = $_POST['arrtime'];
         $deptime = $_POST['deptime'];
 
-        var_dump($stopa);
-
         $sql2 = "INSERT INTO stopover (airid, arrival, departure) values ($stopa, '$arrtime', '$deptime')";
         $result2 = mysqli_query($conn,$sql2);
 

@@ -1,8 +1,10 @@
 <?php 
     require('./config/config.php');
     if (isset($_POST["departure"]) && isset($_POST["arrival"])) {
+
         $from = $_POST["departure"];
         $to = $_POST["arrival"];
+
         $sql = "SELECT f.*, c.namecoun as 'fromcoun', c.codecoun as 'fromcode', c1.namecoun as 'tocoun', c1.codecoun as 'tocode' from flights f, airport a, airport a1, country c, country c1 where ((f.froma = a.idairp and a.countryid=c.idcoun) and (f.toa = a1.idairp and a1.countryid = c1.idcoun)) and (c.namecoun = '$from' and c1.namecoun='$to')";
         $result = $conn->query($sql);
 
@@ -11,7 +13,13 @@
         $result1 = mysqli_query($conn, $query2);
         // Get the image URL from the result
         $row = mysqli_fetch_assoc($result1);
-        $image_url = $row['image'];
+        
+        if (isset($row['image'])) {
+            $image_url = $row['image'];
+        }
+        else{
+            $image_url = "https://images.unsplash.com/45/eDLHCtzRR0yfFtU0BQar_sylwiabartyzel_themap.jpg?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1178&q=80";
+        }
     }
     else {
         header('location: index.php');
@@ -48,12 +56,38 @@
             <p style="display: none;">Picture by someone on unsplash</p>
         </div>
         <div class="infos">
-            <h1>Fligths to <?php echo $_POST['arrival']?></h1>
-            <h2>Here are our flights to your destination</h2>
+            <h1>
+                Fligths to 
+                <?php 
+                    if (isset($row['image'])) {
+                        echo $_POST['arrival'];
+                    }
+                    else {
+                        echo "Unknown Destination";
+                    }
+                ?>
+            </h1>
+            <h2>
+                <?php
+                    if (isset($row['image'])) {
+                        echo "Here are our flights to your destination";
+                    }
+                    else {
+                        echo "Unknown Destination - Please Choose destination from the menu";
+                    }
+                ?>
+            </h2>
         </div>
         <div class="shwf">
             <a href="#flights">
-                View flights
+                <?php
+                    if (isset($row['image'])) {
+                        echo "View flights";
+                    }
+                    else {
+                        echo "Change Destination";
+                    }
+                ?>
             </a>
         </div>
     </section>

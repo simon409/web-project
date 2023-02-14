@@ -29,12 +29,26 @@
          //checking if it have stopover
          if($_POST['stopover'] == "Contains Stopover"){
              $stopover = $_POST['stopa'];
-             $query = "UPDATE flights set froma=$froma, toa=$toa, boardtime='$deptime', arrivaltime='$arrtime', price_adult=$pricea, price_child=$pricec, seats_available=$seata, idescale=$stopover where flightnum=$id";
+             $query = "UPDATE flights set froma=$froma, toa=$toa, boardtime='$deptime', arrivaltime='$arrtime', price_adult=$pricea, price_child=$pricec, totalseats=$seata, seats_available=$seata, idescale=$stopover where flightnum=$id";
          }
          else{
-             $query = "UPDATE flights set froma=$froma, toa=$toa, boardtime='$deptime', arrivaltime='$arrtime', price_adult=$pricea, price_child=$pricec, seats_available=$seata where flightnum=$id";
+             $query = "UPDATE flights set froma=$froma, toa=$toa, boardtime='$deptime', arrivaltime='$arrtime', price_adult=$pricea, price_child=$pricec, totalseats=$seata, seats_available=$seata where flightnum=$id";
          }
          $update = mysqli_query($conn, $query);
+         if($update)
+         {
+            $update1 = true;
+         }
+    }
+
+    if(isset($_GET['reset']))
+    {
+        $query1 = "UPDATE flights set seats_available = totalseats";
+        $update1 = mysqli_query($conn, $query1);
+        if($update1)
+        {
+            $update = true;
+        }
     }
 ?>
 
@@ -55,9 +69,9 @@
 
 <body id="modif">
     <?php
-            if(isset($update))
+            if(isset($update) || isset($update1))
             {
-                if ($update) {
+                if ($update || $update1) {
                     ?>
     <div class="celebrate">
         <h1>Congrats</h1>
@@ -87,7 +101,10 @@
                 ?>
     <div id="container" class="container p-5 bg-white rounded">
         <section id="addf">
-            <h1>Modify Flight Number : <?php echo $id;?></h1>
+            <div class="head">
+                <h1>Modify Flight Number : <?php echo $id;?></h1>
+                <a href="?id=<?php echo $id?>&reset=true">Reset Flight</a>
+            </div>
             <div class="formdiv">
                 <form action="" method="post">
                     <div class="form">
