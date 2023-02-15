@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 09, 2023 at 07:04 PM
+-- Generation Time: Feb 14, 2023 at 02:58 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -39,10 +39,11 @@ CREATE TABLE `airport` (
 --
 
 INSERT INTO `airport` (`idairp`, `nameairp`, `codeairport`, `countryid`) VALUES
-(3, 'John F. Kennedy International Airport', 'JFK', 1),
-(4, 'Mohammed V International Airport', 'CMN', 2),
-(5, 'Heathrow Airport', 'LHR', 3),
-(6, 'Abu Dhabi International Airport', 'AUH', 4);
+(1, 'John F. Kennedy International Airport', 'JFK', 1),
+(2, 'Mohammed V International Airport', 'CMN', 2),
+(3, 'Heathrow Airport', 'LHR', 3),
+(4, 'Abu Dhabi International Airport', 'AUH', 4),
+(10, 'Madrid Airport', 'MAD', 8);
 
 -- --------------------------------------------------------
 
@@ -57,7 +58,7 @@ CREATE TABLE `card` (
   `numt_adult` int(11) NOT NULL,
   `numt_child` int(11) NOT NULL,
   `totalprice` float NOT NULL,
-  `date` date DEFAULT current_timestamp(),
+  `date` date DEFAULT NULL,
   `qrcode` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -74,7 +75,7 @@ CREATE TABLE `commandedf` (
   `numt_adult` int(11) NOT NULL,
   `numt_child` int(11) NOT NULL,
   `totalprice` float NOT NULL,
-  `date` date DEFAULT current_timestamp(),
+  `date` date DEFAULT NULL,
   `qrcode` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -84,11 +85,23 @@ CREATE TABLE `commandedf` (
 
 INSERT INTO `commandedf` (`id`, `flightnum`, `iduser`, `numt_adult`, `numt_child`, `totalprice`, `date`, `qrcode`) VALUES
 (14, 1, 1, 1, 0, 5134, '2023-02-03', '1675462061.png'),
-(15, 3, 1, 1, 0, 2125, '2023-02-04', '1675512625.png'),
 (16, 1, 1, 2, 1, 10268, '2023-02-04', '1675513051.png'),
-(18, 5, 1, 2, 1, 14500, '2023-02-09', '1675957574.png'),
-(19, 3, 1, 2, 1, 6375, '2023-02-09', '1675960994.png'),
-(20, 1, 1, 1, 0, 5134, '2023-02-09', '1675962159.png');
+(20, 1, 1, 1, 0, 5134, '2023-02-09', '1675962159.png'),
+(21, 1, 1, 1, 0, 5134, '2023-02-10', '1676027971.png'),
+(23, 37, 1, 2, 0, 8500, '2023-02-10', '1676033334.png'),
+(24, 40, 1, 1, 0, 2100, '2023-02-10', '1676033381.png'),
+(25, 40, 1, 2, 0, 4200, '2023-02-10', '1676033437.png'),
+(26, 40, 4, 1, 0, 2100, '2023-02-11', '1676113709.png'),
+(27, 40, 4, 2, 0, 4200, '2023-02-11', '1676113794.png'),
+(28, 40, 4, 1, 1, 4150, '2023-02-11', '1676113847.png'),
+(29, 1, 1, 2, 1, 15402, '2023-02-15', '1676125785.png'),
+(30, 1, 1, 2, 1, 15402, '2023-02-12', '1676132358.png'),
+(31, 1, 1, 2, 1, 15402, '2023-02-12', '1676132358.png'),
+(32, 1, 1, 2, 0, 10268, '2023-02-11', '1676132561.png'),
+(34, 40, 1, 1, 0, 2100, '2023-02-11', '1676133309.png'),
+(38, 1, 1, 1, 0, 5134, '2023-02-11', '1676137368.png'),
+(39, 1, 1, 2, 0, 10268, '2023-02-15', '1676279502.png'),
+(40, 37, 6, 5, 1, 25500, '2023-03-23', '1676374616.png');
 
 -- --------------------------------------------------------
 
@@ -111,7 +124,8 @@ INSERT INTO `country` (`idcoun`, `namecoun`, `codecoun`, `image`) VALUES
 (1, 'United States', 'USA', 'https://images.unsplash.com/photo-1610312278520-bcc893a3ff1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1147&q=80'),
 (2, 'Morocco', 'MAR', 'https://images.unsplash.com/photo-1569383746724-6f1b882b8f46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'),
 (3, 'United Kingdom', 'GBR', 'https://images.unsplash.com/photo-1529180184525-78f99adb8e98?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'),
-(4, 'Émirats arabes unis', 'EAU', 'https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80');
+(4, 'Émirats arabes unis', 'EAU', 'https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'),
+(8, 'Spain', 'ESP', 'https://images.unsplash.com/photo-1495562569060-2eec283d3391?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');
 
 -- --------------------------------------------------------
 
@@ -128,6 +142,7 @@ CREATE TABLE `flights` (
   `arrivaltime` time NOT NULL,
   `price_adult` float NOT NULL,
   `price_child` float NOT NULL,
+  `totalseats` int(11) NOT NULL,
   `seats_available` int(11) NOT NULL,
   `seats_taken` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -136,11 +151,35 @@ CREATE TABLE `flights` (
 -- Dumping data for table `flights`
 --
 
-INSERT INTO `flights` (`flightnum`, `froma`, `toa`, `idescale`, `boardtime`, `arrivaltime`, `price_adult`, `price_child`, `seats_available`, `seats_taken`) VALUES
-(1, 3, 4, 1, '10:20:00', '18:30:00', 5134, 5134, 182, 1),
-(3, 4, 5, NULL, '06:10:00', '12:20:00', 2125, 2125, 121, 3),
-(4, 3, 5, 2, '07:39:00', '12:40:00', 4250, 4050, 200, 0),
-(5, 4, 6, 2, '07:45:00', '12:50:00', 5000, 4500, 297, 3);
+INSERT INTO `flights` (`flightnum`, `froma`, `toa`, `idescale`, `boardtime`, `arrivaltime`, `price_adult`, `price_child`, `totalseats`, `seats_available`, `seats_taken`) VALUES
+(1, 1, 2, 1, '10:20:00', '18:30:00', 5134, 5134, 200, 200, 3),
+(37, 2, 1, 2, '06:00:00', '15:50:00', 4250, 4250, 150, 150, 6),
+(40, 2, 4, NULL, '13:44:00', '23:45:00', 2100, 2050, 300, 300, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message`
+--
+
+CREATE TABLE `message` (
+  `idmessage` int(11) NOT NULL,
+  `fullname` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `subject` varchar(300) NOT NULL,
+  `message` varchar(500) NOT NULL,
+  `status` varchar(20) NOT NULL DEFAULT 'Unread',
+  `sentat` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `message`
+--
+
+INSERT INTO `message` (`idmessage`, `fullname`, `email`, `subject`, `message`, `status`, `sentat`) VALUES
+(42, 'Mohamed Addar', 'addarm409@gmail.com', 'Thanks for service', 'Hey i am simon', 'Read', '2023-02-11 16:02:49'),
+(43, 'Mohamed Addar', 'dfgfdgfd@gdfsv.xczv', 'wow', 'wow owowowowoow', 'Read', '2023-02-11 17:26:33'),
+(47, 'yahia kasdi', 'kasdi@gmail.com', 'yahia', 'hey i am kasdi', 'Read', '2023-02-13 10:17:06');
 
 -- --------------------------------------------------------
 
@@ -160,9 +199,12 @@ CREATE TABLE `stopover` (
 --
 
 INSERT INTO `stopover` (`idstop`, `airid`, `arrival`, `departure`) VALUES
-(1, 5, '17:10:00', '17:30:00'),
-(2, 3, '07:47:00', '20:10:00'),
-(3, 4, '05:00:00', '05:15:00');
+(1, 3, '17:10:00', '17:30:00'),
+(2, 1, '07:47:00', '20:10:00'),
+(3, 2, '05:00:00', '05:15:00'),
+(4, 4, '19:14:00', '12:42:00'),
+(5, 2, '00:00:00', '00:00:00'),
+(6, 1, '02:24:00', '12:58:00');
 
 -- --------------------------------------------------------
 
@@ -185,9 +227,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `fullname`, `password`, `email`, `phone_num`, `type`) VALUES
-(1, 'testuser', 'simon add', '25d55ad283aa400af464c76d713c07ad', 'addarm409@gmail.com', '0611051318', 'user'),
+(1, 'testuser', 'simon addar', '25d55ad283aa400af464c76d713c07ad', 'addarm409@gmail.com', '0611051318', 'user'),
 (2, 'flyme-admin', NULL, '21232f297a57a5a743894a0e4a801fc3', 'addarm409@gmail.com', '', 'admin'),
-(4, 'testuser2', 'Mohamed Addar', '0df4c0c2a86ba43a099f8b2c1ca0685e', 'ghounimhamza27@gmail.com', '', 'user');
+(4, 'testuser2', 'Mohamed Addar', '0df4c0c2a86ba43a099f8b2c1ca0685e', 'ghounimhamza27@gmail.com', '', 'user'),
+(5, 'testuser1', 'Mohamed addar', '0df4c0c2a86ba43a099f8b2c1ca0685e', 'addrmohammed@gmail.com', '', 'user'),
+(6, 'blender45', 'yahia kasdi', '5e7fa31bf47828383aeb12cf5af89276', 'yahiaksd@gmail.com', '', 'user');
 
 --
 -- Indexes for dumped tables
@@ -232,6 +276,12 @@ ALTER TABLE `flights`
   ADD KEY `fr_escale_flight` (`idescale`);
 
 --
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`idmessage`);
+
+--
 -- Indexes for table `stopover`
 --
 ALTER TABLE `stopover`
@@ -252,43 +302,49 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `airport`
 --
 ALTER TABLE `airport`
-  MODIFY `idairp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idairp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `card`
 --
 ALTER TABLE `card`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `commandedf`
 --
 ALTER TABLE `commandedf`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `country`
 --
 ALTER TABLE `country`
-  MODIFY `idcoun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idcoun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `flights`
 --
 ALTER TABLE `flights`
-  MODIFY `flightnum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `flightnum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `idmessage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `stopover`
 --
 ALTER TABLE `stopover`
-  MODIFY `idstop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idstop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
